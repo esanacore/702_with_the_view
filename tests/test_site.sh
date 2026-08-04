@@ -107,4 +107,6 @@ echo "Passed: $pass  Failed: $fail"
 
 # Browser-based layout assertions (SKIPs where the browse daemon is absent,
 # e.g. CI — see tests/test_layout.sh for what still covers that case).
-bash "$root/tests/test_layout.sh"
+if [ -f "$root/tests/test_layout.sh" ]; then
+  bash "$root/tests/test_layout.sh"
+fi
