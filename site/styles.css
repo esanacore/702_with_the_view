@@ -22,8 +22,8 @@
   --surface: #ffffff;
   --ink: #000000;
   --ink-soft: #555555;
-  --accent: #000d18;         /* very dark teal: buttons, links */
-  --accent-strong: #000810;
+  --accent: #001a30;         /* very dark teal: buttons, links */
+  --accent-strong: #000f1f;
   --brass: #C9B037;          /* warm muted gold: overlines, small accents */
   --border: #e0e0e0;
   --wave-back: #b8d4dd;
@@ -45,8 +45,8 @@
     --surface: #151515;
     --ink: #ffffff;
     --ink-soft: #b0b0b0;
-    --accent: #001a25;        /* darker teal for dark mode buttons */
-    --accent-strong: #000d18;
+    --accent: #001a30;        /* darker teal for dark mode buttons */
+    --accent-strong: #000f1f;
     --brass: #C9B037;
     --border: #333333;
     --wave-back: #1a4d52;
@@ -64,8 +64,8 @@
   --surface: #151515;
   --ink: #ffffff;
   --ink-soft: #b0b0b0;
-  --accent: #001a25;
-  --accent-strong: #000d18;
+  --accent: #001a30;
+  --accent-strong: #000f1f;
   --brass: #C9B037;
   --border: #333333;
   --wave-back: #1a4d52;
@@ -131,7 +131,7 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
   white-space: nowrap;
 }
 
-.nav__brand em { color: var(--accent); }
+.nav__brand em { color: var(--brass); }
 
 .nav__links {
   display: flex;
