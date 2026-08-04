@@ -63,6 +63,11 @@ check T-034 "fan with Bluetooth speaker"   grep -qi 'Bluetooth speaker' "$index"
 check T-035 "water view stated"            grep -qi 'water view\|>Water<' "$index"
 check T-036 "655 sq ft stated"             grep -qi '655' "$index"
 check T-037 "Anchorage community named"    grep -qi 'The Anchorage' "$index"
+check T-038 "realtor contact wired" bash -c '
+  grep -q "mailto:pmoranhomes@gmail.com" "'"$index"'" &&
+  grep -q "tel:+16314870153" "'"$index"'" &&
+  ! grep -q "CONTACT-EMAIL-TBD" "'"$index"'"
+'
 
 # --- T-060 .. T-063: light/dark theming ---------------------------------
 check T-060 "theme toggle button exists"   grep -q 'id="themeToggle"' "$index"

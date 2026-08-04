@@ -441,6 +441,13 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 .section--contact .section__lede { margin-left: auto; margin-right: auto; }
 
+.contact__agent {
+  margin-top: 1.5rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
 /* -------------------------------- Footer ---------------------------------- */
 
 .footer {

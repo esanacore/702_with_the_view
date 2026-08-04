@@ -28,6 +28,8 @@ This project follows semantic versioning.
   choice persisted, no wrong-theme flash (modeled on gentletable.com).
 - Community section (The Anchorage amenities) and researched unit facts
   (1 bed, 655 sq ft, water view) with sources in the Property Manual.
+- Contact section wired to the listing agent (Peggy Moran, Charles
+  Rutenberg Realty): email button with prefilled subject, phone link.
 
 ### Changed
 

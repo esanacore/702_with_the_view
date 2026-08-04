@@ -9,7 +9,7 @@ Keep entries specific, actionable, and current.
 - [x] Purchase `702withtheview.com` (done 2026-08-03, Cloudflare Registrar)
 - [x] Add DNS records in Cloudflare and set the custom domain on GitHub Pages (done 2026-08-03)
 - [x] Enforce HTTPS (done 2026-08-03; cert valid to 2026-11-02, auto-renews)
-- [ ] Replace `CONTACT-EMAIL-TBD@example.com` in `site/index.html` with the real contact
+- [x] Contact wired to listing agent Peggy Moran (2026-08-03) — owner said "likely" the right address, confirm before sharing widely
 - [x] Fill the Details section (beds/sqft/view researched 2026-08-03 — see `docs/PROPERTY_MANUAL.md` "Property Facts & Sources")
 - [ ] Owner: confirm bathroom count (listing data ambiguous) and the community amenities list
 - [ ] Owner: set rent, availability date, and lease terms (currently TBD)
