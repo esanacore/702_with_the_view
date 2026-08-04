@@ -1,38 +1,34 @@
 /* ============================================================
    702 with the View — design system
-   Modeled on gentletable.com: warm cream/ink palette, serif
-   display headings, token-driven light/dark theming that follows
-   the operating system until the reader chooses, generous
-   whitespace, thin borders, no ornament.
+   White, black, gold, dark turquoise, and emerald green palette.
    Dependency-free: system fonts only (constitution Principle 7).
    ============================================================ */
 
 /* ------------------------------------------------------------------
    Colour tokens.
 
-   Light mode is warm cream and ink, with a harbor blue accent and a
-   brass secondary — the palette of the waterfront the apartment looks
-   onto. Dark mode is a warm near-black rather than pure black: pure
-   white on pure black causes halation, so both text and background
-   are softened while keeping WCAG AA contrast.
+   Light mode: white background with black text, gold accents, and
+   turquoise as the primary action color. Dark mode: near-black background
+   with white text, maintaining contrast while using emerald green as
+   the primary action color for visual variety.
    ------------------------------------------------------------------ */
 
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #faf7f1;
-  --bg-tint: #f2edE2;
+  --bg: #ffffff;
+  --bg-tint: #f5f5f5;
   --surface: #ffffff;
-  --ink: #26241e;
-  --ink-soft: #57534a;
-  --accent: #1d4d68;         /* harbor blue: buttons, links */
-  --accent-strong: #163d53;
-  --brass: #a97e2f;          /* overlines, small accents */
-  --border: #ddd6c8;
-  --wave-back: #c9d8e0;
-  --wave-front: #9db8c6;
-  --shadow: 0 2px 10px rgba(38, 36, 30, 0.07);
+  --ink: #000000;
+  --ink-soft: #555555;
+  --accent: #1a5f6f;         /* dark turquoise: buttons, links */
+  --accent-strong: #0d3d4d;
+  --brass: #d4af37;          /* gold: overlines, small accents */
+  --border: #e0e0e0;
+  --wave-back: #b8d4dd;
+  --wave-front: #8cbcc9;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --on-accent: #ffffff;
 
   --radius: 14px;
@@ -44,38 +40,38 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #14130f;
-    --bg-tint: #1d1b16;
-    --surface: #201e18;
-    --ink: #f0ece2;
-    --ink-soft: #b3ac9d;
-    --accent: #7fadc7;
-    --accent-strong: #9dc2d8;
-    --brass: #cfa14e;
-    --border: #38352c;
-    --wave-back: #263442;
-    --wave-front: #35495c;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
-    --on-accent: #10222e;
+    --bg: #0a0a0a;
+    --bg-tint: #1a1a1a;
+    --surface: #151515;
+    --ink: #ffffff;
+    --ink-soft: #b0b0b0;
+    --accent: #2dd4bf;        /* emerald green: buttons, links in dark mode */
+    --accent-strong: #4de8d3;
+    --brass: #d4af37;
+    --border: #333333;
+    --wave-back: #1a4d52;
+    --wave-front: #2a6b73;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    --on-accent: #000000;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #14130f;
-  --bg-tint: #1d1b16;
-  --surface: #201e18;
-  --ink: #f0ece2;
-  --ink-soft: #b3ac9d;
-  --accent: #7fadc7;
-  --accent-strong: #9dc2d8;
-  --brass: #cfa14e;
-  --border: #38352c;
-  --wave-back: #263442;
-  --wave-front: #35495c;
-  --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
-  --on-accent: #10222e;
+  --bg: #0a0a0a;
+  --bg-tint: #1a1a1a;
+  --surface: #151515;
+  --ink: #ffffff;
+  --ink-soft: #b0b0b0;
+  --accent: #2dd4bf;
+  --accent-strong: #4de8d3;
+  --brass: #d4af37;
+  --border: #333333;
+  --wave-back: #1a4d52;
+  --wave-front: #2a6b73;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  --on-accent: #000000;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
