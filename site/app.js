@@ -152,44 +152,7 @@
     });
   }
 
-  // ---- 5. Scroll-linked video ---------------------------------------------
-  var video = document.getElementById("scrollVideo");
-  if (video) {
-    var isScrollLinked = true;
-    var lastScrollY = 0;
+  // ---- 5. Scroll-linked video (removed) -----------------------------------
+  // Video now plays on user click only — simple and intuitive.
 
-    function updateVideoProgress() {
-      if (!isScrollLinked) return;
-
-      var rect = video.getBoundingClientRect();
-      var videoCenterY = rect.top + rect.height / 2;
-      var windowHeight = window.innerHeight;
-      
-      // Calculate how far the video center is into view
-      // When fully above viewport: -1, when in center: 0, when fully below: 1
-      var scrollProgress = videoCenterY / (windowHeight / 2);
-      
-      // Clamp to 0-1 for video playback
-      var videoProgress = Math.max(0, Math.min(1, 0.5 - scrollProgress / 2));
-      
-      if (video.duration) {
-        video.currentTime = videoProgress * video.duration;
-      }
-    }
-
-    window.addEventListener("scroll", updateVideoProgress);
-    updateVideoProgress();
-
-    // Optional: pause when not scrolling to give feedback
-    video.addEventListener("click", function () {
-      isScrollLinked = !isScrollLinked;
-      if (isScrollLinked) {
-        video.style.opacity = "1";
-        updateVideoProgress();
-      } else {
-        video.style.opacity = "0.7";
-        video.play();
-      }
-    });
-  }
 })();
