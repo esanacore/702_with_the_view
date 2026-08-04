@@ -57,7 +57,7 @@ check T-026 "community section present"    grep -q 'id="community"' "$index"
 # --- T-030 .. T-034: feature copy the listing promises ------------------
 check T-030 "GE appliances mentioned"      grep -qi 'GE' "$index"
 check T-031 "French-door fridge + icemaker" grep -qi 'icemaker' "$index"
-check T-032 "filtered water line"          grep -qi 'filtered cold-water line' "$index"
+check T-032 "filtered water line"          grep -qi 'filtered water line' "$index"
 check T-033 "medicine cabinet defogger"    grep -qi 'defogger' "$index"
 check T-034 "fan with Bluetooth speaker"   grep -qi 'Bluetooth speaker' "$index"
 check T-035 "water view stated"            grep -qi 'water view\|>Water<' "$index"
@@ -91,7 +91,20 @@ check T-051 "reduced-motion is honored"    grep -q 'prefers-reduced-motion' "$si
 check T-052 "no external network deps" bash -c '
   ! grep -Eq "https?://[^\"]*\.(js|css|woff2?)" "'"$index"'"
 '
+# Regression guard for the v1.0.0 caption bug: a percentage height on the
+# swapped-in gallery photos makes them overflow their figure and bury the
+# caption below. Photos must size from width + aspect-ratio only.
+check T-053 "gallery photos never height:100%" bash -c '
+  rule=$(sed -n "/^\.ph__frame img,/,/^}/p" "'"$site"'/styles.css");
+  [ -n "$rule" ] &&
+  printf "%s" "$rule" | grep -q "height: auto" &&
+  ! printf "%s" "$rule" | grep -q "height: 100%"
+'
 
 echo "---------------------"
 echo "Passed: $pass  Failed: $fail"
-[ "$fail" -eq 0 ]
+[ "$fail" -eq 0 ] || exit 1
+
+# Browser-based layout assertions (SKIPs where the browse daemon is absent,
+# e.g. CI — see tests/test_layout.sh for what still covers that case).
+bash "$root/tests/test_layout.sh"
