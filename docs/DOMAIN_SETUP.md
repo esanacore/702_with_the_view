@@ -1,5 +1,15 @@
 # Getting 702withtheview.com live
 
+> **Status: COMPLETE (2026-08-03).** Domain purchased on Cloudflare
+> Registrar, all five DNS records live (grey-cloud/DNS-only), custom domain
+> set on GitHub Pages, certificate issued (valid to 2026-11-02,
+> auto-renewed by GitHub), and Enforce HTTPS on. `http://` and `www`
+> both 301 to `https://702withtheview.com`. Note: certificate issuance
+> stalled ~50 minutes because the domain was attached to Pages before the
+> DNS records existed — removing and re-adding the custom domain
+> retriggered issuance, which then completed in minutes. The steps below
+> are kept for reference and re-setup.
+
 ## The name, first
 
 The repo is `702_with_the_view`, but **domain names cannot contain
