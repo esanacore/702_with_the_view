@@ -22,9 +22,9 @@
   --surface: #ffffff;
   --ink: #000000;
   --ink-soft: #555555;
-  --accent: #003747;         /* dark teal: buttons, links */
-  --accent-strong: #002530;
-  --brass: #d4af37;          /* gold: overlines, small accents */
+  --accent: #001a25;         /* very dark teal: buttons, links */
+  --accent-strong: #000f17;
+  --brass: #ECD252;          /* gold: overlines, small accents */
   --border: #e0e0e0;
   --wave-back: #b8d4dd;
   --wave-front: #8cbcc9;
@@ -45,9 +45,9 @@
     --surface: #151515;
     --ink: #ffffff;
     --ink-soft: #b0b0b0;
-    --accent: #005f75;        /* lighter teal for dark mode */
-    --accent-strong: #007a94;
-    --brass: #d4af37;
+    --accent: #004d63;        /* lighter teal for dark mode */
+    --accent-strong: #006680;
+    --brass: #ECD252;
     --border: #333333;
     --wave-back: #1a4d52;
     --wave-front: #2a6b73;
@@ -64,9 +64,9 @@
   --surface: #151515;
   --ink: #ffffff;
   --ink-soft: #b0b0b0;
-  --accent: #005f75;
-  --accent-strong: #007a94;
-  --brass: #d4af37;
+  --accent: #004d63;
+  --accent-strong: #006680;
+  --brass: #ECD252;
   --border: #333333;
   --wave-back: #1a4d52;
   --wave-front: #2a6b73;
