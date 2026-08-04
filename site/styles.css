@@ -97,6 +97,7 @@ img { max-width: 100%; display: block; }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
+.section__lede a,
 .contact__agent a,
 .footer a { color: var(--brass); }
 
