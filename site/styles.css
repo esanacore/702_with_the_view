@@ -326,7 +326,7 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.1rem;
 }
 
@@ -334,14 +334,17 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 .ph--wide { grid-column: span 2; }
 
-@media (max-width: 560px) {
-  .ph--wide { grid-column: span 1; }
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
   .gallery {
     grid-template-columns: 1fr;
   }
+  .ph--wide { grid-column: span 1; }
 }
 
 /* Photo placeholder: a quiet framed panel until real photos land.
