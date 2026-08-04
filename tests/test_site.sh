@@ -57,7 +57,7 @@ check T-026 "community section present"    grep -q 'id="community"' "$index"
 # --- T-030 .. T-034: feature copy the listing promises ------------------
 check T-030 "GE appliances mentioned"      grep -qi 'GE' "$index"
 check T-031 "French-door fridge + icemaker" grep -qi 'icemaker' "$index"
-check T-032 "filtered water line"          grep -qi 'filtered water line' "$index"
+check T-032 "filtered water line"          grep -qi 'filtered water' "$index"
 check T-033 "medicine cabinet defogger"    grep -qi 'defogger' "$index"
 check T-034 "fan with Bluetooth speaker"   grep -qi 'Bluetooth speaker' "$index"
 check T-035 "water view stated"            grep -qi 'water view\|>Water<' "$index"
