@@ -97,6 +97,9 @@ img { max-width: 100%; display: block; }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
+.contact__agent a,
+.footer a { color: var(--brass); }
+
 /* Small-caps label above each section heading */
 .overline {
   text-transform: uppercase;
@@ -273,7 +276,7 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: #00273d;
   color: var(--on-accent);
 }
 
