@@ -29,6 +29,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-004 | MUST | Photo placeholders wired for drop-in swap | FR-004-AC-1, FR-004-AC-2 | T-040, T-041, T-042 | Verified |
 | FR-005 | MUST | Push to `main` publishes, gated on tests | FR-005-AC-1 | T-004 (workflow present); gate exercised by every CI run | Verified |
 | FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015 (script wired); runtime behavior checked manually each release, tracked in TEST_PLAN.md's coverage log | In Progress |
+| FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037 | Verified |
+| FR-008 | MUST | Light/dark theming with system default + override | FR-008-AC-1, FR-008-AC-2, FR-008-AC-3 | T-060, T-061, T-062, T-063; live toggle behavior verified manually in browser | Verified |
 
 ## Non-Functional Requirements
 
@@ -42,8 +44,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 
 | Metric | Count |
 | --- | --- |
-| Total requirements | 9 |
-| Verified | 8 |
+| Total requirements | 11 |
+| Verified | 10 |
 | In progress | 1 |
 | Not started | 0 |
 | Requirements without a verifying test (gaps) | 0 |

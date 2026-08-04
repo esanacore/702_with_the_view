@@ -25,3 +25,4 @@ credentials.json
 service-account*.json
 .netrc
 terraform.tfstate*
+.gstack/

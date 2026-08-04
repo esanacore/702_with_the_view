@@ -24,7 +24,16 @@ This project follows semantic versioning.
   with full governance docs and CI gates.
 - Initial changelog.
 
+- Light/dark theming: follows the device default, labeled toggle override,
+  choice persisted, no wrong-theme flash (modeled on gentletable.com).
+- Community section (The Anchorage amenities) and researched unit facts
+  (1 bed, 655 sq ft, water view) with sources in the Property Manual.
+
 ### Changed
+
+- Redesigned to a minimal, clean look: warm cream/ink palette, serif
+  headings, quiet wave motif; removed emoji icons and the cartoon sky hero
+  (the day/dusk toggle gave way to the site-wide theme toggle).
 
 ### Fixed
 

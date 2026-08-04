@@ -44,6 +44,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | Date | Overall coverage | Notes |
 | --- | --- | --- |
 | 2026-08-03 | 27/27 structural checks passing | Baseline at initial site build |
+| 2026-08-03 | 35/35 structural checks passing | Redesign + theming + community facts (T-026, T-035..T-037, T-060..T-063 added) |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 

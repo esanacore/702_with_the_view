@@ -71,7 +71,27 @@ Manual (`docs/PROPERTY_MANUAL.md`) documents the apartment itself.
 
 - Level: `SHOULD`
 - Acceptance criteria:
-  - `FR-006-AC-1`: scroll-reveal, scrollspy, and the day/dusk hero toggle work with JS enabled; all content remains readable with JS disabled.
+  - `FR-006-AC-1`: scroll-reveal, scrollspy, and the theme toggle work with JS enabled; all content remains readable with JS disabled.
+
+### Verified Property Facts
+
+**FR-007** The page presents the researched unit and community facts.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `FR-007-AC-1`: unit particulars (1 bed, 655 sq ft, water view) and The Anchorage community amenities appear on the page.
+  - `FR-007-AC-2`: facts trace to listing sources recorded in `docs/PROPERTY_MANUAL.md`; owner-unconfirmed values stay visibly TBD.
+
+### Theming
+
+**FR-008** The site renders in light or dark mode, following the device
+default until the reader chooses.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `FR-008-AC-1`: with no stored preference, the page follows `prefers-color-scheme` (including live OS changes).
+  - `FR-008-AC-2`: a labeled toggle overrides the system theme and the choice persists across visits.
+  - `FR-008-AC-3`: no wrong-theme flash on load.
 
 ## Non-Functional Requirements
 

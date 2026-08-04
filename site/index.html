@@ -3,244 +3,256 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>702 with the View — Apartment for Rent</title>
-  <meta name="description" content="702 with the View: a freshly updated apartment for rent featuring an all-new GE kitchen and a fully remodeled bathroom. Schedule a viewing today.">
+  <title>702 with the View — Apartment for Rent in Freeport, NY</title>
+  <meta name="description" content="702 with the View: a one-bedroom waterfront-view apartment at The Anchorage in Freeport, NY, with an all-new GE kitchen and a fully remodeled bathroom.">
+  <script>
+    // Apply the saved or system theme before first paint so the page never
+    // flashes the wrong mode. Mirrors the gentletable.com approach.
+    (function () {
+      try {
+        var stored = localStorage.getItem("702-theme");
+        if (stored === "dark" || stored === "light") {
+          document.documentElement.dataset.theme = stored;
+        }
+      } catch (e) { /* storage unavailable — fall through to system theme */ }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231d3a4f'/><path d='M5 21c2.2 0 2.2 1.6 4.4 1.6S11.6 21 13.8 21s2.2 1.6 4.4 1.6S20.4 21 22.6 21s2.2 1.6 4.4 1.6' stroke='%23d8b45a' stroke-width='1.8' fill='none' stroke-linecap='round'/><path d='M5 26c2.2 0 2.2 1.6 4.4 1.6S11.6 26 13.8 26s2.2 1.6 4.4 1.6S20.4 26 22.6 26s2.2 1.6 4.4 1.6' stroke='%236e9db8' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>">
 </head>
 <body>
 
   <header class="nav" id="top">
-    <a class="nav__brand" href="#top">
-      <span class="nav__mark">702</span>
-      <span class="nav__name">with the View</span>
-    </a>
+    <a class="nav__brand" href="#top">702 <em>with the View</em></a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#gallery">Gallery</a>
       <a href="#kitchen">Kitchen</a>
       <a href="#bathroom">Bathroom</a>
+      <a href="#community">Community</a>
       <a href="#details">Details</a>
-      <a href="#contact" class="nav__cta">Schedule a viewing</a>
     </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" type="button"
+              aria-pressed="false" aria-label="Switch color theme" title="Theme">
+        <span class="theme-toggle__label" id="themeToggleLabel">Theme</span>
+      </button>
+      <a href="#contact" class="nav__cta">Schedule a viewing</a>
+    </div>
   </header>
 
   <!-- ============================== HERO ============================== -->
-  <section class="hero" id="hero" data-sky="day">
-    <div class="hero__sky" aria-hidden="true">
-      <div class="hero__sun"></div>
-      <div class="hero__clouds"></div>
-      <div class="hero__skyline"></div>
+  <section class="hero">
+    <p class="hero__overline reveal">Now available · The Anchorage at Freeport</p>
+    <h1 class="hero__title reveal">The water view<br>comes standard.</h1>
+    <p class="hero__lede reveal">
+      A one-bedroom apartment in Freeport's gated waterfront community —
+      freshly fitted with an all-new GE kitchen and a fully remodeled
+      bathroom, one block from the Nautical Mile.
+    </p>
+    <div class="hero__actions reveal">
+      <a class="btn btn--primary" href="#contact">Schedule a viewing</a>
+      <a class="btn btn--quiet" href="#gallery">See the apartment</a>
     </div>
-    <div class="hero__content">
-      <p class="hero__eyebrow reveal">Now available for rent</p>
-      <h1 class="hero__title reveal">702<span class="hero__accent"> with the View</span></h1>
-      <p class="hero__tagline reveal">
-        Wake up to it. Come home to it. A freshly updated apartment with an
-        all-new GE kitchen, a fully remodeled bathroom, and the view that
-        earned it a name.
-      </p>
-      <div class="hero__actions reveal">
-        <a class="btn btn--primary" href="#contact">Schedule a viewing</a>
-        <a class="btn btn--ghost" href="#gallery">See the apartment</a>
-      </div>
-      <button class="hero__toggle" id="skyToggle" type="button"
-              aria-label="Toggle between day and dusk view">
-        <span class="hero__toggle-icon" aria-hidden="true">🌇</span>
-        <span class="hero__toggle-label">See it at dusk</span>
-      </button>
+    <div class="hero__waves" aria-hidden="true">
+      <svg viewBox="0 0 1200 40" preserveAspectRatio="none" focusable="false">
+        <path class="hero__wave hero__wave--back" d="M0 24 Q 150 8 300 24 T 600 24 T 900 24 T 1200 24 V 40 H 0 Z"/>
+        <path class="hero__wave hero__wave--front" d="M0 30 Q 150 16 300 30 T 600 30 T 900 30 T 1200 30 V 40 H 0 Z"/>
+      </svg>
     </div>
-    <a class="hero__scroll" href="#gallery" aria-label="Scroll to gallery">▾</a>
-  </section>
-
-  <!-- ============================ HIGHLIGHTS ========================== -->
-  <section class="strip" aria-label="Highlights">
-    <ul class="strip__items">
-      <li class="reveal">🌅 <strong>The view</strong> — front and center</li>
-      <li class="reveal">🧊 <strong>All-new GE kitchen</strong> — every appliance replaced</li>
-      <li class="reveal">🛁 <strong>Bathroom remodel</strong> — top to bottom</li>
-      <li class="reveal">🔊 <strong>Smart touches</strong> — Bluetooth, USB, filtered water</li>
-    </ul>
   </section>
 
   <!-- ============================= GALLERY ============================ -->
   <section class="section" id="gallery">
-    <div class="section__head reveal">
-      <h2>Gallery</h2>
-      <p>Professional photos are on the way. Every frame below will be filled soon.</p>
-    </div>
+    <header class="section__head reveal">
+      <p class="overline">Gallery</p>
+      <h2>See it for yourself</h2>
+      <p class="section__lede">Photography is underway — every frame below will be filled soon.</p>
+    </header>
     <div class="gallery">
       <figure class="ph ph--wide reveal" data-slot="view-main">
-        <div class="ph__frame"><span class="ph__icon">🌅</span></div>
-        <figcaption>The view</figcaption>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
+        <figcaption>The water view</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="living-room">
-        <div class="ph__frame"><span class="ph__icon">🛋️</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>Living room</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="kitchen-overview">
-        <div class="ph__frame"><span class="ph__icon">🍳</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>Kitchen</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="refrigerator">
-        <div class="ph__frame"><span class="ph__icon">🧊</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>GE French-door refrigerator</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="bathroom-overview">
-        <div class="ph__frame"><span class="ph__icon">🛁</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>Remodeled bathroom</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="medicine-cabinet">
-        <div class="ph__frame"><span class="ph__icon">🪞</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>Medicine cabinet</figcaption>
       </figure>
       <figure class="ph reveal" data-slot="bedroom">
-        <div class="ph__frame"><span class="ph__icon">🛏️</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>Bedroom</figcaption>
       </figure>
       <figure class="ph ph--wide reveal" data-slot="view-dusk">
-        <div class="ph__frame"><span class="ph__icon">🌆</span></div>
+        <div class="ph__frame"><span>Photo coming soon</span></div>
         <figcaption>The view at dusk</figcaption>
       </figure>
     </div>
   </section>
 
   <!-- ============================= KITCHEN ============================ -->
-  <section class="section section--alt" id="kitchen">
-    <div class="section__head reveal">
-      <p class="section__eyebrow">Brand new — never used before you</p>
-      <h2>An all-new GE kitchen</h2>
-      <p>
-        Every appliance in the kitchen was just replaced with new
-        GE&nbsp;Appliances. Model numbers and manuals for each one are being
-        compiled into the <a href="#guide">Property Guide</a>.
+  <section class="section section--tinted" id="kitchen">
+    <header class="section__head reveal">
+      <p class="overline">The kitchen</p>
+      <h2>Every appliance is new. All of them are GE.</h2>
+      <p class="section__lede">
+        The entire appliance suite was just replaced with new GE equipment —
+        never used before you. Model numbers and manuals are being compiled
+        into the <a href="#guide">property guide</a>.
       </p>
-    </div>
+    </header>
     <div class="cards">
       <article class="card reveal">
-        <div class="card__icon">🧊</div>
         <h3>French-door refrigerator</h3>
         <p>
-          New GE French-door refrigerator with an automatic icemaker supplied
-          by a <strong>filtered cold-water line</strong> — clean ice and chilled
-          water without ever refilling a tray.
+          With an automatic icemaker supplied by a
+          <strong>filtered cold-water line</strong> — clean ice and chilled
+          water, filtered at the source rather than at the door.
         </p>
-        <p class="card__meta">Model &amp; specs — coming to the Property Guide</p>
       </article>
       <article class="card reveal">
-        <div class="card__icon">💧</div>
         <h3>Filtered water line</h3>
         <p>
-          A dedicated filtered cold-water line feeds the refrigerator, so ice
-          and water start filtered at the source — not just at the door.
+          A dedicated inline filter feeds the refrigerator's water and ice.
+          The cartridge type and replacement schedule will be documented in
+          the property guide.
         </p>
-        <p class="card__meta">Filter type &amp; replacement schedule — coming to the Property Guide</p>
       </article>
       <article class="card reveal">
-        <div class="card__icon">🍳</div>
-        <h3>The full GE suite</h3>
+        <h3>The full suite</h3>
         <p>
-          It isn't just the refrigerator — the entire kitchen appliance suite
-          is new GE equipment, installed together for a matched, modern
-          kitchen.
+          It isn't just the refrigerator — every kitchen appliance was
+          replaced together, as a matched GE set.
         </p>
-        <p class="card__meta">Complete appliance list — coming to the Property Guide</p>
       </article>
     </div>
   </section>
 
   <!-- ============================ BATHROOM ============================ -->
   <section class="section" id="bathroom">
-    <div class="section__head reveal">
-      <p class="section__eyebrow">Completely remodeled</p>
-      <h2>A bathroom rebuilt around you</h2>
-      <p>
-        The bathroom was remodeled top to bottom — fixtures, lighting,
-        ventilation, and storage — while keeping the classic tile flooring
-        that gives the room its character.
+    <header class="section__head reveal">
+      <p class="overline">The bathroom</p>
+      <h2>Remodeled top to bottom</h2>
+      <p class="section__lede">
+        Fixtures, lighting, ventilation, and storage are all new. The
+        classic tile floor was kept on purpose — character underfoot,
+        everything else brand new.
       </p>
-    </div>
+    </header>
     <div class="cards">
       <article class="card reveal">
-        <div class="card__icon">🪞</div>
-        <h3>Smart medicine cabinet</h3>
-        <p>Far more than a mirror:</p>
-        <ul class="card__list">
-          <li>Built-in <strong>defogger</strong> — clear mirror, even after a hot shower</li>
-          <li>Integrated <strong>lighting</strong></li>
-          <li>Interior <strong>shelving</strong></li>
-          <li>Built-in <strong>outlet &amp; USB power ports</strong> — charge inside the cabinet</li>
-        </ul>
-        <p class="card__meta">Model &amp; manual — coming to the Property Guide</p>
+        <h3>A smarter medicine cabinet</h3>
+        <p>
+          Built-in <strong>defogger</strong> for a clear mirror after a hot
+          shower, integrated lighting, interior shelving, and an
+          <strong>outlet and USB ports</strong> inside the cabinet — charge
+          your razor or toothbrush behind a closed door.
+        </p>
       </article>
       <article class="card reveal">
-        <div class="card__icon">🔊</div>
         <h3>Fan, light &amp; speaker in one</h3>
         <p>
-          The new bathroom fan has built-in lighting and a
-          <strong>Bluetooth speaker</strong> — steam control, illumination, and
-          your morning playlist from a single fixture.
-        </p>
-        <p class="card__meta">Pairing instructions — coming to the Property Guide</p>
-      </article>
-      <article class="card reveal">
-        <div class="card__icon">🧱</div>
-        <h3>Classic tile, kept on purpose</h3>
-        <p>
-          Most of the original tile flooring was preserved through the
-          remodel — character underfoot, everything else brand new.
+          The exhaust fan carries built-in lighting and a
+          <strong>Bluetooth speaker</strong> — steam control, light, and
+          your morning playlist from a single quiet fixture.
         </p>
       </article>
     </div>
+  </section>
+
+  <!-- ============================ COMMUNITY =========================== -->
+  <section class="section section--tinted" id="community">
+    <header class="section__head reveal">
+      <p class="overline">The Anchorage</p>
+      <h2>A gated community on the water</h2>
+      <p class="section__lede">
+        The Anchorage at Freeport is a gated waterfront community with
+        24-hour security, one block from the restaurants and marinas of
+        Freeport's Nautical Mile.
+      </p>
+    </header>
+    <ul class="amenities reveal">
+      <li>Gated entry, 24-hour security</li>
+      <li>In-ground pool</li>
+      <li>Tennis &amp; pickleball courts</li>
+      <li>Clubhouse &amp; gym</li>
+      <li>Waterfront boardwalk</li>
+      <li>Dock space (subject to availability, extra fee)</li>
+      <li>Assigned parking space</li>
+      <li>One block to the Nautical Mile</li>
+    </ul>
+    <p class="section__note reveal">
+      Freeport's LIRR station is nearby — roughly 45 minutes to Penn Station.
+    </p>
   </section>
 
   <!-- ============================= DETAILS ============================ -->
-  <section class="section section--alt" id="details">
-    <div class="section__head reveal">
-      <h2>The details</h2>
-      <p>Finalized listing details are being confirmed — check back soon.</p>
-    </div>
+  <section class="section" id="details">
+    <header class="section__head reveal">
+      <p class="overline">Details</p>
+      <h2>The particulars</h2>
+    </header>
     <dl class="facts reveal">
-      <div class="facts__item"><dt>Bedrooms</dt><dd>TBD</dd></div>
-      <div class="facts__item"><dt>Bathrooms</dt><dd>TBD</dd></div>
-      <div class="facts__item"><dt>Square feet</dt><dd>TBD</dd></div>
+      <div class="facts__item"><dt>Bedrooms</dt><dd>1</dd></div>
+      <div class="facts__item"><dt>Bathrooms</dt><dd>1</dd></div>
+      <div class="facts__item"><dt>Interior</dt><dd>655 sq ft</dd></div>
+      <div class="facts__item"><dt>View</dt><dd>Water</dd></div>
       <div class="facts__item"><dt>Monthly rent</dt><dd>TBD</dd></div>
       <div class="facts__item"><dt>Available</dt><dd>TBD</dd></div>
-      <div class="facts__item"><dt>Lease terms</dt><dd>TBD</dd></div>
     </dl>
+    <p class="section__note reveal">
+      Lease terms and application details are being finalized.
+    </p>
   </section>
 
   <!-- ========================== PROPERTY GUIDE ======================== -->
-  <section class="section" id="guide">
+  <section class="section section--tinted" id="guide">
     <div class="guide reveal">
-      <div class="guide__icon">📖</div>
-      <div>
-        <h2>The Property Guide</h2>
-        <p>
-          Every appliance, fixture, and system in the apartment is being
-          documented in a resident guide — model numbers, manuals, filter
-          schedules, Bluetooth pairing steps, and who to call. New residents
-          get the whole story on day one.
-        </p>
-        <p class="guide__status">In progress — publishing alongside the finalized listing.</p>
-      </div>
+      <p class="overline">For residents</p>
+      <h2>The property guide</h2>
+      <p>
+        Every appliance, fixture, and system in the apartment is being
+        documented in a resident guide — model numbers, manuals, filter
+        schedules, Bluetooth pairing steps, and who to call. New residents
+        get the whole story on day one.
+      </p>
+      <p class="section__note">In progress — publishing alongside the finalized listing.</p>
     </div>
   </section>
 
   <!-- ============================= CONTACT ============================ -->
   <section class="section section--contact" id="contact">
-    <div class="section__head reveal">
+    <header class="section__head reveal">
+      <p class="overline">Contact</p>
       <h2>Come see the view</h2>
-      <p>Photos don't do a view justice. Schedule a visit and see it in person.</p>
-    </div>
+      <p class="section__lede">Photos won't do it justice. Schedule a visit and see it in person.</p>
+    </header>
     <div class="contact reveal">
-      <a class="btn btn--primary btn--big" href="mailto:CONTACT-EMAIL-TBD@example.com">Email to schedule a viewing</a>
-      <p class="contact__note">Contact details are being finalized — this button will be live shortly.</p>
+      <a class="btn btn--primary" href="mailto:CONTACT-EMAIL-TBD@example.com">Email to schedule a viewing</a>
+      <p class="section__note">Contact details are being finalized — this button will be live shortly.</p>
     </div>
   </section>
 
   <footer class="footer">
-    <p>702 with the View · Listed by the owner</p>
-    <p class="footer__fine">Site source on <a href="https://github.com/esanacore/702_with_the_view">GitHub</a>. Equal Housing Opportunity.</p>
+    <p>702 with the View · The Anchorage at Freeport · Listed by the owner</p>
+    <p class="footer__fine">
+      Site source on <a href="https://github.com/esanacore/702_with_the_view">GitHub</a>
+      · Equal Housing Opportunity
+    </p>
   </footer>
 
   <script src="app.js"></script>

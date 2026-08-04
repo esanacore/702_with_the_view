@@ -1,21 +1,73 @@
 /**
  * 702 with the View — page behavior.
  *
- * Three small enhancements, all progressive: the page is fully readable with
- * JavaScript disabled.
+ * Progressive enhancements only; the page reads fine with JS disabled.
  *
- *  1. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
- *  2. Scrollspy: the nav link for the section in view gets .is-active.
- *  3. Sky toggle: the hero switches between day and dusk gradients.
+ *  1. Theme toggle: follows the operating system until the reader chooses,
+ *     then remembers the choice (localStorage). Same behavior as
+ *     gentletable.com's toggle. The pre-paint half lives inline in
+ *     index.html's <head> so the page never flashes the wrong mode.
+ *  2. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
+ *  3. Scrollspy: the nav link for the section in view gets .is-active.
  */
 (function () {
   "use strict";
 
+  // ---- 1. Theme toggle ----------------------------------------------------
+  var THEME_KEY = "702-theme";
+  var root = document.documentElement;
+  var toggle = document.getElementById("themeToggle");
+  var toggleLabel = document.getElementById("themeToggleLabel");
+  var media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function storedTheme() {
+    try {
+      var v = localStorage.getItem(THEME_KEY);
+      return v === "dark" || v === "light" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function currentTheme() {
+    return root.dataset.theme || (media.matches ? "dark" : "light");
+  }
+
+  function applyTheme(theme, persist) {
+    root.dataset.theme = theme;
+    if (persist) {
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+      } catch (e) { /* private mode — the toggle still works for this visit */ }
+    }
+    if (toggle && toggleLabel) {
+      // The label names the mode the button switches TO.
+      var next = theme === "dark" ? "Light mode" : "Dark mode";
+      toggleLabel.textContent = next;
+      toggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      toggle.setAttribute("aria-label", "Switch to " + next.toLowerCase());
+    }
+  }
+
+  if (toggle) {
+    applyTheme(currentTheme(), false);
+    toggle.addEventListener("click", function () {
+      applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
+    });
+
+    // Follow the system while the reader hasn't expressed a preference, so
+    // switching the OS to night mode changes the page without a reload.
+    media.addEventListener("change", function () {
+      if (!storedTheme()) {
+        applyTheme(media.matches ? "dark" : "light", false);
+      }
+    });
+  }
+
+  // ---- 2. Scroll-reveal ---------------------------------------------------
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
-
-  // ---- 1. Scroll-reveal ---------------------------------------------------
   var revealables = document.querySelectorAll(".reveal");
 
   if (prefersReducedMotion || !("IntersectionObserver" in window)) {
@@ -39,7 +91,7 @@
     });
   }
 
-  // ---- 2. Scrollspy -------------------------------------------------------
+  // ---- 3. Scrollspy -------------------------------------------------------
   var navLinks = document.querySelectorAll(".nav__links a[href^='#']");
   var sectionsById = {};
 
@@ -70,22 +122,6 @@
     );
     Object.keys(sectionsById).forEach(function (id) {
       spyObserver.observe(document.getElementById(id));
-    });
-  }
-
-  // ---- 3. Day / dusk sky toggle ------------------------------------------
-  var hero = document.getElementById("hero");
-  var toggle = document.getElementById("skyToggle");
-
-  if (hero && toggle) {
-    var icon = toggle.querySelector(".hero__toggle-icon");
-    var label = toggle.querySelector(".hero__toggle-label");
-
-    toggle.addEventListener("click", function () {
-      var dusk = hero.getAttribute("data-sky") === "day";
-      hero.setAttribute("data-sky", dusk ? "dusk" : "day");
-      icon.textContent = dusk ? "🌤️" : "🌇";
-      label.textContent = dusk ? "Back to daylight" : "See it at dusk";
     });
   }
 })();

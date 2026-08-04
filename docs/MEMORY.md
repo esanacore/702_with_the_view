@@ -24,6 +24,16 @@ This file contains durable memories, codebase learnings, user preferences, and k
 - The repo name (`702_with_the_view`) and domain (`702withtheview.com`)
   differ on purpose: DNS forbids underscores in hostnames.
 
+## Design System
+
+- 2026-08-03: Visual language deliberately mirrors gentletable.com — warm
+  cream/ink tokens, Georgia serif headings, token-driven theming
+  (`prefers-color-scheme` default, `data-theme` override on `<html>`,
+  localStorage key `702-theme`, pre-paint inline script against theme
+  flash). Accent palette swapped to harbor blue + brass for the waterfront
+  setting. Owner's direction: minimal, clean, "not AI-ish" — no emoji
+  icons, no cartoon illustrations.
+
 ## Active Project Decisions
 
 - 2026-08-03: Host on GitHub Pages (free, TLS included, push-to-deploy)

@@ -10,6 +10,23 @@ appliance's how-to section.
 
 ---
 
+## Property Facts & Sources
+
+Researched 2026-08-03 from public listing records; **owner to confirm the
+flagged items** before the listing is shared widely.
+
+| Fact | Value | Source | Status |
+| --- | --- | --- | --- |
+| Address | 1 Anchorage Way, Apt 702, Freeport, NY 11520 | Owner | Confirmed |
+| Community | The Anchorage at Freeport — gated waterfront co-op, 24-hr security | Multiple listings (Zillow, Compass, apartments.com) | Confirmed by consensus |
+| Bedrooms | 1 | Zillow (zpid 2090740239) | Confirmed |
+| Bathrooms | 1 | Inferred — Zillow shows "0" (data gap); building's 1-beds are 1 bath | **Owner confirm** |
+| Interior | 655 sq ft | Zillow (zpid 2090740239) | Confirmed |
+| View | Water | Zillow ("Has water view: Yes") | Confirmed |
+| Year built | 1985 | Zillow, PropertyShark | Confirmed |
+| Amenities | Pool, tennis & pickleball, clubhouse, gym, boardwalk, dock space (fee), assigned parking | Listing descriptions across sources | **Owner verify list is current** |
+| Transit | Freeport LIRR ≈ 45 min to Penn Station | Listing descriptions | Confirmed by consensus |
+
 ## Quick Reference
 
 | Item | Brand | Model # | Serial # | Installed | Manual |

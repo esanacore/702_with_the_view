@@ -6,10 +6,13 @@ Keep entries specific, actionable, and current.
 
 ## Blocking the Live Listing
 
-- [ ] Purchase `702withtheview.com` (owner — see `docs/DOMAIN_SETUP.md`)
-- [ ] Add DNS records in Cloudflare and set the custom domain on GitHub Pages
+- [x] Purchase `702withtheview.com` (done 2026-08-03, Cloudflare Registrar)
+- [x] Add DNS records in Cloudflare and set the custom domain on GitHub Pages (done 2026-08-03)
+- [ ] Enforce HTTPS once GitHub's certificate is issued (automated poller pending)
 - [ ] Replace `CONTACT-EMAIL-TBD@example.com` in `site/index.html` with the real contact
-- [ ] Fill the Details section: bedrooms, bathrooms, square feet, rent, availability, lease terms
+- [x] Fill the Details section (beds/sqft/view researched 2026-08-03 — see `docs/PROPERTY_MANUAL.md` "Property Facts & Sources")
+- [ ] Owner: confirm bathroom count (listing data ambiguous) and the community amenities list
+- [ ] Owner: set rent, availability date, and lease terms (currently TBD)
 - [ ] Take photos and swap them into the 8 placeholder slots (`site/assets/photos/README.md`)
 
 ## Features
