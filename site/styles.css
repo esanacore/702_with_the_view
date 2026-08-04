@@ -326,7 +326,7 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.1rem;
 }
 
@@ -336,6 +336,12 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 @media (max-width: 560px) {
   .ph--wide { grid-column: span 1; }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Photo placeholder: a quiet framed panel until real photos land.
