@@ -15,6 +15,21 @@ When you are finishing a task or session, record the state here:
 
 ## Handoffs
 
+### Session: 2026-08-03 (later same day — v1.0.0)
+
+- **Accomplishments**: gentletable-style redesign with light/dark theming;
+  researched unit/community facts on page; domain live with enforced HTTPS
+  + DNSSEC (DS propagation pending); realtor contact wired; 5 photos in via
+  the new zero-edit auto-loader; v1.0.0 cut and tagged.
+- **Pending Work**: TODO.md "Blocking the Live Listing" — interior photos,
+  hi-res photo upgrades, rent/availability, owner confirmations (bath
+  count, amenities list, MLS photo reuse OK from Peggy Moran).
+- **Verification Run**: 37/37 structural checks; all constitution gates
+  green locally and in CI; live-site spot checks over HTTPS.
+- **Instructions for Next Agent**: photos are zero-edit (see
+  site/assets/photos/README.md); never re-add loading="lazy" to the
+  auto-loader probe (see MEMORY gotchas).
+
 ### Session: 2026-08-03 (repository creation)
 
 - **Accomplishments**: repo bootstrapped with the constitution submodule and

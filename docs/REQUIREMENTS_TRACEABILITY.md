@@ -26,7 +26,7 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-001 | MUST | All listing sections present | FR-001-AC-1 | T-020, T-021, T-022, T-023, T-024, T-025 | Verified |
 | FR-002 | MUST | Kitchen copy: GE suite, icemaker, filtered line | FR-002-AC-1 | T-030, T-031, T-032 | Verified |
 | FR-003 | MUST | Bathroom copy: cabinet defogger, fan speaker | FR-003-AC-1 | T-033, T-034 | Verified |
-| FR-004 | MUST | Photo placeholders wired for drop-in swap | FR-004-AC-1, FR-004-AC-2 | T-040, T-041, T-042 | Verified |
+| FR-004 | MUST | Photo placeholders wired for drop-in swap | FR-004-AC-1, FR-004-AC-2 | T-040, T-041, T-042, T-043 (auto-loader) | Verified |
 | FR-005 | MUST | Push to `main` publishes, gated on tests | FR-005-AC-1 | T-004 (workflow present); gate exercised by every CI run | Verified |
 | FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015 (script wired); runtime behavior checked manually each release, tracked in TEST_PLAN.md's coverage log | In Progress |
 | FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037 | Verified |

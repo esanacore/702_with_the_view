@@ -348,6 +348,18 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 
 .ph--wide .ph__frame { aspect-ratio: 8 / 3; }
 
+.ph__frame img,
+.ph > img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.ph--wide .ph__frame img,
+.ph--wide > img { aspect-ratio: 8 / 3; }
+
 .ph__frame span {
   font-size: 0.8rem;
   letter-spacing: 0.08em;

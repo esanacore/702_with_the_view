@@ -12,10 +12,11 @@ This document records the current session's planned work before implementation b
 
 ## Goal
 
-**COMPLETED.** Bootstrap the repository: constitution adoption (submodule +
-governance docs), initial listing site with photo placeholders, structural
-test suite, GitHub Pages push-to-publish pipeline, Property Manual skeleton,
-and the `702withtheview.com` domain guide.
+**COMPLETED (v1.0.0 cut at session end).** Bootstrap the repository and take
+the site to first release: constitution adoption, listing site (redesigned
+to the gentletable-style minimal look with light/dark theming), researched
+property facts, live domain with enforced HTTPS, first photos with the
+zero-edit photo workflow, realtor contact wiring, and release v1.0.0.
 
 ## Approach
 

@@ -13,7 +13,13 @@ Keep entries specific, actionable, and current.
 - [x] Fill the Details section (beds/sqft/view researched 2026-08-03 — see `docs/PROPERTY_MANUAL.md` "Property Facts & Sources")
 - [ ] Owner: confirm bathroom count (listing data ambiguous) and the community amenities list
 - [ ] Owner: set rent, availability date, and lease terms (currently TBD)
-- [ ] Take photos and swap them into the 8 placeholder slots (`site/assets/photos/README.md`)
+- [ ] Interior photos (living room, kitchen, refrigerator, bathroom,
+      medicine cabinet, bedroom) and a dusk view shot — 7 slots still
+      placeholders; drop `<slot>.jpg` in `site/assets/photos/`
+- [ ] Replace the 5 current MLS photo pulls with full-resolution photography
+      (same filenames — the zero-edit workflow keeps it a file overwrite)
+- [ ] Confirm with Peggy Moran that reusing the OneKey MLS listing photos on
+      this site is OK
 
 ## Features
 

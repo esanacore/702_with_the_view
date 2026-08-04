@@ -7,8 +7,10 @@
  *     then remembers the choice (localStorage). Same behavior as
  *     gentletable.com's toggle. The pre-paint half lives inline in
  *     index.html's <head> so the page never flashes the wrong mode.
- *  2. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
- *  3. Scrollspy: the nav link for the section in view gets .is-active.
+ *  2. Photo auto-loader: drop assets/photos/<slot>.jpg and it appears —
+ *     no HTML edits (see site/assets/photos/README.md).
+ *  3. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
+ *  4. Scrollspy: the nav link for the section in view gets .is-active.
  */
 (function () {
   "use strict";
@@ -64,7 +66,31 @@
     });
   }
 
-  // ---- 2. Scroll-reveal ---------------------------------------------------
+  // ---- 2. Photo auto-loader ----------------------------------------------
+  // Zero-edit photo workflow: each gallery figure names its slot via
+  // data-slot. If assets/photos/<slot>.jpg exists, it replaces the
+  // placeholder frame; if not, the placeholder stays. Adding or upgrading
+  // a photo is therefore just dropping a file with the right name and
+  // pushing — no HTML changes. Alt text comes from data-alt (falling back
+  // to the caption).
+  document.querySelectorAll(".ph[data-slot]").forEach(function (fig) {
+    var frame = fig.querySelector(".ph__frame");
+    if (!frame) return;
+    var slot = fig.getAttribute("data-slot");
+    var caption = fig.querySelector("figcaption");
+    var img = new Image();
+    // No loading="lazy" here: a lazy image that is not in the DOM never
+    // fetches, so the probe would silently find nothing.
+    img.alt = fig.getAttribute("data-alt") ||
+      (caption ? caption.textContent : "Apartment photo");
+    img.onload = function () {
+      frame.replaceWith(img);
+    };
+    // A missing photo 404s quietly and the placeholder stays put.
+    img.src = "assets/photos/" + slot + ".jpg";
+  });
+
+  // ---- 3. Scroll-reveal ---------------------------------------------------
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -91,7 +117,7 @@
     });
   }
 
-  // ---- 3. Scrollspy -------------------------------------------------------
+  // ---- 4. Scrollspy -------------------------------------------------------
   var navLinks = document.querySelectorAll(".nav__links a[href^='#']");
   var sectionsById = {};
 

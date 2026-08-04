@@ -17,6 +17,13 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- A detached `Image()` with `loading="lazy"` never fetches in Chromium —
+  the photo auto-loader probe (`site/app.js`) must load eagerly. Don't
+  "optimize" it back to lazy.
+- Photo workflow is zero-edit: `site/assets/photos/<slot>.jpg` auto-fills
+  its gallery figure; upgrading a photo is overwriting the file. Slots and
+  the README table are kept in sync by T-042.
+
 - `site/` must stay dependency-free (no CDNs/external fonts/packages);
   `tests/test_site.sh` T-052 fails otherwise.
 - Photo placeholder slots (`data-slot` in `index.html`) must stay in sync

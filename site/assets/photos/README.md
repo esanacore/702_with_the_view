@@ -1,42 +1,46 @@
-# Photos
+# Photos — the zero-edit workflow
 
-Real photos are not in the repository yet — the site currently renders
-shimmer placeholders.
+**To add or replace a photo: drop a `.jpg` in this folder named after its
+slot, commit, push. That's it.** No HTML editing — the page checks for each
+slot's file at load time (`site/app.js`, "Photo auto-loader") and swaps the
+placeholder automatically. If a file is missing, the placeholder stays.
 
-## Adding a photo
+Upgrading a low-res photo later (e.g. replacing today's MLS pulls with real
+photography) is the same move: overwrite the file, keep the name, push.
 
-1. Drop the image in this directory, named after the placeholder slot it
-   fills (see the table below), e.g. `view-main.jpg`.
-2. In `site/index.html`, find the `<figure>` whose `data-slot` matches, and
-   replace the placeholder frame:
+## Slots
 
-   ```html
-   <!-- before -->
-   <div class="ph__frame"><span class="ph__icon">🌅</span></div>
+| File name to use          | Subject                              |
+| ------------------------- | ------------------------------------ |
+| `view-main.jpg`           | The view (hero shot, wide)           |
+| `living-room.jpg`         | Living room                          |
+| `kitchen-overview.jpg`    | Kitchen with the new GE suite        |
+| `refrigerator.jpg`        | GE French-door refrigerator          |
+| `bathroom-overview.jpg`   | Remodeled bathroom                   |
+| `medicine-cabinet.jpg`    | Smart medicine cabinet               |
+| `bedroom.jpg`             | Bedroom                              |
+| `view-dusk.jpg`           | The view at dusk (wide)              |
+| `community-aerial.jpg`    | Community section: pool, clubhouse & courts aerial |
+| `tennis-courts.jpg`       | Community section: tennis & pickleball |
+| `boardwalk.jpg`           | Community section: the boardwalk     |
+| `waterfront-lawn.jpg`     | Community section: waterfront lawn   |
 
-   <!-- after -->
-   <img src="assets/photos/view-main.jpg" alt="Describe the photo for screen readers">
-   ```
+(The slot names come from each figure's `data-slot` in `site/index.html`.
+`tests/test_site.sh` T-042 keeps this table and the page in sync.)
 
-3. Keep the `<figcaption>` — it becomes the visible caption.
+## Adding a NEW slot (rare)
 
-## Placeholder slots
-
-| Slot (`data-slot`)   | Subject                              |
-| -------------------- | ------------------------------------ |
-| `view-main`          | The view (hero shot, wide)           |
-| `living-room`        | Living room                          |
-| `kitchen-overview`   | Kitchen with the new GE suite        |
-| `refrigerator`       | GE French-door refrigerator          |
-| `bathroom-overview`  | Remodeled bathroom                   |
-| `medicine-cabinet`   | Smart medicine cabinet               |
-| `bedroom`            | Bedroom                              |
-| `view-dusk`          | The view at dusk (wide)              |
+1. Add a `<figure class="ph" data-slot="new-name">` in `index.html`
+   (copy an existing one; edit the caption).
+2. Add its row to the table above.
+3. Drop `new-name.jpg` here.
 
 ## Guidelines
 
-- Prefer landscape 4:3 shots (wide slots are 8:3); the CSS crops gracefully
-  either way once you add `object-fit: cover`.
-- Resize to ≤ 1600 px on the long edge and compress (JPEG quality ~80 or
-  WebP) — the whole page should stay under ~2 MB for fast mobile loads.
-- Write a real `alt` text for every photo; the captions do not replace it.
+- `.jpg` only — the auto-loader looks for `<slot>.jpg` exactly.
+- Prefer landscape 4:3 (wide slots display 8:3); `object-fit: cover` crops
+  gracefully either way.
+- For final photography: ≤ 1600 px long edge, JPEG quality ~80. Keep the
+  whole page under ~2 MB for fast mobile loads.
+- Captions in `index.html` double as alt-text fallback; add a `data-alt`
+  attribute on the figure for a richer screen-reader description.

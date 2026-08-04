@@ -75,14 +75,15 @@ check T-061 "CSS follows system scheme"    grep -q 'prefers-color-scheme: dark' 
 check T-062 "reader override wins in CSS"  grep -q 'data-theme="dark"' "$site/styles.css"
 check T-063 "pre-paint theme script"       grep -q 'localStorage.getItem("702-theme")' "$index"
 
-# --- T-040 .. T-042: photo placeholders wired for later swap ------------
+# --- T-040 .. T-043: photo placeholders wired for later swap ------------
 check T-040 "photo placeholders exist"     grep -q 'data-slot=' "$index"
 check T-041 "photo swap guide exists"      test -f "$site/assets/photos/README.md"
 check T-042 "every slot documented" bash -c '
   for slot in $(grep -o "data-slot=\"[^\"]*\"" "'"$index"'" | cut -d\" -f2); do
-    grep -q "\`$slot\`" "'"$site"'/assets/photos/README.md" || exit 1
+    grep -q "\`$slot\.jpg\`" "'"$site"'/assets/photos/README.md" || { echo "undocumented: $slot"; exit 1; }
   done
 '
+check T-043 "photo auto-loader wired"      grep -q 'assets/photos/" + slot' "$site/app.js"
 
 # --- T-050 .. T-052: quality and safety ---------------------------------
 check T-050 "no absolute local paths leak" bash -c '! grep -q "C:\\\\" "'"$index"'"'

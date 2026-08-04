@@ -4,6 +4,8 @@
 [![Eric's Engineering Constitution](https://img.shields.io/badge/Eric's%20Engineering%20Constitution-Adopted-blue)](https://github.com/esanacore/engineering-constitution)
 <!-- CONSTITUTION_END -->
 
+Current version: **1.0.0** · Live at **[702withtheview.com](https://702withtheview.com)**
+
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose
 icemaker runs off a filtered cold-water line) and a completely remodeled
@@ -63,6 +65,22 @@ runs in CI before every deploy.
 ├── TODO.md               ← Living roadmap
 └── CHANGELOG.md          ← User-facing changes
 ```
+
+## Updating the Site (owner cheat-sheet)
+
+Every update is: edit → `git add -A && git commit -m "..." && git push`.
+The push deploys automatically (tests run first; a bad change never
+replaces the live site).
+
+| To change…      | Do this |
+| --------------- | ------- |
+| **Photos**      | Drop/overwrite `site/assets/photos/<slot>.jpg` (names in that folder's README). No HTML edits — slots auto-fill. |
+| **Rent / availability / facts** | Edit the `<dl class="facts">` block in `site/index.html` (search for `TBD`). |
+| **Any copy**    | Edit `site/index.html` — it's plain HTML, headings and paragraphs. |
+| **Appliance models & manuals** | `docs/PROPERTY_MANUAL.md` (not page copy). |
+
+Preview locally before pushing: `python -m http.server 8000 --directory site`
+→ http://localhost:8000.
 
 ## How Publishing Works
 
