@@ -12,6 +12,28 @@ This project follows semantic versioning.
 
 ### Fixed
 
+## 1.1.0 — 2026-08-03
+
+### Added
+
+- Owner photos: living room (vaulted ceiling, water view) and the dusk
+  view; waterfront-lawn photo upgraded. 7 of 12 slots now filled.
+- Layout regression suite (`tests/test_layout.sh`): renders the real page
+  in headless Chromium and asserts photos stay inside their figures,
+  captions are never buried, and the page never scrolls horizontally —
+  at desktop and mobile widths, in light and dark themes. Skips cleanly
+  where the browser tool is absent (CI), where structural guard T-053
+  still protects the known regression.
+
+### Changed
+
+### Fixed
+
+- Gallery photos overflowed their figures and buried the caption of the
+  figure below (a percentage height inside an auto-height figure); photos
+  now size from width + aspect-ratio only. Guarded by T-053 and the
+  layout suite.
+
 ### Removed
 
 ### Security

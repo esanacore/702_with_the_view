@@ -38,7 +38,7 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | --- | --- | --- | --- | --- | --- |
 | NFR-001 | MUST | No third-party code, no local path leaks | NFR-001-AC-1, NFR-001-AC-2 | T-052, T-050 | Verified |
 | NFR-002 | MUST | Broken change cannot take down live site | NFR-002-AC-1 | T-004; deploy workflow orders tests before publish | Verified |
-| NFR-003 | MUST | Mobile-friendly; honors reduced motion | NFR-003-AC-1, NFR-003-AC-2 | T-012, T-051 | Verified |
+| NFR-003 | MUST | Mobile-friendly; honors reduced motion | NFR-003-AC-1, NFR-003-AC-2 | T-012, T-051; layout suite L-030/L-040 (mobile geometry, local runs) | Verified |
 
 ## Coverage Summary
 

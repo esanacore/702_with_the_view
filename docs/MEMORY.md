@@ -17,6 +17,13 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- Gallery photo CSS must size from width + aspect-ratio only. `height:
+  100%` inside the auto-height figure made photos overflow the grid row
+  and bury the caption below (fixed post-v1.0.0; guarded by T-053 and
+  `tests/test_layout.sh`).
+- gstack browse on Windows: local pages need `file:///C:/...` — three
+  slashes AND an uppercase drive letter (two slashes parse "c:" as a
+  hostname; the daemon's path allowlist is case-sensitive).
 - A detached `Image()` with `loading="lazy"` never fetches in Chromium —
   the photo auto-loader probe (`site/app.js`) must load eagerly. Don't
   "optimize" it back to lazy.

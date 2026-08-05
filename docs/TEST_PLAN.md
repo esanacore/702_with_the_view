@@ -9,12 +9,19 @@ It is a living document. Update it whenever the test strategy, targets, or known
 The site is dependency-free static HTML/CSS/JS, so the pyramid collapses to
 one structural layer plus manual visual QA:
 
-- **Unit tests**: n/a — no application logic beyond ~100 lines of
-  progressive-enhancement JS (scroll-reveal, scrollspy, sky toggle).
+- **Unit tests**: n/a — no application logic beyond ~150 lines of
+  progressive-enhancement JS (theme toggle, photo auto-loader,
+  scroll-reveal, scrollspy).
 - **Integration tests**: `tests/test_site.sh` — structural assertions with
   grep against the built page: required files, sections, feature copy,
   placeholder wiring, accessibility and dependency rules. Runs on a bare
   runner with no installs, so CI can never silently skip it.
+- **Layout tests**: `tests/test_layout.sh` (`L-xxx`) — renders the page in
+  headless Chromium and asserts real geometry: photos contained by their
+  figures, captions never buried, no horizontal scroll; desktop + mobile,
+  light + dark. Requires the local browse daemon; SKIPs with exit 0 in CI,
+  where structural guard T-053 covers the known regression. Invoked by the
+  full suite, so locally it always runs.
 - **End-to-end tests**: manual visual pass in a browser before releases;
   the deploy workflow runs the structural suite before every publish.
 
@@ -46,6 +53,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-03 | 27/27 structural checks passing | Baseline at initial site build |
 | 2026-08-03 | 35/35 structural checks passing | Redesign + theming + community facts (T-026, T-035..T-037, T-060..T-063 added) |
 | 2026-08-03 | 37/37 structural checks passing | v1.0.0: contact wiring (T-038), photo auto-loader (T-043) |
+| 2026-08-03 | 38/38 structural + 16/16 layout checks passing | Caption-burial fix; layout suite added (T-053, L-010..L-040) |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 
@@ -55,7 +63,8 @@ Track known untested behavior here. A percentage alone hides gaps; this log make
 
 | Gap ID | Area / behavior | Risk | Related requirement | Status | TODO ref |
 | --- | --- | --- | --- | --- | --- |
-| GAP-001 | JS behavior (reveal/scrollspy/toggle) has no automated browser test | low | FR-006 | Open | TODO.md → Testing (cross-browser spot-check) |
+| GAP-001 | JS behavior (reveal/scrollspy/toggle) has no automated browser test; layout now covered by `tests/test_layout.sh`, but interaction behavior (toggle click, scrollspy highlight) is still manual | low | FR-006 | Partially closed | TODO.md → Testing (cross-browser spot-check) |
+| GAP-003 | Layout suite runs locally only (browse daemon not on CI runners); CI protection for layout is limited to structural guard T-053 | low | NFR-003 | Open | TODO.md → Testing |
 | GAP-002 | HTML validity not machine-checked | low | NFR-001 | Open | TODO.md → Testing (tidy) |
 
 ## Requirement Coverage

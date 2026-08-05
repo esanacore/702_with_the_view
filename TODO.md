@@ -13,9 +13,10 @@ Keep entries specific, actionable, and current.
 - [x] Fill the Details section (beds/sqft/view researched 2026-08-03 — see `docs/PROPERTY_MANUAL.md` "Property Facts & Sources")
 - [ ] Owner: confirm bathroom count (listing data ambiguous) and the community amenities list
 - [ ] Owner: set rent, availability date, and lease terms (currently TBD)
-- [ ] Interior photos (living room, kitchen, refrigerator, bathroom,
-      medicine cabinet, bedroom) and a dusk view shot — 7 slots still
-      placeholders; drop `<slot>.jpg` in `site/assets/photos/`
+- [ ] Remaining interior photos (kitchen, refrigerator, bathroom,
+      medicine cabinet, bedroom) — 5 slots still placeholders; drop
+      `<slot>.jpg` in `site/assets/photos/` (living room ✓, dusk view ✓,
+      owner-shot 2026-08-03)
 - [ ] Replace the 5 current MLS photo pulls with full-resolution photography
       (same filenames — the zero-edit workflow keeps it a file overwrite)
 - [ ] Confirm with Peggy Moran that reusing the OneKey MLS listing photos on
@@ -48,6 +49,10 @@ Keep entries specific, actionable, and current.
       fits CI
 - [ ] Cross-browser spot-check (Safari/iOS especially, for `aspect-ratio`
       and `backdrop-filter`) once the site is live
+- [ ] GAP-003: run the layout suite in CI (would need a browser on the
+      runner — weigh against the no-dependency principle)
+- [ ] Extend layout suite to interaction behavior: theme-toggle click,
+      scrollspy highlight (closes the rest of GAP-001)
 
 ## Documentation
 

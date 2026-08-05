@@ -4,7 +4,7 @@
 [![Eric's Engineering Constitution](https://img.shields.io/badge/Eric's%20Engineering%20Constitution-Adopted-blue)](https://github.com/esanacore/engineering-constitution)
 <!-- CONSTITUTION_END -->
 
-Current version: **1.0.0** · Live at **[702withtheview.com](https://702withtheview.com)**
+Current version: **1.1.0** · Live at **[702withtheview.com](https://702withtheview.com)**
 
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose
@@ -13,10 +13,9 @@ bathroom (smart medicine cabinet with defogger, lighting, shelving, and
 outlet/USB power; a fan with built-in lighting and a Bluetooth speaker).
 
 The site is dependency-free static HTML/CSS/JS, published straight from this
-repository: **every push to `main` deploys automatically to GitHub Pages**.
-The production domain will be `702withtheview.com` (domain names cannot
-contain underscores, so the repo name and domain differ deliberately —
-see `docs/DOMAIN_SETUP.md`).
+repository: **every push to `main` deploys automatically to GitHub Pages**
+at `702withtheview.com` (domain names cannot contain underscores, so the
+repo name and domain differ deliberately — see `docs/DOMAIN_SETUP.md`).
 
 ## Getting Started
 
@@ -51,10 +50,11 @@ runs in CI before every deploy.
 ├── site/                 ← The website (what GitHub Pages publishes)
 │   ├── index.html        ← Single-page listing
 │   ├── styles.css        ← All styling (no frameworks)
-│   ├── app.js            ← Scroll-reveal, scrollspy, day/dusk hero toggle
-│   └── assets/photos/    ← Photo drop zone (placeholders for now; see its README)
+│   ├── app.js            ← Theme toggle, photo auto-loader, scroll-reveal, scrollspy
+│   └── assets/photos/    ← Photo drop zone (drop <slot>.jpg — see its README)
 ├── tests/
-│   └── test_site.sh      ← Structural test suite (runs locally and in CI)
+│   ├── test_site.sh      ← Structural test suite (runs locally and in CI)
+│   └── test_layout.sh    ← Browser layout regression suite (local; SKIPs in CI)
 ├── docs/                 ← Governance + project docs
 │   ├── PROPERTY_MANUAL.md ← Resident guide: appliances, models, how-tos (in progress)
 │   ├── DOMAIN_SETUP.md   ← Buying 702withtheview.com and pointing DNS at Pages
