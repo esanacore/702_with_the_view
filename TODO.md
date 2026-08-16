@@ -46,6 +46,13 @@ Keep entries specific, actionable, and current.
 
 ## Technical Debt
 
+- [ ] Initialize the GitHub wiki once by hand: repo → Wiki tab → "Create
+      the first page" → save the default Home → re-run the "Constitution
+      Wiki" workflow. GitHub creates `.wiki.git` only after a page is
+      saved in the UI, so the constitution's wiki-publish workflow fails
+      until then (its content in `wiki/Home.md` is ready and will
+      overwrite the stub on first successful run).
+
 - [ ] `site/index.html` mailto button points at a placeholder address — see Blocking above
 
 ## Testing
