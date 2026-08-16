@@ -11,7 +11,9 @@
  *     no HTML edits (see site/assets/photos/README.md).
  *  3. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
  *  4. Scrollspy: the nav link for the section in view gets .is-active.
- *  5. Scroll-linked video: the video plays/pauses based on scroll position.
+ *  5. Lightbox: click a gallery photo to view it full-screen; arrow keys
+ *     navigate, Escape closes, focus returns to the clicked photo.
+ *     (The video plays on click via native controls — no scroll-linking.)
  */
 (function () {
   "use strict";
@@ -152,7 +154,84 @@
     });
   }
 
-  // ---- 5. Scroll-linked video (removed) -----------------------------------
-  // Video now plays on user click only — simple and intuitive.
+  // ---- 5. Lightbox --------------------------------------------------------
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightboxImg");
+  var lightboxCaption = document.getElementById("lightboxCaption");
 
+  if (lightbox && lightboxImg) {
+    var current = -1;
+    var lastTrigger = null;
+
+    // The photo list is computed at open time, because the auto-loader
+    // fills figures asynchronously as slot files are discovered.
+    function loadedPhotos() {
+      // Lightbox's own <figure> is .lightbox__body, not .ph, so this can
+      // never capture the lightbox image itself.
+      return Array.prototype.slice.call(document.querySelectorAll(".ph img"));
+    }
+
+    function show(index) {
+      var photos = loadedPhotos();
+      if (!photos.length) return;
+      current = (index + photos.length) % photos.length;
+      var img = photos[current];
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      var cap = img.closest(".ph").querySelector("figcaption");
+      lightboxCaption.textContent = cap ? cap.textContent : "";
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+      document.getElementById("lightboxClose").focus();
+    }
+
+    function close() {
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    document.addEventListener("click", function (e) {
+      var img = e.target.closest ? e.target.closest(".ph img") : null;
+      if (img) {
+        lastTrigger = img;
+        show(loadedPhotos().indexOf(img));
+        return;
+      }
+      if (!lightbox.hidden && e.target === lightbox) close();
+    });
+
+    document.getElementById("lightboxClose").addEventListener("click", close);
+    document.getElementById("lightboxPrev").addEventListener("click", function () {
+      show(current - 1);
+    });
+    document.getElementById("lightboxNext").addEventListener("click", function () {
+      show(current + 1);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(current - 1);
+      else if (e.key === "ArrowRight") show(current + 1);
+    });
+
+    // Gallery photos are interactive now; make each one keyboard-reachable
+    // as the auto-loader inserts it.
+    var galleryKeyboard = new MutationObserver(function () {
+      loadedPhotos().forEach(function (img) {
+        if (!img.hasAttribute("tabindex")) {
+          img.setAttribute("tabindex", "0");
+          img.setAttribute("role", "button");
+          img.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              img.click();
+            }
+          });
+        }
+      });
+    });
+    galleryKeyboard.observe(document.body, { childList: true, subtree: true });
+  }
 })();

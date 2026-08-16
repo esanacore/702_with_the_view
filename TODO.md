@@ -24,13 +24,18 @@ Keep entries specific, actionable, and current.
 
 ## Features
 
-- [ ] Lightbox for gallery photos once real images exist
+- [x] Lightbox for gallery photos (2026-08-03)
 - [ ] Animated/interactive visualizations of property features (e.g. the
       filtered-water path to the icemaker, the medicine-cabinet feature
       callouts) — owner idea from project kickoff
 - [ ] Publish the Property Manual as a page on the site (private link or
       resident-only section) once model numbers are in
-- [ ] Open Graph / social preview tags + preview image for sharing the listing
+- [x] Open Graph / social preview tags + JSON-LD structured data (2026-08-03)
+- [ ] Compress `site/assets/videos/timelapse.mp4` (~38MB → target under
+      10MB, e.g. 1080p H.264 CRF 26) — needs ffmpeg; not installed on this
+      machine
+- [ ] Consider a dedicated poster frame extracted from the video (currently
+      reuses the dusk photo)
 
 ## Property Manual
 

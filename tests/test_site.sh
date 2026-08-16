@@ -44,6 +44,7 @@ check T-012 "has viewport meta (mobile)"   grep -q 'name="viewport"' "$index"
 check T-013 "has meta description"         grep -q 'name="description"' "$index"
 check T-014 "links styles.css"             grep -q 'href="styles.css"' "$index"
 check T-015 "links app.js"                 grep -q 'src="app.js"' "$index"
+check T-016 "skip-to-content link"         grep -q 'class="skip-link"' "$index"
 
 # --- T-020 .. T-026: every listing section is present -------------------
 check T-020 "gallery section present"      grep -q 'id="gallery"' "$index"
@@ -99,6 +100,29 @@ check T-053 "gallery photos never height:100%" bash -c '
   [ -n "$rule" ] &&
   printf "%s" "$rule" | grep -q "height: auto" &&
   ! printf "%s" "$rule" | grep -q "height: 100%"
+'
+# The timelapse is ~38MB; preload=metadata keeps it off the wire until the
+# visitor presses play, and the poster fills the frame meanwhile.
+check T-054 "video deferred + postered" bash -c '
+  grep -q "preload=\"metadata\"" "'"$index"'" &&
+  grep -q "poster=\"assets/photos/" "'"$index"'" &&
+  test -f "'"$site"'/assets/videos/timelapse.mp4"
+'
+
+# --- T-070 .. T-073: sharing & SEO --------------------------------------
+check T-070 "Open Graph image set"         grep -q 'property="og:image"' "$index"
+check T-071 "Twitter card set"             grep -q 'name="twitter:card"' "$index"
+check T-072 "JSON-LD structured data"      grep -q 'application/ld+json' "$index"
+check T-073 "canonical URL set"            grep -q 'rel="canonical"' "$index"
+
+# --- T-080 .. T-081: lightbox & 404 -------------------------------------
+check T-080 "lightbox present and wired" bash -c '
+  grep -q "id=\"lightbox\"" "'"$index"'" &&
+  grep -q "lightboxClose" "'"$site"'/app.js"
+'
+check T-081 "404 page exists, themed" bash -c '
+  test -f "'"$site"'/404.html" &&
+  grep -q "702-theme" "'"$site"'/404.html"
 '
 
 echo "---------------------"

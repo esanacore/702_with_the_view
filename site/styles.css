@@ -101,6 +101,30 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 .contact__agent a,
 .footer a { color: var(--brass); }
 
+/* Keyboard accessibility: hidden until focused, then front and center */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.6rem 1.1rem;
+  border-radius: 0 0 10px 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus { top: 0; }
+
+/* One consistent, visible focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* Small-caps label above each section heading */
 .overline {
   text-transform: uppercase;
@@ -508,6 +532,75 @@ a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset:
 }
 
 .footer__fine { margin-top: 0.4rem; font-size: 0.8rem; }
+
+/* ------------------------------- Lightbox --------------------------------- */
+
+/* Clickable gallery photos advertise it */
+.ph img { cursor: zoom-in; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(10, 12, 14, 0.92);
+  padding: 2.5rem clamp(0.5rem, 3vw, 2rem);
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox__body {
+  margin: 0;
+  max-width: min(1100px, 92vw);
+  text-align: center;
+}
+
+.lightbox__body img {
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius);
+  cursor: default;
+}
+
+.lightbox__body figcaption {
+  color: #d6d2c8;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(255, 255, 255, 0.25); }
+
+.lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+@media (max-width: 560px) {
+  .lightbox { padding: 2.5rem 0.25rem; }
+  .lightbox__nav { width: 2.25rem; height: 2.25rem; }
+}
 
 /* --------------------------- Scroll reveal -------------------------------- */
 

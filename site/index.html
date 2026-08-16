@@ -5,6 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>702 with the View — Apartment for Rent in Freeport, NY</title>
   <meta name="description" content="702 with the View: a one-bedroom waterfront-view apartment at The Anchorage in Freeport, NY, with an all-new GE kitchen and a fully remodeled bathroom.">
+  <link rel="canonical" href="https://702withtheview.com/">
+
+  <!-- Social sharing: how the link unfurls in Messages, WhatsApp, social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="702 with the View">
+  <meta property="og:title" content="702 with the View — Apartment for Rent in Freeport, NY">
+  <meta property="og:description" content="A one-bedroom waterfront-view apartment at The Anchorage in Freeport, NY. All-new GE kitchen, fully remodeled bathroom, one block from the Nautical Mile.">
+  <meta property="og:url" content="https://702withtheview.com/">
+  <meta property="og:image" content="https://702withtheview.com/assets/photos/view-main.jpg">
+  <meta property="og:image:alt" content="Aerial view over the waterfront: the channel, salt marsh, boats, and The Anchorage's boardwalk and lawns">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="702 with the View — Apartment for Rent in Freeport, NY">
+  <meta name="twitter:description" content="A one-bedroom waterfront-view apartment at The Anchorage in Freeport, NY.">
+  <meta name="twitter:image" content="https://702withtheview.com/assets/photos/view-main.jpg">
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Apartment",
+    "name": "702 with the View",
+    "url": "https://702withtheview.com/",
+    "image": "https://702withtheview.com/assets/photos/view-main.jpg",
+    "numberOfBedrooms": 1,
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": 655,
+      "unitCode": "FTK"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1 Anchorage Way, Apartment 702",
+      "addressLocality": "Freeport",
+      "addressRegion": "NY",
+      "postalCode": "11520",
+      "addressCountry": "US"
+    },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Water view", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Gated community with 24-hour security", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Pool", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Tennis and pickleball courts", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Assigned parking", "value": true }
+    ]
+  }
+  </script>
   <script>
     // Apply the saved or system theme before first paint so the page never
     // flashes the wrong mode. Mirrors the gentletable.com approach.
@@ -21,6 +67,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231d3a4f'/><path d='M5 21c2.2 0 2.2 1.6 4.4 1.6S11.6 21 13.8 21s2.2 1.6 4.4 1.6S20.4 21 22.6 21s2.2 1.6 4.4 1.6' stroke='%23d8b45a' stroke-width='1.8' fill='none' stroke-linecap='round'/><path d='M5 26c2.2 0 2.2 1.6 4.4 1.6S11.6 26 13.8 26s2.2 1.6 4.4 1.6S20.4 26 22.6 26s2.2 1.6 4.4 1.6' stroke='%236e9db8' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>">
 </head>
 <body>
+
+  <a class="skip-link" href="#gallery">Skip to content</a>
 
   <header class="nav" id="top">
     <a class="nav__brand" href="#top">702 <em>with the View</em></a>
@@ -259,7 +307,10 @@
     <div class="video-container reveal">
       <p class="overline">The moment</p>
       <h2>Sunrise over the water</h2>
-      <video id="scrollVideo" class="scroll-video" controls playsinline>
+      <!-- preload="metadata" keeps the ~38MB file from downloading until
+           the visitor presses play; the poster fills the frame meanwhile. -->
+      <video id="scrollVideo" class="scroll-video" controls playsinline
+             preload="metadata" poster="assets/photos/view-dusk.jpg">
         <source src="assets/videos/timelapse.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video.
       </video>
@@ -291,6 +342,18 @@
       <small>*This page is a work in progress and not yet available. Nothing on this page should be considered legal or official information.</small>
     </p>
   </footer>
+
+  <!-- Gallery lightbox: hidden until a photo is clicked (app.js) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Photo viewer" hidden>
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close photo viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#8249;</button>
+    <figure class="lightbox__body">
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" type="button" aria-label="Next photo">&#8250;</button>
+  </div>
 
   <script src="app.js"></script>
 </body>

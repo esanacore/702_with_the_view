@@ -12,6 +12,27 @@ This project follows semantic versioning.
 
 ### Fixed
 
+## 1.2.0 — 2026-08-03
+
+### Added
+
+- Rich link previews: Open Graph + Twitter-card tags with the aerial view,
+  canonical URL, and schema.org `Apartment` structured data (address,
+  size, amenities) for search engines.
+- Gallery lightbox: click any photo for a full-screen view; arrow keys
+  navigate, Escape closes, keyboard-focusable photos (Enter/Space opens).
+- Sunrise timelapse video section (owner-shot) with click-to-play.
+- Themed 404 page.
+- Accessibility: skip-to-content link and a consistent visible focus ring.
+
+### Changed
+
+- The timelapse defers its ~38MB download until played
+  (`preload="metadata"`) and shows the dusk view as its poster frame.
+- Kitchen copy simplified with accurate details; filtered-water tile text
+  shortened; waterfront-lawn photo relabeled "Beautiful marshlands" (owner
+  edits).
+
 ## 1.1.0 — 2026-08-03
 
 ### Added

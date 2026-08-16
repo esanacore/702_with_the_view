@@ -31,6 +31,10 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015 (script wired); runtime behavior checked manually each release, tracked in TEST_PLAN.md's coverage log | In Progress |
 | FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037 | Verified |
 | FR-008 | MUST | Light/dark theming with system default + override | FR-008-AC-1, FR-008-AC-2, FR-008-AC-3 | T-060, T-061, T-062, T-063; live toggle behavior verified manually in browser | Verified |
+| FR-009 | MUST | Rich link previews + structured data | FR-009-AC-1, FR-009-AC-2 | T-070, T-071, T-072, T-073 | Verified |
+| FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; open/navigate/Escape verified interactively in headless browser | Verified |
+| FR-011 | SHOULD | Themed 404 page | FR-011-AC-1 | T-081 | Verified |
+| FR-012 | SHOULD | Video defers download, shows poster | FR-012-AC-1 | T-054 | Verified |
 
 ## Non-Functional Requirements
 
@@ -44,8 +48,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 
 | Metric | Count |
 | --- | --- |
-| Total requirements | 11 |
-| Verified | 10 |
+| Total requirements | 15 |
+| Verified | 14 |
 | In progress | 1 |
 | Not started | 0 |
 | Requirements without a verifying test (gaps) | 0 |

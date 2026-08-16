@@ -4,7 +4,7 @@
 [![Eric's Engineering Constitution](https://img.shields.io/badge/Eric's%20Engineering%20Constitution-Adopted-blue)](https://github.com/esanacore/engineering-constitution)
 <!-- CONSTITUTION_END -->
 
-Current version: **1.1.0** · Live at **[702withtheview.com](https://702withtheview.com)**
+Current version: **1.2.0** · Live at **[702withtheview.com](https://702withtheview.com)**
 
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose

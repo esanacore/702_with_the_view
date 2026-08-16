@@ -93,6 +93,35 @@ default until the reader chooses.
   - `FR-008-AC-2`: a labeled toggle overrides the system theme and the choice persists across visits.
   - `FR-008-AC-3`: no wrong-theme flash on load.
 
+### Sharing & Discovery
+
+**FR-009** The listing link unfurls with a rich preview when shared.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `FR-009-AC-1`: Open Graph and Twitter-card tags with the aerial view image; canonical URL declared.
+  - `FR-009-AC-2`: schema.org `Apartment` structured data with address, size, and amenities.
+
+### Media
+
+**FR-010** Gallery photos open in a full-screen lightbox.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-010-AC-1`: click (or Enter/Space on a focused photo) opens the viewer; arrows navigate; Escape closes and focus returns.
+
+**FR-011** A missing URL lands on a helpful, themed 404 page.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-011-AC-1`: `site/404.html` exists, follows the theme system, links back to the listing.
+
+**FR-012** The sunrise timelapse video plays on demand without taxing page load.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-012-AC-1`: video defers download (`preload="metadata"`) and shows a poster frame until played.
+
 ## Non-Functional Requirements
 
 ### Security
