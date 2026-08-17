@@ -49,7 +49,6 @@ Keep entries specific, actionable, and current.
 - [x] GitHub wiki initialized and first sync published (2026-08-16);
       `wiki/` now auto-syncs to the GitHub wiki on every push.
 
-- [ ] `site/index.html` mailto button points at a placeholder address — see Blocking above
 
 ## Testing
 
