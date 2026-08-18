@@ -25,9 +25,10 @@ Keep entries specific, actionable, and current.
 ## Features
 
 - [x] Lightbox for gallery photos (2026-08-03)
-- [ ] Animated/interactive visualizations of property features (e.g. the
-      filtered-water path to the icemaker, the medicine-cabinet feature
-      callouts) — owner idea from project kickoff
+- [x] Interactive visualization of the filtered-water path to the icemaker
+      (2026-08-18, CSS-only diagram in the "How it works" section)
+- [ ] Second visualization: medicine-cabinet feature callouts (defogger,
+      lighting, shelving, outlet/USB) in the same diagram style
 - [ ] Publish the Property Manual as a page on the site (private link or
       resident-only section) once model numbers are in
 - [x] Open Graph / social preview tags + JSON-LD structured data (2026-08-03)

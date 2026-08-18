@@ -35,6 +35,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; I-050..I-055 (open, wrap, arrows, Escape, backdrop, keyboard) | Verified |
 | FR-011 | SHOULD | Themed 404 page | FR-011-AC-1 | T-081 | Verified |
 | FR-012 | SHOULD | Video defers download, shows poster | FR-012-AC-1 | T-054 | Verified |
+| FR-013 | SHOULD | Water-path feature diagram (CSS-only) | FR-013-AC-1 | T-093 | Verified |
+| FR-014 | SHOULD | Crawlable: robots.txt + sitemap.xml | FR-014-AC-1 | T-090, T-091 | Verified |
 
 ## Non-Functional Requirements
 
@@ -43,13 +45,14 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | NFR-001 | MUST | No third-party code, no local path leaks | NFR-001-AC-1, NFR-001-AC-2 | T-052, T-050 | Verified |
 | NFR-002 | MUST | Broken change cannot take down live site | NFR-002-AC-1 | T-004; deploy workflow orders tests before publish | Verified |
 | NFR-003 | MUST | Mobile-friendly; honors reduced motion | NFR-003-AC-1, NFR-003-AC-2 | T-012, T-051; layout suite L-030/L-040 (mobile geometry, local runs) | Verified |
+| NFR-004 | MUST | WCAG AA text contrast in both themes | NFR-004-AC-1, NFR-004-AC-2 | L-010-5, L-020-5, L-030-5, L-040-5 (measured); T-094 (token discipline) | Verified |
 
 ## Coverage Summary
 
 | Metric | Count |
 | --- | --- |
-| Total requirements | 15 |
-| Verified | 15 |
+| Total requirements | 18 |
+| Verified | 18 |
 | In progress | 0 |
 | Not started | 0 |
 | Requirements without a verifying test (gaps) | 0 |

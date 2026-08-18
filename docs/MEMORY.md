@@ -17,6 +17,15 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- Colour tokens split by ROLE: `--accent` = button backgrounds only,
+  `--link` = text and lines. Using one accent for both shipped links at
+  2:1 on white. Any new palette must keep this split; L-xxx-5 measures it.
+- In test shell scripts, never end a function with `[ -n "$x" ] && echo …`:
+  when the test is false the function returns 1 and `set -e` aborts the
+  whole suite mid-run (silently skipped 3 of 4 layout matrices).
+- Chrome reports some computed colours as `color(srgb r g b / a)` with 0-1
+  floats instead of `rgb()` 0-255 channels — parse both or contrast maths
+  silently inverts.
 - `site/app.js` is held at **100% measured** line+block coverage
   (`bash tests/test_coverage.sh`). Adding a branch means adding a check —
   or, if no real user path reaches it, deleting the branch instead.

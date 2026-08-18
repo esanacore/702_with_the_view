@@ -6,6 +6,9 @@
   <title>702 with the View — Apartment for Rent in Freeport, NY</title>
   <meta name="description" content="702 with the View: a one-bedroom waterfront-view apartment at The Anchorage in Freeport, NY, with an all-new GE kitchen and a fully remodeled bathroom.">
   <link rel="canonical" href="https://702withtheview.com/">
+  <!-- Tints mobile browser chrome to match the page in each theme -->
+  <meta name="theme-color" content="#faf7f1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
 
   <!-- Social sharing: how the link unfurls in Messages, WhatsApp, social -->
   <meta property="og:type" content="website">
@@ -186,6 +189,49 @@
         </p>
       </article>
     </div>
+  </section>
+
+  <!-- ========================== HOW IT WORKS ========================== -->
+  <!-- Interactive diagram, CSS-only: each node reveals its detail on hover
+       or keyboard focus, so there is no JS to fail or to test. -->
+  <section class="section" id="how">
+    <header class="section__head reveal">
+      <p class="overline">How it works</p>
+      <h2>Where your ice comes from</h2>
+      <p class="section__lede">
+        Most refrigerators tap whatever water the wall gives them. This one
+        is fed by a dedicated filtered cold-water line — so the filtering
+        happens before the water ever reaches the icemaker.
+      </p>
+    </header>
+
+    <ol class="flow reveal" aria-label="Path of water from the building supply to the icemaker">
+      <li class="flow__step">
+        <button class="flow__node" type="button" aria-describedby="flow-d1">
+          <span class="flow__label">Cold-water supply</span>
+        </button>
+        <p class="flow__detail" id="flow-d1">The building's cold line, same as any tap.</p>
+      </li>
+      <li class="flow__step">
+        <button class="flow__node flow__node--accent" type="button" aria-describedby="flow-d2">
+          <span class="flow__label">Dedicated filter</span>
+        </button>
+        <p class="flow__detail" id="flow-d2">An inline filter on the way to the refrigerator — not a pitcher, not a door filter.</p>
+      </li>
+      <li class="flow__step">
+        <button class="flow__node" type="button" aria-describedby="flow-d3">
+          <span class="flow__label">GE French-door refrigerator</span>
+        </button>
+        <p class="flow__detail" id="flow-d3">Brand new, installed with the rest of the GE suite.</p>
+      </li>
+      <li class="flow__step">
+        <button class="flow__node flow__node--end" type="button" aria-describedby="flow-d4">
+          <span class="flow__label">Icemaker</span>
+        </button>
+        <p class="flow__detail" id="flow-d4">Ice made from filtered water, on its own, all day.</p>
+      </li>
+    </ol>
+    <p class="section__note reveal">Filter model and replacement schedule are going into the property guide.</p>
   </section>
 
   <!-- ============================ BATHROOM ============================ -->

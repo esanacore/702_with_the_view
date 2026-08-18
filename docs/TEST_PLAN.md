@@ -27,7 +27,8 @@ unit layer, and four suites that all drive the real artifact.
 - **Layout tests**: `tests/test_layout.sh` (`L-xxx`) — renders the page in
   headless Chromium and asserts real geometry: photos contained by their
   figures, captions never buried, no horizontal scroll; desktop + mobile,
-  light + dark. Requires the local browse daemon; SKIPs with exit 0 in CI,
+  light + dark, plus **measured WCAG AA contrast** for every text element
+  against its painted background. Requires the local browse daemon; SKIPs with exit 0 in CI,
   where structural guard T-053 covers the known regression. Invoked by the
   full suite, so locally it always runs.
 - **End-to-end tests**: manual visual pass in a browser before releases;
@@ -78,6 +79,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-03 | 37/37 structural checks passing | v1.0.0: contact wiring (T-038), photo auto-loader (T-043) |
 | 2026-08-03 | 38/38 structural + 16/16 layout checks passing | Caption-burial fix; layout suite added (T-053, L-010..L-040) |
 | 2026-08-17 | 46 structural + 16 layout + 19 interaction; **app.js 176/176 lines, 0 uncovered blocks (100%)** | Interaction suite + measured coverage gate added |
+| 2026-08-18 | 51 structural + 20 layout + 19 interaction; app.js still 100% | v1.4.0: water-path diagram, robots/sitemap, WCAG AA contrast checks (L-xxx-5) |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 

@@ -52,11 +52,12 @@ run_checks() {
   sleep 1
   local out
   out=$("$B" eval "$root/tests/layout_assertions.js" 2>/dev/null | grep -v "UNTRUSTED" || true)
-  local photos overflow clipped pagex
+  local photos overflow clipped pagex contrast
   photos=$(printf '%s' "$out" | sed -n 's/.*"photosChecked":\([0-9]*\).*/\1/p')
   overflow=$(printf '%s' "$out" | sed -n 's/.*"overflowingSlots":\[\([^]]*\)\].*/\1/p')
   clipped=$(printf '%s' "$out" | sed -n 's/.*"clippedCaptions":\[\([^]]*\)\].*/\1/p')
   pagex=$(printf '%s' "$out" | sed -n 's/.*"pageOverflowX":\(true\|false\).*/\1/p')
+  contrast=$(printf '%s' "$out" | sed -n 's/.*"lowContrast":\[\([^]]*\)\].*/\1/p')
 
   assert "$prefix-1" "photos measurable ($viewport $theme: ${photos:-0} imgs)" \
     "$([ -n "$photos" ] && [ "$photos" -gt 0 ] && echo true || echo false)"
@@ -68,6 +69,13 @@ run_checks() {
   [ -n "$clipped" ] && echo "          clipped: $clipped"
   assert "$prefix-4" "no horizontal page scroll ($viewport $theme)" \
     "$([ "$pagex" = "false" ] && echo true || echo false)"
+  assert "$prefix-5" "all text meets WCAG AA 4.5:1 ($viewport $theme)" \
+    "$([ -z "$contrast" ] && echo true || echo false)"
+  [ -n "$contrast" ] && echo "          low contrast: $contrast"
+
+  # run_checks must not end on a failed test: under `set -e` a non-zero
+  # return from the last command aborts the whole suite mid-run.
+  return 0
 }
 
 echo "Layout regression tests (headless Chromium)"

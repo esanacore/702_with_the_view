@@ -125,6 +125,34 @@ check T-081 "404 page exists, themed" bash -c '
   grep -q "702-theme" "'"$site"'/404.html"
 '
 
+# --- T-090 .. T-093: discovery files & the feature diagram --------------
+check T-090 "robots.txt points at sitemap" bash -c '
+  test -f "'"$site"'/robots.txt" &&
+  grep -q "Sitemap: https://702withtheview.com/sitemap.xml" "'"$site"'/robots.txt"
+'
+check T-091 "sitemap lists the canonical URL" bash -c '
+  test -f "'"$site"'/sitemap.xml" &&
+  grep -q "<loc>https://702withtheview.com/</loc>" "'"$site"'/sitemap.xml"
+'
+check T-092 "theme-color for both schemes" bash -c '
+  grep -q "theme-color.*prefers-color-scheme: light" "'"$index"'" &&
+  grep -q "theme-color.*prefers-color-scheme: dark" "'"$index"'"
+'
+check T-093 "water-path diagram present, CSS-only" bash -c '
+  grep -q "id=\"how\"" "'"$index"'" &&
+  grep -q "flow__node" "'"$index"'" &&
+  grep -q "aria-describedby=\"flow-d1\"" "'"$index"'" &&
+  ! grep -q "flow__" "'"$site"'/app.js"
+'
+# The palette once shipped gold links at 2:1 on white and a diagram label at
+# 1.04:1 on near-black. --accent is for button backgrounds; text and lines
+# use --link, which is legible in both themes (measured by L-xxx-5).
+check T-094 "text accents use --link, not --accent" bash -c '
+  grep -q -- "--link:" "'"$site"'/styles.css" &&
+  ! grep -E "^\s*(a|\.overline|\.hero__overline)\s*\{[^}]*var\(--accent\)" "'"$site"'/styles.css" &&
+  ! grep -q "outline: 2px solid var(--accent)" "'"$site"'/styles.css"
+'
+
 echo "---------------------"
 echo "Passed: $pass  Failed: $fail"
 [ "$fail" -eq 0 ] || exit 1

@@ -12,6 +12,41 @@ This project follows semantic versioning.
 
 ### Fixed
 
+## 1.4.0 — 2026-08-18
+
+### Added
+
+- "Where your ice comes from": an interactive diagram tracing the water
+  path — building supply → dedicated inline filter → GE refrigerator →
+  icemaker. Nodes respond to hover and keyboard focus, connectors show
+  flow direction, and it's built entirely in CSS, so there is no script to
+  fail (the property-feature visualization first sketched at kickoff).
+- `robots.txt` and `sitemap.xml` so search engines can crawl the listing.
+- `theme-color` meta tags: mobile browser chrome now matches the page in
+  both light and dark.
+- Automated contrast testing: the layout suite measures every text
+  element against its painted background in both themes at both widths
+  and fails below the WCAG AA 4.5:1 floor (L-xxx-5).
+
+### Changed
+
+- The design system now separates accent colors by role: `--accent` is for
+  button backgrounds, and a new `--link` token carries text and lines. A
+  single accent used for both is what allowed the contrast bugs below.
+
+### Fixed
+
+- **Unreadable text in both themes.** Links measured 2.0:1 on white and
+  section labels 2.2:1; the new diagram's label measured 1.04:1 on
+  near-black (effectively invisible). All text now measures 5.5:1 or
+  better in light and 8:1 or better in dark.
+- Layout suite aborted after its first block when a check passed, because
+  the passing branch left a non-zero status as the function's last
+  command under `set -e` — three of four matrices were silently skipped.
+- Contrast helper misread Chrome's `color(srgb …)` values (0–1 floats) as
+  0–255 channels, reporting a passing element as a failure; it now parses
+  both notations and composites translucent layers.
+
 ## 1.3.0 — 2026-08-17
 
 ### Added

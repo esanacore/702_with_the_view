@@ -122,6 +122,18 @@ default until the reader chooses.
 - Acceptance criteria:
   - `FR-012-AC-1`: video defers download (`preload="metadata"`) and shows a poster frame until played.
 
+**FR-013** A visualization explains a signature property feature.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-013-AC-1`: the water path (supply → dedicated filter → refrigerator → icemaker) is shown as a diagram that responds to hover/focus, built without JavaScript so it cannot fail at runtime.
+
+**FR-014** Search engines can discover and crawl the listing.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-014-AC-1`: `robots.txt` allows crawling and points at `sitemap.xml`, which lists the canonical URL.
+
 ## Non-Functional Requirements
 
 ### Security
@@ -149,6 +161,16 @@ default until the reader chooses.
 - Acceptance criteria:
   - `NFR-003-AC-1`: a viewport meta tag is present and layout is responsive.
   - `NFR-003-AC-2`: `prefers-reduced-motion` disables animations.
+
+**NFR-004** Text meets WCAG AA contrast in both themes.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `NFR-004-AC-1`: every text element measures at least 4.5:1 against its
+    painted background, in light and dark, at desktop and mobile widths.
+  - `NFR-004-AC-2`: the design system separates accent colors used as
+    *backgrounds* from those used as *text/lines*, so a palette change
+    cannot silently make copy unreadable.
 
 ## Explicit Non-Goals
 
