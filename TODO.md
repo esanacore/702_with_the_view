@@ -56,10 +56,13 @@ Keep entries specific, actionable, and current.
       fits CI
 - [ ] Cross-browser spot-check (Safari/iOS especially, for `aspect-ratio`
       and `backdrop-filter`) once the site is live
-- [ ] GAP-003: run the layout suite in CI (would need a browser on the
-      runner — weigh against the no-dependency principle)
-- [ ] Extend layout suite to interaction behavior: theme-toggle click,
-      scrollspy highlight (closes the rest of GAP-001)
+- [x] Interaction/behavior coverage — `tests/test_interactions.sh` with
+      100% measured line+block coverage of app.js (2026-08-17, closes GAP-001)
+- [ ] GAP-003: run the browser suites (layout, interaction, coverage) in CI
+      — needs a browser on the runner; weigh against the no-dependency
+      principle. A `workflow_dispatch`-only job may be the compromise.
+- [ ] GAP-004: extend coverage measurement to the inline pre-paint theme
+      script in `index.html` (today asserted by T-063/I-012, not profiled)
 
 ## Documentation
 

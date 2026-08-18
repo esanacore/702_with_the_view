@@ -4,7 +4,7 @@
 [![Eric's Engineering Constitution](https://img.shields.io/badge/Eric's%20Engineering%20Constitution-Adopted-blue)](https://github.com/esanacore/engineering-constitution)
 <!-- CONSTITUTION_END -->
 
-Current version: **1.2.0** · Live at **[702withtheview.com](https://702withtheview.com)**
+Current version: **1.3.0** · Live at **[702withtheview.com](https://702withtheview.com)**
 
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose
@@ -39,9 +39,17 @@ python -m http.server 8000 --directory site
 bash tests/test_site.sh
 ```
 
-The suite runs structural assertions against the site (sections present,
-feature copy intact, placeholders wired, no external dependencies). It also
-runs in CI before every deploy.
+That runs all four suites in order:
+
+| Suite | What it checks | In CI? |
+| --- | --- | --- |
+| `test_site.sh` (`T-xxx`) | Structure: sections, feature copy, photo slots, no external dependencies | Yes — gates every deploy |
+| `test_layout.sh` (`L-xxx`) | Real geometry in a browser: photos contained, captions visible, no horizontal scroll (desktop + mobile × light + dark) | Skips (no browser on runners) |
+| `test_interactions.sh` (`I-xxx`) | Behavior: theme toggle, photo loading, reveal, scrollspy, lightbox | Skips |
+| `test_coverage.sh` | **Measured** coverage of `site/app.js` — fails below 100% line and block | Skips |
+
+The browser suites need the local gstack browse/Playwright install; they
+skip cleanly when it's missing, so the structural suite is what CI enforces.
 
 ## Project Structure
 
@@ -53,8 +61,11 @@ runs in CI before every deploy.
 │   ├── app.js            ← Theme toggle, photo auto-loader, scroll-reveal, scrollspy
 │   └── assets/photos/    ← Photo drop zone (drop <slot>.jpg — see its README)
 ├── tests/
-│   ├── test_site.sh      ← Structural test suite (runs locally and in CI)
-│   └── test_layout.sh    ← Browser layout regression suite (local; SKIPs in CI)
+│   ├── test_site.sh          ← Structural suite + runner for the three below
+│   ├── test_layout.sh        ← Browser layout regression suite
+│   ├── test_interactions.sh  ← Browser behavior suite (all app.js paths)
+│   ├── test_coverage.sh      ← Measured 100% coverage gate
+│   └── coverage.js           ← V8 profiler harness behind that gate
 ├── docs/                 ← Governance + project docs
 │   ├── PROPERTY_MANUAL.md ← Resident guide: appliances, models, how-tos (in progress)
 │   ├── DOMAIN_SETUP.md   ← Buying 702withtheview.com and pointing DNS at Pages

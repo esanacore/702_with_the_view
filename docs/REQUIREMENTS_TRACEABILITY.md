@@ -28,11 +28,11 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-003 | MUST | Bathroom copy: cabinet defogger, fan speaker | FR-003-AC-1 | T-033, T-034 | Verified |
 | FR-004 | MUST | Photo placeholders wired for drop-in swap | FR-004-AC-1, FR-004-AC-2 | T-040, T-041, T-042, T-043 (auto-loader) | Verified |
 | FR-005 | MUST | Push to `main` publishes, gated on tests | FR-005-AC-1 | T-004 (workflow present); gate exercised by every CI run | Verified |
-| FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015 (script wired); runtime behavior checked manually each release, tracked in TEST_PLAN.md's coverage log | In Progress |
+| FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015; interaction suite I-010..I-055; 100% measured line+block coverage of app.js | Verified |
 | FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037 | Verified |
 | FR-008 | MUST | Light/dark theming with system default + override | FR-008-AC-1, FR-008-AC-2, FR-008-AC-3 | T-060, T-061, T-062, T-063; live toggle behavior verified manually in browser | Verified |
 | FR-009 | MUST | Rich link previews + structured data | FR-009-AC-1, FR-009-AC-2 | T-070, T-071, T-072, T-073 | Verified |
-| FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; open/navigate/Escape verified interactively in headless browser | Verified |
+| FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; I-050..I-055 (open, wrap, arrows, Escape, backdrop, keyboard) | Verified |
 | FR-011 | SHOULD | Themed 404 page | FR-011-AC-1 | T-081 | Verified |
 | FR-012 | SHOULD | Video defers download, shows poster | FR-012-AC-1 | T-054 | Verified |
 
@@ -49,7 +49,7 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | Metric | Count |
 | --- | --- |
 | Total requirements | 15 |
-| Verified | 14 |
-| In progress | 1 |
+| Verified | 15 |
+| In progress | 0 |
 | Not started | 0 |
 | Requirements without a verifying test (gaps) | 0 |

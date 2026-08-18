@@ -129,8 +129,11 @@ echo "---------------------"
 echo "Passed: $pass  Failed: $fail"
 [ "$fail" -eq 0 ] || exit 1
 
-# Browser-based layout assertions (SKIPs where the browse daemon is absent,
-# e.g. CI — see tests/test_layout.sh for what still covers that case).
-if [ -f "$root/tests/test_layout.sh" ]; then
-  bash "$root/tests/test_layout.sh"
-fi
+# Browser-based suites. Each SKIPs cleanly where its tooling is absent
+# (e.g. CI runners), so the structural checks above remain the CI gate.
+for suite in test_layout test_interactions test_coverage; do
+  if [ -f "$root/tests/$suite.sh" ]; then
+    echo
+    bash "$root/tests/$suite.sh"
+  fi
+done

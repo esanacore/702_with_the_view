@@ -17,6 +17,15 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- `site/app.js` is held at **100% measured** line+block coverage
+  (`bash tests/test_coverage.sh`). Adding a branch means adding a check —
+  or, if no real user path reaches it, deleting the branch instead.
+- `window.__702test` in app.js is a deliberate test seam (a real
+  `prefers-color-scheme` flip can't be triggered from inside the page).
+  Don't remove it; the interaction suite depends on it.
+- V8 coverage merging across pages must be **byte-wise**: V8 emits explicit
+  ranges only for regions it did NOT execute, so comparing range keys
+  reports covered blocks as missed (`tests/coverage.js`).
 - Gallery photo CSS must size from width + aspect-ratio only. `height:
   100%` inside the auto-height figure made photos overflow the grid row
   and bury the caption below (fixed post-v1.0.0; guarded by T-053 and

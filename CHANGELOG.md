@@ -12,6 +12,31 @@ This project follows semantic versioning.
 
 ### Fixed
 
+## 1.3.0 — 2026-08-17
+
+### Added
+
+- Interaction test suite (`tests/test_interactions.sh`, 19 checks): drives
+  the real page in headless Chromium and asserts every behavior — theme
+  toggle and persistence, OS-theme following, storage-failure resilience,
+  photo auto-loading and alt fallbacks, scroll-reveal, scrollspy, and all
+  lightbox paths. Branches unreachable by normal browsing are covered with
+  fixture variants (stubbed APIs, stripped markup, empty photo directory).
+- Measured coverage gate (`tests/test_coverage.sh` + `tests/coverage.js`):
+  runs the page under V8's profiler and **fails below 100% line and block
+  coverage** of `site/app.js`. Current: 176/176 lines, 0 uncovered blocks.
+- `docs/TEST_PLAN.md` coverage matrix mapping every branch to its check.
+
+### Changed
+
+- The full suite (`bash tests/test_site.sh`) now chains all four suites:
+  structural → layout → interaction → coverage. Each browser-dependent
+  suite SKIPs cleanly where its tooling is absent, so CI is unaffected.
+- Simplified `site/app.js`: the photo loader iterates frames directly
+  (removing a redundant guard) and the scrollspy's unreachable null check
+  is gone. Both were dead branches that no user path could reach — deleted
+  rather than papered over with contrived tests.
+
 ## 1.2.0 — 2026-08-03
 
 ### Added

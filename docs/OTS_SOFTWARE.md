@@ -46,6 +46,7 @@ Software the project depends on that is **not** declared in a dependency manifes
 | OTS-105 | actions/upload-pages-artifact | v3 | GitHub | Package `site/` for Pages | Low | Official GitHub action, major-version pinned | GitHub advisories — last reviewed 2026-08-03 | Pinned to major (v3) | Active |
 | OTS-106 | actions/deploy-pages | v4 | GitHub | Publish the Pages artifact | Low | Official GitHub action, major-version pinned | GitHub advisories — last reviewed 2026-08-03 | Pinned to major (v4) | Active |
 | OTS-107 | Cloudflare Registrar + DNS | n/a (SaaS) | Cloudflare | Domain registration and DNS for `702withtheview.com` | Low | Same provider already in use for gentletable.com | https://www.cloudflarestatus.com — last reviewed 2026-08-03 | Managed by Cloudflare | Active |
+| OTS-108 | Playwright (+ bundled Chromium) | as installed by the gstack skill | Microsoft | **Local test tooling only** — browser for the layout, interaction, and coverage suites. Never shipped: nothing in `site/` references it, and every suite SKIPs when it is absent | Low | Suites run green locally; absence is exercised by the SKIP path in CI | GitHub advisories — last reviewed 2026-08-17 | Borrowed from `~/.claude/skills/gstack`; override with `PLAYWRIGHT_PATH` | Active |
 
 ## Review Cadence
 

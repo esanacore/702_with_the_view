@@ -54,6 +54,15 @@
     }
   }
 
+  // Named (not inline) so the interaction test suite can invoke it: a real
+  // prefers-color-scheme change can't be triggered from inside the page.
+  // This is the suite's only seam — see tests/test_interactions.sh.
+  function onSystemThemeChange(matchesDark) {
+    if (!storedTheme()) {
+      applyTheme(matchesDark ? "dark" : "light", false);
+    }
+  }
+
   if (toggle) {
     applyTheme(currentTheme(), false);
     toggle.addEventListener("click", function () {
@@ -63,11 +72,11 @@
     // Follow the system while the reader hasn't expressed a preference, so
     // switching the OS to night mode changes the page without a reload.
     media.addEventListener("change", function () {
-      if (!storedTheme()) {
-        applyTheme(media.matches ? "dark" : "light", false);
-      }
+      onSystemThemeChange(media.matches);
     });
   }
+
+  window.__702test = { onSystemThemeChange: onSystemThemeChange };
 
   // ---- 2. Photo auto-loader ----------------------------------------------
   // Zero-edit photo workflow: each gallery figure names its slot via
@@ -76,9 +85,10 @@
   // a photo is therefore just dropping a file with the right name and
   // pushing — no HTML changes. Alt text comes from data-alt (falling back
   // to the caption).
-  document.querySelectorAll(".ph[data-slot]").forEach(function (fig) {
-    var frame = fig.querySelector(".ph__frame");
-    if (!frame) return;
+  // Iterating the frames (not the figures) means a figure without one is
+  // simply not selected — no guard needed.
+  document.querySelectorAll(".ph[data-slot] .ph__frame").forEach(function (frame) {
+    var fig = frame.closest(".ph");
     var slot = fig.getAttribute("data-slot");
     var caption = fig.querySelector("figcaption");
     var img = new Image();
@@ -135,8 +145,9 @@
     var spyObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
+          // Only ids present in sectionsById are ever observed, so this
+          // lookup always resolves.
           var link = sectionsById[entry.target.id];
-          if (!link) return;
           if (entry.isIntersecting) {
             navLinks.forEach(function (l) {
               l.classList.remove("is-active");
