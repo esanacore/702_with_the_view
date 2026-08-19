@@ -17,6 +17,12 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- Owner-supplied video comes off the phone as HEVC, which Chrome and
+  Firefox often refuse to play. Re-encode to H.264 (`libx264`) before
+  shipping; T-096 guards codec and size. ffmpeg is available locally via
+  `pip install imageio-ffmpeg` (no system install needed).
+- Feature diagrams (water path, medicine cabinet) are deliberately
+  CSS-only — no JS means nothing to break and no coverage burden.
 - Colour tokens split by ROLE: `--accent` = button backgrounds only,
   `--link` = text and lines. Using one accent for both shipped links at
   2:1 on white. Any new palette must keep this split; L-xxx-5 measures it.

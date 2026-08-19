@@ -80,6 +80,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-03 | 38/38 structural + 16/16 layout checks passing | Caption-burial fix; layout suite added (T-053, L-010..L-040) |
 | 2026-08-17 | 46 structural + 16 layout + 19 interaction; **app.js 176/176 lines, 0 uncovered blocks (100%)** | Interaction suite + measured coverage gate added |
 | 2026-08-18 | 51 structural + 20 layout + 19 interaction; app.js still 100% | v1.4.0: water-path diagram, robots/sitemap, WCAG AA contrast checks (L-xxx-5) |
+| 2026-08-19 | 53 structural + 20 layout + 19 interaction; app.js still 100% | v1.5.0: cabinet diagram (T-095), video codec/size guard (T-096) |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 

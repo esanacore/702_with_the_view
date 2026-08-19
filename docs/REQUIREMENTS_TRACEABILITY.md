@@ -34,9 +34,10 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-009 | MUST | Rich link previews + structured data | FR-009-AC-1, FR-009-AC-2 | T-070, T-071, T-072, T-073 | Verified |
 | FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; I-050..I-055 (open, wrap, arrows, Escape, backdrop, keyboard) | Verified |
 | FR-011 | SHOULD | Themed 404 page | FR-011-AC-1 | T-081 | Verified |
-| FR-012 | SHOULD | Video defers download, shows poster | FR-012-AC-1 | T-054 | Verified |
+| FR-012 | SHOULD | Video defers download, shows poster, plays cross-browser | FR-012-AC-1, FR-012-AC-2 | T-054, T-096 | Verified |
 | FR-013 | SHOULD | Water-path feature diagram (CSS-only) | FR-013-AC-1 | T-093 | Verified |
 | FR-014 | SHOULD | Crawlable: robots.txt + sitemap.xml | FR-014-AC-1 | T-090, T-091 | Verified |
+| FR-015 | SHOULD | Medicine-cabinet feature diagram (CSS-only) | FR-015-AC-1 | T-095 | Verified |
 
 ## Non-Functional Requirements
 
@@ -51,8 +52,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 
 | Metric | Count |
 | --- | --- |
-| Total requirements | 18 |
-| Verified | 18 |
+| Total requirements | 19 |
+| Verified | 19 |
 | In progress | 0 |
 | Not started | 0 |
 | Requirements without a verifying test (gaps) | 0 |

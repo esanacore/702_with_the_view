@@ -72,7 +72,8 @@
 
   [".footer a", ".section__lede a", ".contact__agent a", ".flow__label",
    ".flow__detail", ".overline", ".hero__overline", ".nav__brand em",
-   ".hero__lede", ".card p", ".facts__item dd", ".section__note", ".amenities li"]
+   ".hero__lede", ".card p", ".facts__item dd", ".section__note", ".amenities li",
+   ".cab__name", ".cab__note"]
     .forEach(function (selector) {
       document.querySelectorAll(selector).forEach(function (el) {
         if (!el.textContent.trim()) return;

@@ -121,12 +121,19 @@ default until the reader chooses.
 - Level: `SHOULD`
 - Acceptance criteria:
   - `FR-012-AC-1`: video defers download (`preload="metadata"`) and shows a poster frame until played.
+  - `FR-012-AC-2`: the file is H.264 (not HEVC, which Chrome and Firefox often refuse) and under 10 MB.
 
 **FR-013** A visualization explains a signature property feature.
 
 - Level: `SHOULD`
 - Acceptance criteria:
   - `FR-013-AC-1`: the water path (supply → dedicated filter → refrigerator → icemaker) is shown as a diagram that responds to hover/focus, built without JavaScript so it cannot fail at runtime.
+
+**FR-015** A visualization explains the medicine cabinet's features.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-015-AC-1`: each feature highlights its matching part of a drawn cabinet on hover/focus, implemented without JavaScript.
 
 **FR-014** Search engines can discover and crawl the listing.
 

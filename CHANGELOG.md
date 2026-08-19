@@ -12,6 +12,23 @@ This project follows semantic versioning.
 
 ### Fixed
 
+## 1.5.0 — 2026-08-19
+
+### Added
+
+- Medicine-cabinet diagram: hovering or focusing a feature (defogger,
+  lighting, shelving, outlet/USB) highlights that part of a CSS-drawn
+  cabinet. Like the water-path diagram, it uses no JavaScript.
+- A real poster frame pulled from the timelapse itself, replacing the
+  stand-in dusk photo.
+
+### Changed
+
+- **Timelapse re-encoded: 38 MB → 6 MB (-85%).** The camera file was HEVC,
+  which Chrome and Firefox frequently refuse to play, so the video may not
+  have played at all for many visitors; it is now H.264 at 1440px wide
+  (the player is 720px), quality visually unchanged.
+
 ## 1.4.0 — 2026-08-18
 
 ### Added

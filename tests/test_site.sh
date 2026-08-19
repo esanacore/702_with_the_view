@@ -101,11 +101,11 @@ check T-053 "gallery photos never height:100%" bash -c '
   printf "%s" "$rule" | grep -q "height: auto" &&
   ! printf "%s" "$rule" | grep -q "height: 100%"
 '
-# The timelapse is ~38MB; preload=metadata keeps it off the wire until the
-# visitor presses play, and the poster fills the frame meanwhile.
+# The timelapse is ~6MB H.264 (re-encoded from 38MB HEVC in v1.5.0);
+# preload=metadata keeps it off the wire until the visitor presses play.
 check T-054 "video deferred + postered" bash -c '
   grep -q "preload=\"metadata\"" "'"$index"'" &&
-  grep -q "poster=\"assets/photos/" "'"$index"'" &&
+  grep -q "poster=\"assets/videos/poster.jpg\"" "'"$index"'" &&
   test -f "'"$site"'/assets/videos/timelapse.mp4"
 '
 
@@ -143,6 +143,22 @@ check T-093 "water-path diagram present, CSS-only" bash -c '
   grep -q "flow__node" "'"$index"'" &&
   grep -q "aria-describedby=\"flow-d1\"" "'"$index"'" &&
   ! grep -q "flow__" "'"$site"'/app.js"
+'
+# HEVC (the camera's default) is rejected by Chrome/Firefox on most systems,
+# and a 38MB hero video is a bad mobile experience. Both are guarded here.
+check T-096 "video is H.264 and under 10MB" bash -c '
+  v="'"$site"'/assets/videos/timelapse.mp4";
+  test -f "$v" &&
+  [ "$(wc -c < "$v")" -lt 10485760 ] &&
+  head -c 4096 "$v" | grep -qa "avc1" &&
+  ! head -c 4096 "$v" | grep -qa "hvc1"
+'
+check T-095 "cabinet diagram present, CSS-only, labeled" bash -c '
+  grep -q "cab__feature" "'"$index"'" &&
+  grep -q "data-part=\"defog\"" "'"$index"'" &&
+  grep -q "data-part=\"power\"" "'"$index"'" &&
+  grep -q "cab__art\" role=\"img\"" "'"$index"'" &&
+  ! grep -q "cab__" "'"$site"'/app.js"
 '
 # The palette once shipped gold links at 2:1 on white and a diagram label at
 # 1.04:1 on near-black. --accent is for button backgrounds; text and lines

@@ -27,16 +27,13 @@ Keep entries specific, actionable, and current.
 - [x] Lightbox for gallery photos (2026-08-03)
 - [x] Interactive visualization of the filtered-water path to the icemaker
       (2026-08-18, CSS-only diagram in the "How it works" section)
-- [ ] Second visualization: medicine-cabinet feature callouts (defogger,
-      lighting, shelving, outlet/USB) in the same diagram style
+- [x] Second visualization: medicine-cabinet feature callouts (2026-08-19)
 - [ ] Publish the Property Manual as a page on the site (private link or
       resident-only section) once model numbers are in
 - [x] Open Graph / social preview tags + JSON-LD structured data (2026-08-03)
-- [ ] Compress `site/assets/videos/timelapse.mp4` (~38MB → target under
-      10MB, e.g. 1080p H.264 CRF 26) — needs ffmpeg; not installed on this
-      machine
-- [ ] Consider a dedicated poster frame extracted from the video (currently
-      reuses the dusk photo)
+- [x] Compress the timelapse: 38MB HEVC → 6MB H.264 @1440px (2026-08-19).
+      Also fixes playback in Chrome/Firefox, which often reject HEVC.
+- [x] Dedicated poster frame extracted from the video (2026-08-19)
 
 ## Property Manual
 

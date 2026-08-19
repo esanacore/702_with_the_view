@@ -638,6 +638,138 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
   .flow__detail { opacity: 1; }
 }
 
+/* --------------------------- Cabinet diagram ------------------------------ */
+
+/* The cabinet is drawn in CSS rather than shipped as an image, so it themes
+   itself and needs no asset. Hovering or focusing a feature highlights the
+   matching part via :has(); browsers without :has() simply show the static
+   drawing, which is still correct. */
+.cab {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.cab__features { list-style: none; display: grid; gap: 0.5rem; }
+
+.cab__feature {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 1px solid transparent;
+  border-left: 2px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.cab__feature:hover,
+.cab__feature:focus-visible {
+  border-left-color: var(--link);
+  background: var(--bg-tint);
+}
+
+.cab__name { display: block; font-weight: 600; font-size: 0.95rem; }
+
+.cab__note {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.cab__art { display: flex; justify-content: center; }
+
+/* The cabinet body */
+.cab__box {
+  position: relative;
+  width: min(230px, 100%);
+  aspect-ratio: 3 / 4;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: linear-gradient(150deg,
+    color-mix(in srgb, var(--surface) 92%, var(--ink) 8%) 0%,
+    var(--surface) 45%,
+    color-mix(in srgb, var(--surface) 94%, var(--ink) 6%) 100%);
+  overflow: hidden;
+}
+
+.cab__part {
+  position: absolute;
+  display: block;
+  transition: opacity 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+/* Light bar across the top */
+.cab__part--light {
+  top: 8px;
+  left: 12%;
+  right: 12%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+/* Defogger: a soft warmth behind the whole mirror */
+.cab__part--defog {
+  inset: 18px 10px 10px;
+  border-radius: 6px;
+  background: radial-gradient(ellipse at 50% 45%,
+    color-mix(in srgb, var(--link) 22%, transparent) 0%,
+    transparent 70%);
+  opacity: 0.35;
+}
+
+/* Shelves */
+.cab__part--shelf {
+  left: 16%;
+  right: 16%;
+  height: 2px;
+  background: var(--border);
+}
+
+/* Outlet + USB block, lower right inside */
+.cab__part--power {
+  right: 18%;
+  bottom: 8%;
+  width: 26px;
+  height: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+}
+
+/* Cross-highlighting: the hovered/focused feature lights its own part. */
+.cab:has(.cab__feature[data-part="light"]:hover) .cab__part--light,
+.cab:has(.cab__feature[data-part="light"]:focus-visible) .cab__part--light,
+.cab:has(.cab__feature[data-part="shelf"]:hover) .cab__part--shelf,
+.cab:has(.cab__feature[data-part="shelf"]:focus-visible) .cab__part--shelf,
+.cab:has(.cab__feature[data-part="power"]:hover) .cab__part--power,
+.cab:has(.cab__feature[data-part="power"]:focus-visible) .cab__part--power {
+  background: var(--link);
+  border-color: var(--link);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--link) 55%, transparent);
+}
+
+.cab:has(.cab__feature[data-part="defog"]:hover) .cab__part--defog,
+.cab:has(.cab__feature[data-part="defog"]:focus-visible) .cab__part--defog {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .cab { grid-template-columns: 1fr; }
+  .cab__art { order: -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cab__part, .cab__feature { transition: none; }
+}
+
 /* ------------------------------- Lightbox --------------------------------- */
 
 /* Clickable gallery photos advertise it */

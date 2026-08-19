@@ -264,6 +264,49 @@
         </p>
       </article>
     </div>
+
+    <!-- Cabinet diagram: hovering or focusing a feature highlights the
+         matching part of the drawing (CSS :has(), no JavaScript). -->
+    <div class="cab reveal">
+      <ul class="cab__features">
+        <li>
+          <button class="cab__feature" type="button" data-part="defog">
+            <span class="cab__name">Defogger</span>
+            <span class="cab__note">Clears the mirror after a hot shower — no wiping.</span>
+          </button>
+        </li>
+        <li>
+          <button class="cab__feature" type="button" data-part="light">
+            <span class="cab__name">Integrated lighting</span>
+            <span class="cab__note">Built into the cabinet itself, aimed where you need it.</span>
+          </button>
+        </li>
+        <li>
+          <button class="cab__feature" type="button" data-part="shelf">
+            <span class="cab__name">Interior shelving</span>
+            <span class="cab__note">Everything stays behind the mirror, off the counter.</span>
+          </button>
+        </li>
+        <li>
+          <button class="cab__feature" type="button" data-part="power">
+            <span class="cab__name">Outlet &amp; USB ports</span>
+            <span class="cab__note">Charge a razor or toothbrush inside, door closed.</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="cab__art" role="img"
+           aria-label="Diagram of the medicine cabinet: lighting across the top, three interior shelves, an outlet and USB ports inside, and a defogger behind the mirror">
+        <div class="cab__box">
+          <span class="cab__part cab__part--light"></span>
+          <span class="cab__part cab__part--defog"></span>
+          <span class="cab__part cab__part--shelf" style="top: 38%"></span>
+          <span class="cab__part cab__part--shelf" style="top: 58%"></span>
+          <span class="cab__part cab__part--shelf" style="top: 78%"></span>
+          <span class="cab__part cab__part--power"></span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============================ COMMUNITY =========================== -->
@@ -353,10 +396,12 @@
     <div class="video-container reveal">
       <p class="overline">The moment</p>
       <h2>Sunrise over the water</h2>
-      <!-- preload="metadata" keeps the ~38MB file from downloading until
-           the visitor presses play; the poster fills the frame meanwhile. -->
+      <!-- H.264, not the camera's HEVC (which Chrome and Firefox often
+           refuse to play). 1440px wide for a 720px container, ~6MB.
+           preload="metadata" keeps even that off the wire until play is
+           pressed; the poster frame fills the box meanwhile. -->
       <video id="scrollVideo" class="scroll-video" controls playsinline
-             preload="metadata" poster="assets/photos/view-dusk.jpg">
+             preload="metadata" poster="assets/videos/poster.jpg">
         <source src="assets/videos/timelapse.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video.
       </video>
