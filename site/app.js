@@ -8,7 +8,8 @@
  *     gentletable.com's toggle. The pre-paint half lives inline in
  *     index.html's <head> so the page never flashes the wrong mode.
  *  2. Photo auto-loader: drop assets/photos/<slot>.jpg and it appears —
- *     no HTML edits (see site/assets/photos/README.md).
+ *     no HTML edits. Prefers a generated .webp, falls back to the .jpg
+ *     (see site/assets/photos/README.md).
  *  3. Scroll-reveal: elements with .reveal fade in as they enter the viewport.
  *  4. Scrollspy: the nav link for the section in view gets .is-active.
  *  5. Lightbox: click a gallery photo to view it full-screen; arrow keys
@@ -99,8 +100,14 @@
     img.onload = function () {
       frame.replaceWith(img);
     };
-    // A missing photo 404s quietly and the placeholder stays put.
-    img.src = "assets/photos/" + slot + ".jpg";
+    // Prefer the smaller WebP; fall back to the JPEG the owner dropped if
+    // no WebP has been generated yet (tools/optimize_photos.py). A photo
+    // with neither 404s quietly and the placeholder stays put.
+    img.onerror = function () {
+      img.onerror = null;
+      img.src = "assets/photos/" + slot + ".jpg";
+    };
+    img.src = "assets/photos/" + slot + ".webp";
   });
 
   // ---- 3. Scroll-reveal ---------------------------------------------------

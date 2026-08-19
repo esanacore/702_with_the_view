@@ -48,7 +48,7 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | NFR-003 | MUST | Mobile-friendly; honors reduced motion | NFR-003-AC-1, NFR-003-AC-2 | T-012, T-051; layout suite L-030/L-040 (mobile geometry, local runs) | Verified |
 | NFR-004 | MUST | WCAG AA text contrast in both themes | NFR-004-AC-1, NFR-004-AC-2 | L-010-5, L-020-5, L-030-5, L-040-5 (measured); T-094 (token discipline) | Verified |
 | NFR-005 | MUST | Valid, navigable markup | NFR-005-AC-1, NFR-005-AC-2 | V-001..V-010 (`tests/validate_html.py`, self-tested); T-103 | Verified |
-| NFR-006 | SHOULD | Page-weight budget | NFR-006-AC-1 | T-100, T-101, T-102 | Verified |
+| NFR-006 | SHOULD | Page-weight budget + WebP delivery | NFR-006-AC-1, NFR-006-AC-2 | T-100, T-101, T-102, T-044, T-045; I-023, I-024 | Verified |
 
 ## Coverage Summary
 

@@ -8,6 +8,18 @@ This project follows semantic versioning.
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## 1.7.0 — 2026-08-19
+
+### Added
+
+- WebP delivery: photos now load as WebP (**282 KB lighter, ~23%**) with
+  automatic fallback to the JPEG if no WebP exists, so the owner's
+  drop-a-JPG workflow is unchanged. `tools/optimize_photos.py` generates
+  the derivatives; T-045 flags any photo missing one.
 - ADR-0003 recording the two-tier test strategy (CI-enforceable vs
   browser-local) and why structural proxies back the browser checks.
 

@@ -5,6 +5,12 @@ slot, commit, push. That's it.** No HTML editing — the page checks for each
 slot's file at load time (`site/app.js`, "Photo auto-loader") and swaps the
 placeholder automatically. If a file is missing, the placeholder stays.
 
+**One optional extra step:** run `python tools/optimize_photos.py` to
+generate a smaller `.webp` beside each `.jpg` (about 25% lighter overall).
+The page prefers the `.webp` and falls back to your `.jpg` automatically, so
+skipping this costs a little speed but never breaks anything. A check
+(T-045) reminds you when a photo has no WebP yet.
+
 Upgrading a low-res photo later (e.g. replacing today's MLS pulls with real
 photography) is the same move: overwrite the file, keep the name, push.
 

@@ -4,7 +4,7 @@
 [![Eric's Engineering Constitution](https://img.shields.io/badge/Eric's%20Engineering%20Constitution-Adopted-blue)](https://github.com/esanacore/engineering-constitution)
 <!-- CONSTITUTION_END -->
 
-Current version: **1.6.0** · Live at **[702withtheview.com](https://702withtheview.com)**
+Current version: **1.7.0** · Live at **[702withtheview.com](https://702withtheview.com)**
 
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose
@@ -73,6 +73,8 @@ skip cleanly when it's missing, so the structural suite is what CI enforces.
 │   ├── test_interactions.sh  ← Behavior of every app.js path (I-xxx)
 │   ├── test_coverage.sh      ← Gate: fails below 100% coverage of app.js
 │   └── coverage.js           ← V8 profiler harness behind that gate
+├── tools/
+│   └── optimize_photos.py    ← Generates the .webp derivatives the page prefers
 ├── docs/                     ← Governance + project docs
 │   ├── PROPERTY_MANUAL.md    ← Resident guide: appliances, models, how-tos
 │   ├── DOMAIN_SETUP.md       ← Domain purchase, DNS, and TLS record
@@ -94,7 +96,7 @@ replaces the live site).
 
 | To change…      | Do this |
 | --------------- | ------- |
-| **Photos**      | Drop/overwrite `site/assets/photos/<slot>.jpg` (names in that folder's README). No HTML edits — slots auto-fill. |
+| **Photos**      | Drop/overwrite `site/assets/photos/<slot>.jpg` (names in that folder's README), then run `python tools/optimize_photos.py`. No HTML edits — slots auto-fill. |
 | **Rent / availability / facts** | Edit the `<dl class="facts">` block in `site/index.html` (search for `TBD`). |
 | **Any copy**    | Edit `site/index.html` — it's plain HTML, headings and paragraphs. |
 | **Appliance models & manuals** | `docs/PROPERTY_MANUAL.md` (not page copy). |

@@ -181,6 +181,7 @@ default until the reader chooses.
 - Level: `SHOULD`
 - Acceptance criteria:
   - `NFR-006-AC-1`: HTML+CSS+JS under 200 KB, each photo under 400 KB, initial payload (excluding the deferred video) under 3 MB.
+  - `NFR-006-AC-2`: photos are served as WebP where a derivative exists, falling back to JPEG so a missing derivative costs speed, not correctness.
 
 **NFR-004** Text meets WCAG AA contrast in both themes.
 

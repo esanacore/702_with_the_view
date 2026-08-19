@@ -79,6 +79,23 @@ check T-042 "every slot documented" bash -c '
   done
 '
 check T-043 "photo auto-loader wired"      grep -q 'assets/photos/" + slot' "$site/app.js"
+# WebP is preferred for weight; the .jpg the owner drops is the fallback, so
+# forgetting tools/optimize_photos.py costs speed, never correctness.
+check T-044 "webp preferred, jpg fallback wired" bash -c '
+  grep -q "slot + \".webp\"" "'"$site"'/app.js" &&
+  grep -q "img.onerror" "'"$site"'/app.js" &&
+  grep -q "slot + \".jpg\"" "'"$site"'/app.js"
+'
+check T-045 "every photo has a WebP derivative" bash -c '
+  missing="";
+  for f in "'"$site"'"/assets/photos/*.jpg; do
+    [ -f "$f" ] || continue;
+    w="${f%.jpg}.webp";
+    [ -f "$w" ] || missing="$missing $(basename "$f")";
+  done;
+  [ -z "$missing" ] || { echo "no webp for:$missing (run python tools/optimize_photos.py)"; exit 1; }
+'
+
 
 # --- T-050 .. T-052: quality and safety ---------------------------------
 check T-050 "no absolute local paths leak" bash -c '! grep -q "C:\\\\" "'"$index"'"'

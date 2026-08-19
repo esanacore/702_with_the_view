@@ -120,6 +120,8 @@ Every branch and which check exercises it. Verified by measurement
 | Theme: `localStorage` read/write throws (private mode) | I-015 |
 | Theme: real `prefers-color-scheme` change event | coverage replay (`emulateMedia`) |
 | Theme: system reports dark | `dark-system` fixture |
+| Photos: WebP preferred when present | I-023 |
+| Photos: falls back to JPEG when no WebP | I-024 (`jpg-only` fixture) |
 | Photos: slot file present → placeholder replaced | I-020 |
 | Photos: slot file missing → placeholder kept | I-020 |
 | Photos: alt from `data-alt` | I-021 |

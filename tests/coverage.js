@@ -49,6 +49,18 @@ function variant(name, { stub = "", transform = (h) => h, base = SITE_DIR } = {}
 const emptyAssets = path.join(workDir, "empty-site");
 fs.mkdirSync(path.join(emptyAssets, "assets", "photos"), { recursive: true });
 
+// A directory with the JPEGs but no WebP, exercising the fallback path a
+// fully-optimized site never hits.
+const jpgOnly = path.join(workDir, "jpg-only-site");
+const jpgOnlyPhotos = path.join(jpgOnly, "assets", "photos");
+fs.mkdirSync(jpgOnlyPhotos, { recursive: true });
+for (const file of fs.readdirSync(path.join(SITE_DIR, "assets", "photos"))) {
+  if (file.endsWith(".jpg")) {
+    fs.copyFileSync(path.join(SITE_DIR, "assets", "photos", file),
+                    path.join(jpgOnlyPhotos, file));
+  }
+}
+
 const PAGES = {
   main: fileUrl(path.join(SITE_DIR, "index.html")),
   noIntersectionObserver: variant("no-io", { stub: "delete window.IntersectionObserver;" }),
@@ -62,6 +74,7 @@ const PAGES = {
     transform: (h) => h.replace(/ data-alt="[^"]*"/g, "").replace(/<figcaption>[^<]*<\/figcaption>/g, ""),
   }),
   noPhotos: variant("no-photos", { base: emptyAssets }),
+  jpgOnly: variant("jpg-only", { base: jpgOnly }),
 };
 
 // ------------------------------------------------------------- interactions
@@ -147,7 +160,7 @@ async function replayNoPhotos(page) {
     const page = await browser.newPage();
     await page.coverage.startJSCoverage();
     await page.goto(url);
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(name === "jpgOnly" ? 2000 : 1000);
     if (name === "main") await replayMain(page);
     else if (name === "bareFigures") await replayBareFigures(page);
     else if (name === "noPhotos") await replayNoPhotos(page);

@@ -119,6 +119,12 @@ check I-021 "alt taken from data-alt when present" "$(js "
   alt === fig.getAttribute('data-alt') && alt.length > 20
 ")"
 
+check I-023 "photos load as WebP when available" "$(js "
+  var srcs = Array.prototype.slice.call(document.querySelectorAll('.ph img'))
+    .map(function (i) { return i.src; });
+  srcs.length === 7 && srcs.every(function (s) { return /[.]webp$/.test(s); })
+")"
+
 # ---- Scroll-reveal + scrollspy ------------------------------------------
 js "window.scrollTo(0, document.body.scrollHeight); 'ok'" >/dev/null; sleep 1
 js "document.getElementById('community').scrollIntoView({block:'center'}); 'ok'" >/dev/null; sleep 1
@@ -211,6 +217,21 @@ check I-022 "alt falls back to caption when data-alt absent" "$(js "
   var fig = document.querySelector('[data-slot=view-main]');
   var img = fig.querySelector('img');
   !!img && img.alt === fig.querySelector('figcaption').textContent
+")"
+
+# WebP missing -> the loader must fall back to the .jpg the owner dropped.
+jpg_only_base="$variant_dir/jpg-only-site"
+mkdir -p "$jpg_only_base/assets/photos"
+cp "$root/site/assets/photos/"*.jpg "$jpg_only_base/assets/photos/" 2>/dev/null || true
+jpg_only_url="$(printf '%s' "$jpg_only_base" | sed -E 's#^/([a-zA-Z])/#/\1:/#')"
+sed -e "s#<head>#<head><base href=\"file://$jpg_only_url/\">#" \
+    -e "s#<script src=\"app.js\"></script>#<script src=\"file://$site_dir_url/app.js\"></script>#" \
+    "$root/site/index.html" > "$variant_dir/jpg-only.html"
+"$B" goto "file://$(printf '%s' "$variant_dir" | sed -E 's#^/([a-zA-Z])/#/\U\1:/#')/jpg-only.html" >/dev/null 2>&1
+sleep 3
+check I-024 "falls back to JPEG when no WebP exists" "$(js "
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.ph img'));
+  imgs.length > 0 && imgs.every(function (i) { return /[.]jpg$/.test(i.src); })
 ")"
 
 make_variant no-io "delete window.IntersectionObserver;"

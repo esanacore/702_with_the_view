@@ -17,6 +17,10 @@ This file contains durable memories, codebase learnings, user preferences, and k
 
 ## Codebase Learnings & Gotchas
 
+- Photos ship as WebP with a JPEG fallback. The owner still drops `.jpg`;
+  `python tools/optimize_photos.py` generates the `.webp`. Never require the
+  owner to produce WebP by hand — the fallback exists precisely so a
+  forgotten step costs speed, not a broken page.
 - Owner-supplied video comes off the phone as HEVC, which Chrome and
   Firefox often refuse to play. Re-encode to H.264 (`libx264`) before
   shipping; T-096 guards codec and size. ffmpeg is available locally via
