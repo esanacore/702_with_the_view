@@ -706,19 +706,18 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
   transition: opacity 200ms ease, box-shadow 200ms ease, background 200ms ease;
 }
 
-/* Light bar across the top */
+/* Lighting runs the whole way around the mirror, inset from the edge,
+   with rounded corners — as installed. */
 .cab__part--light {
-  top: 8px;
-  left: 12%;
-  right: 12%;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--border);
+  inset: 12px;
+  border: 5px solid var(--border);
+  border-radius: 12px;
+  background: none;
 }
 
 /* Defogger: a soft warmth behind the whole mirror */
 .cab__part--defog {
-  inset: 18px 10px 10px;
+  inset: 22px;
   border-radius: 6px;
   background: radial-gradient(ellipse at 50% 45%,
     color-mix(in srgb, var(--link) 22%, transparent) 0%,
@@ -734,10 +733,10 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
   background: var(--border);
 }
 
-/* Outlet + USB block, lower right inside */
+/* Outlet + USB block, top right corner inside the cabinet */
 .cab__part--power {
-  right: 18%;
-  bottom: 8%;
+  right: 16%;
+  top: 15%;
   width: 26px;
   height: 18px;
   border: 1.5px solid var(--border);
@@ -746,7 +745,11 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
 
 /* Cross-highlighting: the hovered/focused feature lights its own part. */
 .cab:has(.cab__feature[data-part="light"]:hover) .cab__part--light,
-.cab:has(.cab__feature[data-part="light"]:focus-visible) .cab__part--light,
+.cab:has(.cab__feature[data-part="light"]:focus-visible) .cab__part--light {
+  border-color: var(--link);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--link) 45%, transparent);
+}
+
 .cab:has(.cab__feature[data-part="shelf"]:hover) .cab__part--shelf,
 .cab:has(.cab__feature[data-part="shelf"]:focus-visible) .cab__part--shelf,
 .cab:has(.cab__feature[data-part="power"]:hover) .cab__part--power,

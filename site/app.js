@@ -151,8 +151,12 @@
           if (entry.isIntersecting) {
             navLinks.forEach(function (l) {
               l.classList.remove("is-active");
+              l.removeAttribute("aria-current");
             });
             link.classList.add("is-active");
+            // Screen readers announce the section you're reading, not just
+            // a visual underline.
+            link.setAttribute("aria-current", "true");
           }
         });
       },

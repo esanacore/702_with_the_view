@@ -12,7 +12,30 @@ This project follows semantic versioning.
 
 ### Fixed
 
-## 1.5.0 — 2026-08-19
+## 1.6.0 — 2026-08-19
+
+### Added
+
+- HTML + accessibility validator (`tests/validate_html.py`, stdlib only, so
+  unlike the browser suites it **runs in CI**): checks tag nesting, duplicate
+  ids, missing alt text, heading order, landmarks, button names, and dangling
+  aria references. It self-tests against ten deliberately broken fixtures
+  first, because a validator that cannot fail proves nothing.
+- Page-weight budget: core files under 200 KB,each photo under 400 KB, and the
+  initial payload under 3 MB (T-100..T-102).
+
+### Changed
+
+- Cabinet diagram corrected to the real fixture: lighting now runs the full
+  perimeter of the mirror with rounded corners, and the outlet/USB block sits
+  in the top right corner (owner correction).
+
+### Fixed
+
+- The page had no `<main>` landmark, so screen-reader users had no way to
+  skip to content; the skip link pointed at the gallery instead. Added a
+  proper landmark, retargeted the link, and the scrollspy now sets
+  `aria-current` so the section being read is announced, not just underlined.
 
 ### Added
 

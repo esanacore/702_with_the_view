@@ -31,6 +31,11 @@ unit layer, and four suites that all drive the real artifact.
   against its painted background. Requires the local browse daemon; SKIPs with exit 0 in CI,
   where structural guard T-053 covers the known regression. Invoked by the
   full suite, so locally it always runs.
+- **HTML + accessibility validation**: `tests/validate_html.py` (`V-xxx`) —
+  standard-library parser checking nesting, duplicate ids, alt text, heading
+  order, landmarks, button names, and aria references. Runs on a bare CI
+  runner (no browser, no packages) and self-tests against broken fixtures
+  before validating the real pages.
 - **End-to-end tests**: manual visual pass in a browser before releases;
   the deploy workflow runs the structural suite before every publish.
 
@@ -81,6 +86,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-17 | 46 structural + 16 layout + 19 interaction; **app.js 176/176 lines, 0 uncovered blocks (100%)** | Interaction suite + measured coverage gate added |
 | 2026-08-18 | 51 structural + 20 layout + 19 interaction; app.js still 100% | v1.4.0: water-path diagram, robots/sitemap, WCAG AA contrast checks (L-xxx-5) |
 | 2026-08-19 | 53 structural + 20 layout + 19 interaction; app.js still 100% | v1.5.0: cabinet diagram (T-095), video codec/size guard (T-096) |
+| 2026-08-19 | 57 structural + 11 validator + 20 layout + 19 interaction; app.js still 100% | v1.6.0: HTML/a11y validator (CI-enforced), weight budget, main landmark |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 
@@ -93,7 +99,7 @@ Track known untested behavior here. A percentage alone hides gaps; this log make
 | GAP-001 | JS behavior untested | low | FR-006 | **Closed** (v1.3.0 — `tests/test_interactions.sh`, 100% measured line+block coverage) | — |
 | GAP-003 | Browser suites (layout, interaction, coverage) run locally only — CI runners have no browser, so CI protection is the structural suite plus guards like T-053 | low | NFR-003 | Open | TODO.md → Testing |
 | GAP-004 | Coverage measures `site/app.js` only; the inline pre-paint theme script in `index.html` is verified by assertion (T-063, I-012) rather than by the profiler | low | FR-008 | Open | TODO.md → Testing |
-| GAP-002 | HTML validity not machine-checked | low | NFR-001 | Open | TODO.md → Testing (tidy) |
+| GAP-002 | HTML validity not machine-checked | low | NFR-001 | **Closed** (v1.6.0 — `tests/validate_html.py`, self-tested, runs in CI) | — |
 
 ## Requirement Coverage
 

@@ -125,6 +125,32 @@ check T-081 "404 page exists, themed" bash -c '
   grep -q "702-theme" "'"$site"'/404.html"
 '
 
+# --- T-100 .. T-103: page weight budget ---------------------------------
+# Caps that keep the listing fast on a phone. The video is excluded (it is
+# preload="metadata", so it only downloads on play) but capped by T-096.
+check T-100 "core files under 200KB" bash -c '
+  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" | wc -c);
+  [ "$total" -lt 204800 ] || { echo "core=$total bytes"; exit 1; }
+'
+check T-101 "each photo under 400KB" bash -c '
+  for f in "'"$site"'"/assets/photos/*.jpg; do
+    [ -f "$f" ] || continue;
+    size=$(wc -c < "$f");
+    [ "$size" -lt 409600 ] || { echo "$(basename "$f") = $size bytes"; exit 1; };
+  done
+'
+check T-102 "initial page payload under 3MB" bash -c '
+  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" 2>/dev/null | wc -c);
+  for f in "'"$site"'"/assets/photos/*.jpg "'"$site"'"/assets/videos/poster.jpg; do
+    [ -f "$f" ] && total=$((total + $(wc -c < "$f")));
+  done;
+  [ "$total" -lt 3145728 ] || { echo "payload=$total bytes"; exit 1; }
+'
+check T-103 "landmarks and skip target" bash -c '
+  grep -q "<main id=\"main\">" "'"$index"'" &&
+  grep -q "href=\"#main\"" "'"$index"'"
+'
+
 # --- T-090 .. T-093: discovery files & the feature diagram --------------
 check T-090 "robots.txt points at sitemap" bash -c '
   test -f "'"$site"'/robots.txt" &&
@@ -168,6 +194,18 @@ check T-094 "text accents use --link, not --accent" bash -c '
   ! grep -E "^\s*(a|\.overline|\.hero__overline)\s*\{[^}]*var\(--accent\)" "'"$site"'/styles.css" &&
   ! grep -q "outline: 2px solid var(--accent)" "'"$site"'/styles.css"
 '
+
+echo
+echo "HTML + accessibility validation"
+echo "==============================="
+if command -v python >/dev/null 2>&1; then PY=python; elif command -v python3 >/dev/null 2>&1; then PY=python3; else PY=""; fi
+if [ -n "$PY" ]; then
+  # Self-test first: a validator that cannot fail proves nothing.
+  "$PY" "$root/tests/validate_html.py" --selftest || fail=$((fail + 1))
+  "$PY" "$root/tests/validate_html.py" || fail=$((fail + 1))
+else
+  echo "  SKIP  python not available"
+fi
 
 echo "---------------------"
 echo "Passed: $pass  Failed: $fail"

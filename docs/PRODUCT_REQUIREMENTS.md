@@ -169,6 +169,19 @@ default until the reader chooses.
   - `NFR-003-AC-1`: a viewport meta tag is present and layout is responsive.
   - `NFR-003-AC-2`: `prefers-reduced-motion` disables animations.
 
+**NFR-005** The markup is valid and navigable by assistive technology.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `NFR-005-AC-1`: tags nest correctly, ids are unique, images carry alt text, headings never skip a level, and aria references resolve.
+  - `NFR-005-AC-2`: the page exposes a single `<main>` landmark that the skip link targets, and the current section is exposed via `aria-current`.
+
+**NFR-006** The listing stays light enough for a phone on cellular data.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `NFR-006-AC-1`: HTML+CSS+JS under 200 KB, each photo under 400 KB, initial payload (excluding the deferred video) under 3 MB.
+
 **NFR-004** Text meets WCAG AA contrast in both themes.
 
 - Level: `MUST`

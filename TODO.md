@@ -50,8 +50,8 @@ Keep entries specific, actionable, and current.
 
 ## Testing
 
-- [ ] Add an HTML validity check (e.g. `tidy -qe`) if a dependency-free way
-      fits CI
+- [x] HTML validity + a11y check, dependency-free and CI-enforced
+      (2026-08-19, `tests/validate_html.py`; closes GAP-002)
 - [ ] Cross-browser spot-check (Safari/iOS especially, for `aspect-ratio`
       and `backdrop-filter`) once the site is live
 - [x] Interaction/behavior coverage — `tests/test_interactions.sh` with
