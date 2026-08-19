@@ -15,6 +15,23 @@ When you are finishing a task or session, record the state here:
 
 ## Handoffs
 
+### Sessions: 2026-08-17 → 2026-08-19 (v1.1.0 → v1.6.0)
+
+- **Accomplishments**: caption-burial fix + layout suite (v1.1.0); link
+  previews, lightbox, 404, a11y pass (v1.2.0); interaction suite and 100%
+  measured coverage of app.js (v1.3.0); water-path diagram, WCAG AA
+  contrast fixes and automated contrast checks (v1.4.0); cabinet diagram
+  and timelapse re-encode 38MB→6MB H.264 (v1.5.0); CI-enforced HTML/a11y
+  validator, `<main>` landmark, page-weight budget (v1.6.0). Repo cleaned
+  to a single `main` branch.
+- **Pending Work**: owner-provided content only (see TODO.md).
+- **Verification Run**: 57 structural + 11 validator + 20 layout + 19
+  interaction checks; app.js 176/176 lines and 0 uncovered blocks; all
+  constitution gates green; live site verified over HTTPS.
+- **Instructions for Next Agent**: read `docs/MEMORY.md` gotchas before
+  touching CSS tokens (`--accent` vs `--link`), the photo auto-loader, or
+  the test harness — each encodes a bug already paid for once.
+
 ### Session: 2026-08-03 (later same day — v1.0.0)
 
 - **Accomplishments**: gentletable-style redesign with light/dark theming;

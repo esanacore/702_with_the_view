@@ -8,7 +8,15 @@ This project follows semantic versioning.
 
 ### Added
 
+- ADR-0003 recording the two-tier test strategy (CI-enforceable vs
+  browser-local) and why structural proxies back the browser checks.
+
 ### Changed
+
+- Repository cleanup: the four merged `chore/*` branches are deleted, so
+  `main` is the only branch. Test IDs now read in ascending order, the
+  README structure tree matches the tree on disk, and the session plan and
+  handoff notes reflect the current state.
 
 ### Fixed
 

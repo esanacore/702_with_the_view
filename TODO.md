@@ -44,8 +44,11 @@ Keep entries specific, actionable, and current.
 
 ## Technical Debt
 
-- [x] GitHub wiki initialized and first sync published (2026-08-16);
-      `wiki/` now auto-syncs to the GitHub wiki on every push.
+- [ ] Optional: the original 38 MB HEVC timelapse still sits in git history,
+      so a fresh clone pulls ~52 MB. Only a history rewrite
+      (`git filter-repo`) would reclaim it, which rewrites published commit
+      SHAs and invalidates existing release tags — not worth it unless the
+      clone size becomes a real annoyance.
 
 
 ## Testing

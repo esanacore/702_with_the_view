@@ -70,12 +70,6 @@ check T-038 "realtor contact wired" bash -c '
   ! grep -q "CONTACT-EMAIL-TBD" "'"$index"'"
 '
 
-# --- T-060 .. T-063: light/dark theming ---------------------------------
-check T-060 "theme toggle button exists"   grep -q 'id="themeToggle"' "$index"
-check T-061 "CSS follows system scheme"    grep -q 'prefers-color-scheme: dark' "$site/styles.css"
-check T-062 "reader override wins in CSS"  grep -q 'data-theme="dark"' "$site/styles.css"
-check T-063 "pre-paint theme script"       grep -q 'localStorage.getItem("702-theme")' "$index"
-
 # --- T-040 .. T-043: photo placeholders wired for later swap ------------
 check T-040 "photo placeholders exist"     grep -q 'data-slot=' "$index"
 check T-041 "photo swap guide exists"      test -f "$site/assets/photos/README.md"
@@ -109,6 +103,12 @@ check T-054 "video deferred + postered" bash -c '
   test -f "'"$site"'/assets/videos/timelapse.mp4"
 '
 
+# --- T-060 .. T-063: light/dark theming ---------------------------------
+check T-060 "theme toggle button exists"   grep -q 'id="themeToggle"' "$index"
+check T-061 "CSS follows system scheme"    grep -q 'prefers-color-scheme: dark' "$site/styles.css"
+check T-062 "reader override wins in CSS"  grep -q 'data-theme="dark"' "$site/styles.css"
+check T-063 "pre-paint theme script"       grep -q 'localStorage.getItem("702-theme")' "$index"
+
 # --- T-070 .. T-073: sharing & SEO --------------------------------------
 check T-070 "Open Graph image set"         grep -q 'property="og:image"' "$index"
 check T-071 "Twitter card set"             grep -q 'name="twitter:card"' "$index"
@@ -123,32 +123,6 @@ check T-080 "lightbox present and wired" bash -c '
 check T-081 "404 page exists, themed" bash -c '
   test -f "'"$site"'/404.html" &&
   grep -q "702-theme" "'"$site"'/404.html"
-'
-
-# --- T-100 .. T-103: page weight budget ---------------------------------
-# Caps that keep the listing fast on a phone. The video is excluded (it is
-# preload="metadata", so it only downloads on play) but capped by T-096.
-check T-100 "core files under 200KB" bash -c '
-  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" | wc -c);
-  [ "$total" -lt 204800 ] || { echo "core=$total bytes"; exit 1; }
-'
-check T-101 "each photo under 400KB" bash -c '
-  for f in "'"$site"'"/assets/photos/*.jpg; do
-    [ -f "$f" ] || continue;
-    size=$(wc -c < "$f");
-    [ "$size" -lt 409600 ] || { echo "$(basename "$f") = $size bytes"; exit 1; };
-  done
-'
-check T-102 "initial page payload under 3MB" bash -c '
-  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" 2>/dev/null | wc -c);
-  for f in "'"$site"'"/assets/photos/*.jpg "'"$site"'"/assets/videos/poster.jpg; do
-    [ -f "$f" ] && total=$((total + $(wc -c < "$f")));
-  done;
-  [ "$total" -lt 3145728 ] || { echo "payload=$total bytes"; exit 1; }
-'
-check T-103 "landmarks and skip target" bash -c '
-  grep -q "<main id=\"main\">" "'"$index"'" &&
-  grep -q "href=\"#main\"" "'"$index"'"
 '
 
 # --- T-090 .. T-093: discovery files & the feature diagram --------------
@@ -172,13 +146,13 @@ check T-093 "water-path diagram present, CSS-only" bash -c '
 '
 # HEVC (the camera's default) is rejected by Chrome/Firefox on most systems,
 # and a 38MB hero video is a bad mobile experience. Both are guarded here.
-check T-096 "video is H.264 and under 10MB" bash -c '
-  v="'"$site"'/assets/videos/timelapse.mp4";
-  test -f "$v" &&
-  [ "$(wc -c < "$v")" -lt 10485760 ] &&
-  head -c 4096 "$v" | grep -qa "avc1" &&
-  ! head -c 4096 "$v" | grep -qa "hvc1"
+check T-094 "text accents use --link, not --accent" bash -c '
+  grep -q -- "--link:" "'"$site"'/styles.css" &&
+  ! grep -E "^\s*(a|\.overline|\.hero__overline)\s*\{[^}]*var\(--accent\)" "'"$site"'/styles.css" &&
+  ! grep -q "outline: 2px solid var(--accent)" "'"$site"'/styles.css"
 '
+
+
 check T-095 "cabinet diagram present, CSS-only, labeled" bash -c '
   grep -q "cab__feature" "'"$index"'" &&
   grep -q "data-part=\"defog\"" "'"$index"'" &&
@@ -189,10 +163,36 @@ check T-095 "cabinet diagram present, CSS-only, labeled" bash -c '
 # The palette once shipped gold links at 2:1 on white and a diagram label at
 # 1.04:1 on near-black. --accent is for button backgrounds; text and lines
 # use --link, which is legible in both themes (measured by L-xxx-5).
-check T-094 "text accents use --link, not --accent" bash -c '
-  grep -q -- "--link:" "'"$site"'/styles.css" &&
-  ! grep -E "^\s*(a|\.overline|\.hero__overline)\s*\{[^}]*var\(--accent\)" "'"$site"'/styles.css" &&
-  ! grep -q "outline: 2px solid var(--accent)" "'"$site"'/styles.css"
+check T-096 "video is H.264 and under 10MB" bash -c '
+  v="'"$site"'/assets/videos/timelapse.mp4";
+  test -f "$v" &&
+  [ "$(wc -c < "$v")" -lt 10485760 ] &&
+  head -c 4096 "$v" | grep -qa "avc1" &&
+  ! head -c 4096 "$v" | grep -qa "hvc1"
+'# --- T-100 .. T-103: page weight budget ---------------------------------
+# Caps that keep the listing fast on a phone. The video is excluded (it is
+# preload="metadata", so it only downloads on play) but capped by T-096.
+check T-100 "core files under 200KB" bash -c '
+  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" | wc -c);
+  [ "$total" -lt 204800 ] || { echo "core=$total bytes"; exit 1; }
+'
+check T-101 "each photo under 400KB" bash -c '
+  for f in "'"$site"'"/assets/photos/*.jpg; do
+    [ -f "$f" ] || continue;
+    size=$(wc -c < "$f");
+    [ "$size" -lt 409600 ] || { echo "$(basename "$f") = $size bytes"; exit 1; };
+  done
+'
+check T-102 "initial page payload under 3MB" bash -c '
+  total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" 2>/dev/null | wc -c);
+  for f in "'"$site"'"/assets/photos/*.jpg "'"$site"'"/assets/videos/poster.jpg; do
+    [ -f "$f" ] && total=$((total + $(wc -c < "$f")));
+  done;
+  [ "$total" -lt 3145728 ] || { echo "payload=$total bytes"; exit 1; }
+'
+check T-103 "landmarks and skip target" bash -c '
+  grep -q "<main id=\"main\">" "'"$index"'" &&
+  grep -q "href=\"#main\"" "'"$index"'"
 '
 
 echo

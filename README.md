@@ -55,26 +55,35 @@ skip cleanly when it's missing, so the structural suite is what CI enforces.
 
 ```text
 702_with_the_view/
-├── site/                 ← The website (what GitHub Pages publishes)
-│   ├── index.html        ← Single-page listing
-│   ├── styles.css        ← All styling (no frameworks)
-│   ├── app.js            ← Theme toggle, photo auto-loader, scroll-reveal, scrollspy
-│   └── assets/photos/    ← Photo drop zone (drop <slot>.jpg — see its README)
+├── site/                     ← The website (what GitHub Pages publishes)
+│   ├── index.html            ← Single-page listing
+│   ├── 404.html              ← Themed not-found page
+│   ├── styles.css            ← All styling (no frameworks)
+│   ├── app.js                ← Theme toggle, photo auto-loader, reveal, scrollspy, lightbox
+│   ├── robots.txt            ← Crawl policy, points at the sitemap
+│   ├── sitemap.xml           ← Canonical URL for search engines
+│   └── assets/
+│       ├── photos/           ← Drop <slot>.jpg here — slots auto-fill (see its README)
+│       └── videos/           ← Sunrise timelapse (H.264) + its poster frame
 ├── tests/
-│   ├── test_site.sh          ← Structural suite + runner for the three below
-│   ├── test_layout.sh        ← Browser layout regression suite
-│   ├── test_interactions.sh  ← Browser behavior suite (all app.js paths)
-│   ├── test_coverage.sh      ← Measured 100% coverage gate
+│   ├── test_site.sh          ← Structural suite (T-xxx) + runner for the rest
+│   ├── validate_html.py      ← HTML/a11y validator (V-xxx) — stdlib, runs in CI
+│   ├── test_layout.sh        ← Geometry + WCAG contrast in a browser (L-xxx)
+│   ├── layout_assertions.js  ← In-page measurements behind that suite
+│   ├── test_interactions.sh  ← Behavior of every app.js path (I-xxx)
+│   ├── test_coverage.sh      ← Gate: fails below 100% coverage of app.js
 │   └── coverage.js           ← V8 profiler harness behind that gate
-├── docs/                 ← Governance + project docs
-│   ├── PROPERTY_MANUAL.md ← Resident guide: appliances, models, how-tos (in progress)
-│   ├── DOMAIN_SETUP.md   ← Buying 702withtheview.com and pointing DNS at Pages
-│   ├── ARCHITECTURE.md   ← Layers and structure
-│   └── ...               ← Constitution-required docs (requirements, test plan, ADRs…)
-├── .github/workflows/    ← Pages deploy + constitution CI gates
-├── constitution/         ← Eric's Engineering Constitution (git submodule)
-├── TODO.md               ← Living roadmap
-└── CHANGELOG.md          ← User-facing changes
+├── docs/                     ← Governance + project docs
+│   ├── PROPERTY_MANUAL.md    ← Resident guide: appliances, models, how-tos
+│   ├── DOMAIN_SETUP.md       ← Domain purchase, DNS, and TLS record
+│   ├── TEST_PLAN.md          ← Suites, coverage targets, gap log, branch matrix
+│   ├── ARCHITECTURE.md       ← Layers and structure
+│   └── adr/                  ← Architecture decision records
+├── wiki/                     ← Published to the GitHub wiki on push
+├── .github/workflows/        ← Pages deploy + constitution CI gates
+├── constitution/             ← Eric's Engineering Constitution (git submodule)
+├── TODO.md                   ← Living roadmap
+└── CHANGELOG.md              ← User-facing changes
 ```
 
 ## Updating the Site (owner cheat-sheet)
