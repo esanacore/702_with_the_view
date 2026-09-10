@@ -86,3 +86,12 @@ This file contains durable memories, codebase learnings, user preferences, and k
 - 2026-08-03: Appliance/fixture documentation lives in
   `docs/PROPERTY_MANUAL.md`, not in page copy; the site links to it
   conceptually via the Property Guide section.
+- 2026-09-10: Contrast checking must never be driven by a hand-written list
+  of selectors. This repo's list covered 55 of 123 text-bearing elements —
+  every heading, figcaption, term and button was unchecked — and looked
+  entirely healthy because the elements it did cover passed. The sibling
+  PicklesToys repo shipped a 1.25:1 badge through three releases for exactly
+  this reason. `tests/layout_assertions.js` now walks every text node and
+  checks each against its own WCAG floor (3:1 for large text, 4.5:1
+  otherwise), and the suite reports the measured count so a coverage collapse
+  fails instead of passing quietly.

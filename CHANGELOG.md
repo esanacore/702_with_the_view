@@ -10,6 +10,26 @@ This project follows semantic versioning.
 
 ### Changed
 
+- **Contrast checking now covers every text run on the page, not a list.**
+  `tests/layout_assertions.js` measured contrast by iterating a hand-written
+  list of ~15 selectors. That list reached 55 of 123 text-bearing elements:
+  every `h2`/`h3`, all twelve figcaptions, the `dt` terms and every button
+  went unchecked — and the pass looked healthy because the elements it did
+  cover passed. It now walks the DOM's text nodes, so it has no such blind
+  spot. Measured coverage went from 55 elements to **127 text runs**.
+
+  The palette passes at the wider coverage; nothing was wrong here. The
+  rewrite was prompted by the sibling PicklesToys repo, where the same
+  selector-list pattern hid a badge at 1.25:1 through three releases.
+- Contrast now uses the correct WCAG floor per element — 3:1 for large text
+  (>=24px, or >=18.66px bold), 4.5:1 otherwise — rather than a flat 4.5:1,
+  which would have reported display headings as failures once covered.
+- `effectiveBackground()` composites the whole ancestor stack rather than the
+  first coloured layer onto the page background, which matters where a
+  translucent panel sits on a tinted band.
+- `L-xxx-5` now reports and asserts the number of text runs measured, so a
+  collapse in coverage fails the suite instead of passing quietly.
+
 ### Fixed
 
 ## 1.7.0 — 2026-08-19

@@ -28,7 +28,10 @@ unit layer, and four suites that all drive the real artifact.
   headless Chromium and asserts real geometry: photos contained by their
   figures, captions never buried, no horizontal scroll; desktop + mobile,
   light + dark, plus **measured WCAG AA contrast** for every text element
-  against its painted background. Requires the local browse daemon; SKIPs with exit 0 in CI,
+  against its painted background — genuinely every one since the pass
+  switched from a hand-written selector list to a text-node walk (2026-09-10). Each
+  run reports how many text runs it measured, so a collapse in coverage shows
+  up as a failure rather than as a quiet pass. Requires the local browse daemon; SKIPs with exit 0 in CI,
   where structural guard T-053 covers the known regression. Invoked by the
   full suite, so locally it always runs.
 - **HTML + accessibility validation**: `tests/validate_html.py` (`V-xxx`) —
@@ -87,6 +90,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-18 | 51 structural + 20 layout + 19 interaction; app.js still 100% | v1.4.0: water-path diagram, robots/sitemap, WCAG AA contrast checks (L-xxx-5) |
 | 2026-08-19 | 53 structural + 20 layout + 19 interaction; app.js still 100% | v1.5.0: cabinet diagram (T-095), video codec/size guard (T-096) |
 | 2026-08-19 | 57 structural + 11 validator + 20 layout + 19 interaction; app.js still 100% | v1.6.0: HTML/a11y validator (CI-enforced), weight budget, main landmark |
+| 2026-09-10 | 59 structural + 20 layout + 21 interaction; **contrast coverage 55 → 127 text runs** | Contrast pass rewritten from a selector list to a text-node walk. The list reached 55 of 123 text-bearing elements, missing every h2/h3, all twelve figcaptions, the dt terms and every button. Palette passes at the wider coverage — no defects found here, unlike the sibling PicklesToys repo where the same pattern had hidden a 1.25:1 badge. |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 

@@ -52,8 +52,9 @@ run_checks() {
   sleep 1
   local out
   out=$("$B" eval "$root/tests/layout_assertions.js" 2>/dev/null | grep -v "UNTRUSTED" || true)
-  local photos overflow clipped pagex contrast
+  local photos overflow clipped pagex contrast checked
   photos=$(printf '%s' "$out" | sed -n 's/.*"photosChecked":\([0-9]*\).*/\1/p')
+  checked=$(printf '%s' "$out" | sed -n 's/.*"textNodesChecked":\([0-9]*\).*/\1/p')
   overflow=$(printf '%s' "$out" | sed -n 's/.*"overflowingSlots":\[\([^]]*\)\].*/\1/p')
   clipped=$(printf '%s' "$out" | sed -n 's/.*"clippedCaptions":\[\([^]]*\)\].*/\1/p')
   pagex=$(printf '%s' "$out" | sed -n 's/.*"pageOverflowX":\(true\|false\).*/\1/p')
@@ -69,8 +70,11 @@ run_checks() {
   [ -n "$clipped" ] && echo "          clipped: $clipped"
   assert "$prefix-4" "no horizontal page scroll ($viewport $theme)" \
     "$([ "$pagex" = "false" ] && echo true || echo false)"
-  assert "$prefix-5" "all text meets WCAG AA 4.5:1 ($viewport $theme)" \
-    "$([ -z "$contrast" ] && echo true || echo false)"
+  # The measured count is reported, and asserted non-trivial, because it is
+  # the evidence that this pass is page-wide rather than limited to a list.
+  # A collapse in it means a broken harness, not a clean page.
+  assert "$prefix-5" "all text meets its WCAG AA floor ($viewport $theme: ${checked:-0} runs)" \
+    "$([ -n "$checked" ] && [ "$checked" -gt 80 ] && [ -z "$contrast" ] && echo true || echo false)"
   [ -n "$contrast" ] && echo "          low contrast: $contrast"
 
   # run_checks must not end on a failed test: under `set -e` a non-zero
