@@ -8,6 +8,10 @@ This project follows semantic versioning.
 
 ### Added
 
+- **Holiday boat parade photo** in the community gallery (new `boat-parade`
+  slot). The owner's portrait shot was cropped to the gallery's 4:3 so the
+  lit skyline and the lead boat both stay in frame instead of relying on a
+  centred `object-fit` crop; WebP derivative generated (96 KB).
 ### Changed
 
 - **Contrast checking now covers every text run on the page, not a list.**
