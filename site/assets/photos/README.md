@@ -30,6 +30,7 @@ photography) is the same move: overwrite the file, keep the name, push.
 | `tennis-courts.jpg`       | Community section: tennis & pickleball |
 | `boardwalk.jpg`           | Community section: the boardwalk     |
 | `waterfront-lawn.jpg`     | Community section: waterfront lawn   |
+| `boat-parade.jpg`         | Community section: holiday boat parade on the canal |
 
 (The slot names come from each figure's `data-slot` in `site/index.html`.
 `tests/test_site.sh` T-042 keeps this table and the page in sync.)

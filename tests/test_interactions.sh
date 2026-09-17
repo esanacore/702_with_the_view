@@ -106,9 +106,16 @@ check I-015 "storage failure: toggle still works, no crash" "$(js "
 # ---- Photo auto-loader --------------------------------------------------
 "$B" reload >/dev/null 2>&1; sleep 1
 
+# Expected counts come from disk, so dropping a new <slot>.jpg (the zero-edit
+# workflow) does not require touching this file. A .jpg with no matching slot
+# still fails here, which is the point.
+filled=$(ls "$root"/site/assets/photos/*.jpg | wc -l)
+slots=$(grep -c 'data-slot="' "$root/site/index.html")
+empty=$((slots - filled))
+
 check I-020 "existing slots filled, missing slots keep placeholder" "$(js "
-  document.querySelectorAll('.ph img').length === 7 &&
-  document.querySelectorAll('.ph .ph__frame').length === 5
+  document.querySelectorAll('.ph img').length === $filled &&
+  document.querySelectorAll('.ph .ph__frame').length === $empty
 ")"
 
 # Every filled slot ships a real data-alt, so this covers the primary path;
@@ -122,7 +129,7 @@ check I-021 "alt taken from data-alt when present" "$(js "
 check I-023 "photos load as WebP when available" "$(js "
   var srcs = Array.prototype.slice.call(document.querySelectorAll('.ph img'))
     .map(function (i) { return i.src; });
-  srcs.length === 7 && srcs.every(function (s) { return /[.]webp$/.test(s); })
+  srcs.length === $filled && srcs.every(function (s) { return /[.]webp$/.test(s); })
 ")"
 
 # ---- Scroll-reveal + scrollspy ------------------------------------------
