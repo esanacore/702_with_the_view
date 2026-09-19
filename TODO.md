@@ -25,6 +25,8 @@ Keep entries specific, actionable, and current.
       living-room-sofa, open-plan, sliders-sunset, deck-seating (384px wide);
       kitchen-overview, dining, deck-view, marsh-sunset (640px);
       bathroom-overview, shower, medicine-cabinet (675px).
+- [x] v1.8.0 released 2026-09-18 (listing photos and facts, import tool,
+      gallery integrity checker)
 - [ ] Performance: all 30 photos download on page load (2.75 MB of the 3 MB
       budget). Start each photo's load only as its figure nears the viewport
       (IntersectionObserver in the auto-loader, with a no-IO fallback and

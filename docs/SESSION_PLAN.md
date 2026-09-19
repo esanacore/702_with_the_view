@@ -12,7 +12,7 @@ This document records the current session's planned work before implementation b
 
 ## Goal
 
-**COMPLETE — pull request open, awaiting owner merge.** Import the photos
+**COMPLETE — merged (PR #8) and released as v1.8.0.** Import the photos
 and facts from the listing agent's post for Unit 702, tone down the
 over-processed MLS look, and harden the test suite against the mistakes
 made along the way.
@@ -38,8 +38,7 @@ made along the way.
   traceability, secrets and version gates green.
 - **Uncommitted changes**: none expected after the PR branch is pushed.
 - **Known issues**: see `TODO.md` — MLS photo reuse permission (Peggy Moran),
-  eleven low-resolution photos, eager loading of all 30 photos, and the
-  release decision for the accumulated `Unreleased` changes.
+  eleven low-resolution photos, and eager loading of all 30 photos.
 
 ## Next Session
 

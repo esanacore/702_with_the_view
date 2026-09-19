@@ -75,6 +75,25 @@ This file contains durable memories, codebase learnings, user preferences, and k
   flash). Accent palette swapped to harbor blue + brass for the waterfront
   setting. Owner's direction: minimal, clean, "not AI-ish" — no emoji
   icons, no cartoon illustrations.
+- Tests must never depend on what content the real page happens to hold.
+  Two failures on 2026-09-18 had this one cause: interaction tests
+  hard-coded "7 photos", and `app.js` coverage fell below 100% when the last
+  bare placeholder tile was removed, because the real page had been covering
+  the caption-only alt fallback by accident. Counts come from disk; every
+  rarely-taken branch gets its own fixture (`caption-only`, `missing-slot`).
+- Edited photos go in through `python tools/import_photo.py SRC SLOT`, never
+  by hand-copying. It preserves the untouched source in `photos-original/`
+  (outside `site/`, never deployed). Always feed it the ORIGINAL: it is not
+  idempotent, so pointing it at its own output double-corrects the photo. To
+  redo a slot, import from `photos-original/<slot>.jpg`.
+- After ANY scripted edit to the galleries in `index.html`, run
+  `python tests/check_gallery.py` before anything else. Regex splices on
+  that markup duplicated four tiles once and silently dropped two tiles
+  another time (the first `</div>` after a gallery opener is a tile's frame,
+  not the gallery's end). The checker also enforces complete rows: adding or
+  removing one tile usually means rebalancing (wide tiles count 2 cells).
+- `tools/optimize_photos.py` judges staleness by mtime only: after changing
+  its QUALITY, delete the `.webp` files or nothing regenerates.
 
 ## Active Project Decisions
 
@@ -95,3 +114,11 @@ This file contains durable memories, codebase learnings, user preferences, and k
   checks each against its own WCAG floor (3:1 for large text, 4.5:1
   otherwise), and the suite reports the measured count so a coverage collapse
   fails instead of passing quietly.
+- 2026-09-18: Owner decisions on listing facts: interior is 800 sq ft
+  (the agent's figure, not Zillow's 655); the unit is available now at
+  $3,150/month; "Equal Housing Opportunity" stays in the footer; any
+  virtually staged image must say so in its caption (G-006 enforces it).
+- 2026-09-18: The untouched originals of MLS photos are committed to the
+  public repo in `photos-original/` by the owner's decision, with the
+  OneKey MLS watermarks left intact. Reuse permission from the listing agent
+  is still an open TODO.

@@ -8,6 +8,14 @@ This project follows semantic versioning.
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## 1.8.0 — 2026-09-18
+
+### Added
+
 - **All 22 remaining photos from the listing agent's post** (the 23rd is the
   boat parade, already on the page at higher resolution). The kitchen,
   bathroom, medicine-cabinet and bedroom placeholders are now real photos,
@@ -90,8 +98,6 @@ This project follows semantic versioning.
   translucent panel sits on a tinted band.
 - `L-xxx-5` now reports and asserts the number of text runs measured, so a
   collapse in coverage fails the suite instead of passing quietly.
-
-### Fixed
 
 ## 1.7.0 — 2026-08-19
 
