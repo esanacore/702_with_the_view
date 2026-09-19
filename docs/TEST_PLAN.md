@@ -39,6 +39,20 @@ unit layer, and four suites that all drive the real artifact.
   order, landmarks, button names, and aria references. Runs on a bare CI
   runner (no browser, no packages) and self-tests against broken fixtures
   before validating the real pages.
+- **Gallery integrity**: `tests/check_gallery.py` (`G-xxx`) — standard-library
+  parser over the photo tiles, the files on disk and the grid layout: unique
+  slots, no stranded photo files, WebP/JPEG pairing, alt text and captions on
+  every tile, "virtually staged" disclosure, file names the page can actually
+  load, no stray originals, and complete rows with no holes at 4 and 2
+  columns (it simulates CSS grid row flow, wide tiles included).
+  Every rule is a regression test for a mistake actually made on 2026-09-18,
+  and the self-test proves each rule fires before the real page is checked.
+  Runs on a bare CI runner.
+- **Tool self-tests**: `tools/import_photo.py --selftest` (T-046) proves the
+  photo corrector fires on loud and bright input, is a no-op on a good photo,
+  and preserves the original byte for byte even when the import fails. Where
+  Pillow and numpy are absent, as on CI, it prints SKIP rather than PASS:
+  nothing in `site/` depends on them.
 - **End-to-end tests**: manual visual pass in a browser before releases;
   the deploy workflow runs the structural suite before every publish.
 
@@ -91,6 +105,7 @@ Coverage is measured on every change (locally and, where possible, in CI). Recor
 | 2026-08-19 | 53 structural + 20 layout + 19 interaction; app.js still 100% | v1.5.0: cabinet diagram (T-095), video codec/size guard (T-096) |
 | 2026-08-19 | 57 structural + 11 validator + 20 layout + 19 interaction; app.js still 100% | v1.6.0: HTML/a11y validator (CI-enforced), weight budget, main landmark |
 | 2026-09-10 | 59 structural + 20 layout + 21 interaction; **contrast coverage 55 → 127 text runs** | Contrast pass rewritten from a selector list to a text-node walk. The list reached 55 of 123 text-bearing elements, missing every h2/h3, all twelve figcaptions, the dt terms and every button. Palette passes at the wider coverage — no defects found here, unlike the sibling PicklesToys repo where the same pattern had hidden a 1.25:1 badge. |
+| 2026-09-18 | 61 structural + 11 validator + 14 gallery + 20 layout + 22 interaction; app.js 182/182 lines, 0 uncovered blocks (100%) | Gallery integrity checker (G-001..G-008), import-tool self-test (T-046) and I-025 added after a 22-photo import. **Coverage briefly fell to one uncovered block**: removing the last bare placeholder tile meant no page load exercised the caption-only alt fallback. The real page had been covering that branch by accident. Fixed with a dedicated `caption-only` fixture, so coverage no longer depends on what content the page happens to hold. |
 
 A downward trend is a signal to investigate, even when the number stays above the floor.
 
@@ -103,6 +118,8 @@ Track known untested behavior here. A percentage alone hides gaps; this log make
 | GAP-001 | JS behavior untested | low | FR-006 | **Closed** (v1.3.0 — `tests/test_interactions.sh`, 100% measured line+block coverage) | — |
 | GAP-003 | Browser suites (layout, interaction, coverage) run locally only — CI runners have no browser, so CI protection is the structural suite plus guards like T-053 | low | NFR-003 | Open | TODO.md → Testing |
 | GAP-004 | Coverage measures `site/app.js` only; the inline pre-paint theme script in `index.html` is verified by assertion (T-063, I-012) rather than by the profiler | low | FR-008 | Open | TODO.md → Testing |
+| GAP-005 | Cross-section content consistency is unchecked: the footer can say "not yet available" while Details says "Available: Now" (true as of 2026-09-18, pending an owner wording decision) | medium | FR-007 | **Closed** (2026-09-18 — owner confirmed the unit is available; footer corrected; T-039 keeps hero, Details and footer in agreement) | — |
+| GAP-006 | `tools/import_photo.py` is self-tested on synthetic swatches only; its effect on real photographs is judged by eye | low | FR-016 | Open (accepted) | — |
 | GAP-002 | HTML validity not machine-checked | low | NFR-001 | **Closed** (v1.6.0 — `tests/validate_html.py`, self-tested, runs in CI) | — |
 
 ## Requirement Coverage
@@ -127,9 +144,9 @@ Every branch and which check exercises it. Verified by measurement
 | Photos: WebP preferred when present | I-023 |
 | Photos: falls back to JPEG when no WebP | I-024 (`jpg-only` fixture) |
 | Photos: slot file present → placeholder replaced | I-020 |
-| Photos: slot file missing → placeholder kept | I-020 |
+| Photos: slot file missing → placeholder kept | I-025 (`missing-slot` fixture); I-020 only while the page has an empty tile |
 | Photos: alt from `data-alt` | I-021 |
-| Photos: alt falls back to caption | I-022 (`no-data-alt` fixture) |
+| Photos: alt falls back to caption | I-022 (`no-data-alt` fixture); `caption-only` coverage fixture |
 | Photos: alt falls back to generic text (no caption) | `bare-figures` fixture |
 | Reveal: observer path marks sections visible | I-030 |
 | Reveal: no `IntersectionObserver` → all visible | I-031 (`no-io` fixture) |

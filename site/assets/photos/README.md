@@ -20,20 +20,52 @@ photography) is the same move: overwrite the file, keep the name, push.
 | ------------------------- | ------------------------------------ |
 | `view-main.jpg`           | The view (hero shot, wide)           |
 | `living-room.jpg`         | Living room                          |
-| `kitchen-overview.jpg`    | Kitchen with the new GE suite        |
-| `refrigerator.jpg`        | GE French-door refrigerator          |
+| `kitchen-overview.jpg`    | Open kitchen & dining                |
+| `living-room-sofa.jpg`    | Living room, second angle            |
+| `open-plan.jpg`           | Open floor plan                      |
+| `dining.jpg`              | Dining area                          |
+| `sliders-sunset.jpg`      | Sunset through the sliding doors     |
 | `bathroom-overview.jpg`   | Remodeled bathroom                   |
-| `medicine-cabinet.jpg`    | Smart medicine cabinet               |
+| `shower.jpg`              | Walk-in shower                       |
+| `medicine-cabinet.jpg`    | Smart medicine cabinet & Bluetooth vent fan |
 | `bedroom.jpg`             | Bedroom                              |
+| `bedroom-closets.jpg`     | Bedroom, closet side                 |
+| `bedroom-staged.jpg`      | Bedroom, virtually staged (caption must say so) |
+| `deck-seating.jpg`        | Deck seating, from above             |
+| `deck.jpg`                | Wrap-around deck (aerial)            |
+| `deck-view.jpg`           | The view from the deck               |
+| `marsh-sunset.jpg`        | Sunset over the marsh, from the deck |
 | `view-dusk.jpg`           | The view at dusk (wide)              |
 | `community-aerial.jpg`    | Community section: pool, clubhouse & courts aerial |
+| `pool.jpg`                | Community section: the pool (wide)   |
 | `tennis-courts.jpg`       | Community section: tennis & pickleball |
+| `gym.jpg`                 | Community section: the gym           |
 | `boardwalk.jpg`           | Community section: the boardwalk     |
+| `dock.jpg`                | Community section: dock space        |
 | `waterfront-lawn.jpg`     | Community section: waterfront lawn   |
 | `boat-parade.jpg`         | Community section: holiday boat parade on the canal |
+| `gatehouse.jpg`           | Community section: gated entry       |
+| `anchorage-aerial.jpg`    | Community section: aerial of the grounds (wide) |
+| `lawn-sunset.jpg`         | Community section: waterfront lawn at sunset (wide) |
+| `sunset-sky.jpg`          | Community section: sunset sky (wide) |
 
 (The slot names come from each figure's `data-slot` in `site/index.html`.
 `tests/test_site.sh` T-042 keeps this table and the page in sync.)
+
+## Photos that look over-bright or over-saturated
+
+MLS and phone-HDR photos often arrive with neon lawns and blown-out white
+rooms. Instead of copying such a file in by hand, import it:
+
+    python tools/import_photo.py path/to/source.jpg slot-name
+
+The tool measures the photo and applies only the correction it needs
+(local highlight pull, saturation trimmed on the loudest pixels only), then
+writes `slot-name.jpg` here. A well-exposed photo passes through untouched.
+The untouched source is preserved as `photos-original/slot-name.jpg`
+(outside `site/`, never deployed), so the real photo is never lost.
+Always feed it the original: it is not idempotent. To redo a slot, import
+from `photos-original/`.
 
 ## Adding a NEW slot (rare)
 

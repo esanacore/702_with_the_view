@@ -241,6 +241,18 @@ check I-024 "falls back to JPEG when no WebP exists" "$(js "
   imgs.length > 0 && imgs.every(function (i) { return /[.]jpg$/.test(i.src); })
 ")"
 
+# Missing photo -> placeholder stays. The real page no longer has an empty
+# slot (so I-020's placeholder count is 0 and proves nothing about this
+# path); inject a tile whose photo cannot exist and assert its frame survives
+# both the .webp and the .jpg probe.
+make_variant missing-slot "var f = document.createElement('figure'); f.className = 'ph'; f.setAttribute('data-slot', 'no-such-photo'); f.innerHTML = '<div class=ph__frame><span>Photo coming soon</span></div><figcaption>Missing</figcaption>'; document.querySelector('.gallery').appendChild(f);"
+"$B" goto "file://$(printf '%s' "$variant_dir" | sed -E 's#^/([a-zA-Z])/#/\U\1:/#')/missing-slot.html" >/dev/null 2>&1; sleep 3
+check I-025 "missing photo keeps its placeholder" "$(js "
+  var fig = document.querySelector('[data-slot=no-such-photo]');
+  !!fig && !!fig.querySelector('.ph__frame') && !fig.querySelector('img') &&
+  document.querySelectorAll('.ph img').length === $filled
+")"
+
 make_variant no-io "delete window.IntersectionObserver;"
 "$B" goto "file://$(printf '%s' "$variant_dir" | sed -E 's#^/([a-zA-Z])/#/\U\1:/#')/no-io.html" >/dev/null 2>&1; sleep 1
 check I-031 "no IntersectionObserver: everything visible at once" "$(js "

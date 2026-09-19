@@ -68,13 +68,16 @@ skip cleanly when it's missing, so the structural suite is what CI enforces.
 ├── tests/
 │   ├── test_site.sh          ← Structural suite (T-xxx) + runner for the rest
 │   ├── validate_html.py      ← HTML/a11y validator (V-xxx) — stdlib, runs in CI
+│   ├── check_gallery.py      ← Gallery integrity (G-xxx): slots, files, rows — stdlib, runs in CI
 │   ├── test_layout.sh        ← Geometry + WCAG contrast in a browser (L-xxx)
 │   ├── layout_assertions.js  ← In-page measurements behind that suite
 │   ├── test_interactions.sh  ← Behavior of every app.js path (I-xxx)
 │   ├── test_coverage.sh      ← Gate: fails below 100% coverage of app.js
 │   └── coverage.js           ← V8 profiler harness behind that gate
 ├── tools/
+│   ├── import_photo.py       ← Imports a photo into a slot; tones down HDR/MLS sources, keeps the original
 │   └── optimize_photos.py    ← Generates the .webp derivatives the page prefers
+├── photos-original/          ← Untouched source of every edited photo (never deployed)
 ├── docs/                     ← Governance + project docs
 │   ├── PROPERTY_MANUAL.md    ← Resident guide: appliances, models, how-tos
 │   ├── DOMAIN_SETUP.md       ← Domain purchase, DNS, and TLS record
@@ -96,7 +99,7 @@ replaces the live site).
 
 | To change…      | Do this |
 | --------------- | ------- |
-| **Photos**      | Drop/overwrite `site/assets/photos/<slot>.jpg` (names in that folder's README), then run `python tools/optimize_photos.py`. No HTML edits — slots auto-fill. |
+| **Photos**      | Drop/overwrite `site/assets/photos/<slot>.jpg` (names in that folder's README), then run `python tools/optimize_photos.py`. No HTML edits — slots auto-fill. For an over-bright or neon-coloured source, use `python tools/import_photo.py SRC SLOT` instead of copying: it corrects the photo and keeps the original in `photos-original/`. |
 | **Rent / availability / facts** | Edit the `<dl class="facts">` block in `site/index.html` (search for `TBD`). |
 | **Any copy**    | Edit `site/index.html` — it's plain HTML, headings and paragraphs. |
 | **Appliance models & manuals** | `docs/PROPERTY_MANUAL.md` (not page copy). |
