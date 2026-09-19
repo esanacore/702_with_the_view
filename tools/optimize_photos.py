@@ -21,7 +21,7 @@ except ImportError:
     print("Pillow is required: python -m pip install Pillow", file=sys.stderr)
     sys.exit(2)
 
-QUALITY = 80
+QUALITY = 72
 PHOTOS = Path(__file__).resolve().parent.parent / "site" / "assets" / "photos"
 
 

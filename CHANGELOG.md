@@ -8,12 +8,69 @@ This project follows semantic versioning.
 
 ### Added
 
+- **All 22 remaining photos from the listing agent's post** (the 23rd is the
+  boat parade, already on the page at higher resolution). The kitchen,
+  bathroom, medicine-cabinet and bedroom placeholders are now real photos,
+  and 18 new slots were added: eleven in the main gallery (more living-room,
+  dining, bathroom, bedroom and deck angles, and a marsh sunset) and seven in
+  the community gallery (pool, gym, dock, gatehouse, aerial and two sunsets). The page
+  now shows 30 photos and both galleries fill complete rows. The agent's
+  virtually staged bedroom image is captioned as such.
+- The medicine-cabinet tile is now captioned "Medicine cabinet & Bluetooth
+  vent fan": the photo shows both.
+- **Rent, availability and lease terms** in Details, replacing the TBD
+  placeholders: $3,150/month, available now, one-year lease, board approval,
+  700+ credit score. Source: the agent's listing, confirmed 2026-08-25.
+- **`tools/import_photo.py`** imports a photo into a slot and tones down
+  over-processed sources: a local highlight pull plus saturation trimmed on
+  the loudest pixels only. It measures first, so a well-exposed photo passes
+  through untouched. It applies EXIF orientation, only trims letterbox bars
+  that are flat and under 15% of a side, validates the source before
+  touching anything, and rejects unsafe slot names. Guarded by T-046 (14
+  self-test cases; reports SKIP, not PASS, where Pillow/numpy are absent).
+- **Gallery integrity checker** (`tests/check_gallery.py`, G-001..G-008), run
+  by the full suite and in CI. Each rule is a regression test for a mistake
+  made during this import: a duplicated tile, two dropped tiles whose photos
+  were left stranded, a lone tile on its own row, and a virtually staged
+  image whose disclosure lives only in its caption. It also rejects photo
+  files app.js can never load (`pool.JPG`, `pool.jpeg`) and originals that
+  belong to no slot. Its 13-case self-test proves every rule can fail, and
+  that no case passes on the strength of a different rule. Declared as FR-017.
+- **I-025**: a tile whose photo is missing keeps its placeholder. The real
+  page no longer has an empty tile, which had quietly made that assertion
+  in I-020 vacuous.
+- A `caption-only` coverage fixture, so `app.js` coverage no longer depends
+  on the real page happening to contain a tile without alt text.
+- **`photos-original/`: the real, unedited source of every edited photo**,
+  kept byte for byte (27 files). It sits outside `site/`, so it is never
+  deployed. The import tool writes it automatically, which also makes any
+  correction redoable from the true original. Guarded by T-046 and G-008.
 - **Holiday boat parade photo** in the community gallery (new `boat-parade`
   slot). The owner's portrait shot was cropped to the gallery's 4:3 so the
   lit skyline and the lead boat both stay in frame instead of relying on a
   centred `object-fit` crop; WebP derivative generated (96 KB).
+### Fixed
+
+- **The footer no longer says the listing is "not yet available".** It
+  contradicted the hero ("Now available") and Details. The owner confirmed
+  the unit is available now. T-039 keeps the three in agreement.
+
 ### Changed
 
+- **Interior size is now 800 sq ft** (was 655, from Zillow), by the owner's
+  decision and matching the agent's listing. Updated in Details and in the
+  JSON-LD; T-036 now requires the two to agree.
+- **Refrigerator placeholder tile removed**: there is no dedicated photo
+  for it, and the fridge is visible in the kitchen photo. No "Photo coming
+  soon" frames remain on the page.
+- **WebP quality 80 → 72** (`tools/optimize_photos.py`) and all derivatives
+  regenerated, so 30 photos still fit the 3 MB budget (2.75 MB measured).
+- **T-102 now counts the WebP where one exists**, because that is what the
+  page downloads; it previously summed the JPEG fallbacks, which the browser
+  never fetches when a WebP is present.
+- **Four existing photos re-toned** with the import tool: the tennis courts,
+  community aerial, main water view and boardwalk had the neon HDR look of
+  their MLS sources. Same framing, calmer colour.
 - **Contrast checking now covers every text run on the page, not a list.**
   `tests/layout_assertions.js` measured contrast by iterating a hand-written
   list of ~15 selectors. That list reached 55 of 123 text-bearing elements:

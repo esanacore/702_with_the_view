@@ -73,6 +73,12 @@ const PAGES = {
   bareFigures: variant("bare-figures", {
     transform: (h) => h.replace(/ data-alt="[^"]*"/g, "").replace(/<figcaption>[^<]*<\/figcaption>/g, ""),
   }),
+  // Caption but no data-alt: alt falls back to the caption text. The real
+  // page used to cover this through its bare placeholder tiles; now that
+  // every tile carries data-alt, the branch needs its own fixture.
+  captionOnly: variant("caption-only", {
+    transform: (h) => h.replace(/ data-alt="[^"]*"/g, ""),
+  }),
   noPhotos: variant("no-photos", { base: emptyAssets }),
   jpgOnly: variant("jpg-only", { base: jpgOnly }),
 };

@@ -29,7 +29,7 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-004 | MUST | Photo placeholders wired for drop-in swap | FR-004-AC-1, FR-004-AC-2 | T-040, T-041, T-042, T-043 (auto-loader) | Verified |
 | FR-005 | MUST | Push to `main` publishes, gated on tests | FR-005-AC-1 | T-004 (workflow present); gate exercised by every CI run | Verified |
 | FR-006 | SHOULD | Interactive, progressively enhanced page | FR-006-AC-1 | T-003, T-015; interaction suite I-010..I-055; 100% measured line+block coverage of app.js | Verified |
-| FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037 | Verified |
+| FR-007 | MUST | Unit & community facts on page | FR-007-AC-1, FR-007-AC-2 | T-026, T-035, T-036, T-037, T-039 (availability consistent across sections) | Verified |
 | FR-008 | MUST | Light/dark theming with system default + override | FR-008-AC-1, FR-008-AC-2, FR-008-AC-3 | T-060, T-061, T-062, T-063; live toggle behavior verified manually in browser | Verified |
 | FR-009 | MUST | Rich link previews + structured data | FR-009-AC-1, FR-009-AC-2 | T-070, T-071, T-072, T-073 | Verified |
 | FR-010 | SHOULD | Gallery lightbox | FR-010-AC-1 | T-080; I-050..I-055 (open, wrap, arrows, Escape, backdrop, keyboard) | Verified |
@@ -38,6 +38,8 @@ A requirement with no verifying test is a coverage gap. Record it in `docs/TEST_
 | FR-013 | SHOULD | Water-path feature diagram (CSS-only) | FR-013-AC-1 | T-093 | Verified |
 | FR-014 | SHOULD | Crawlable: robots.txt + sitemap.xml | FR-014-AC-1 | T-090, T-091 | Verified |
 | FR-015 | SHOULD | Medicine-cabinet feature diagram (CSS-only) | FR-015-AC-1 | T-095 | Verified |
+| FR-016 | SHOULD | Photo import tool tones down over-processed sources, preserves the real photo | FR-016-AC-1, FR-016-AC-2 | T-046 (14-case self-test, **local only**: needs Pillow/numpy, reports SKIP in CI); G-008 (no stray originals, runs in CI) | Verified locally |
+| FR-017 | MUST | Gallery integrity: unique slots, no stranded or unloadable files, alts and captions, staged disclosure, complete rows | FR-017-AC-1, FR-017-AC-2, FR-017-AC-3 | G-001..G-008 (`tests/check_gallery.py`, 13-case self-test with a negative case for every rule, runs in CI); I-020 (counts derived from disk); I-025 (missing photo keeps placeholder) | Verified |
 
 ## Non-Functional Requirements
 

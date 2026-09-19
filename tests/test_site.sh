@@ -62,12 +62,25 @@ check T-032 "filtered water line"          grep -qi 'filtered water' "$index"
 check T-033 "medicine cabinet defogger"    grep -qi 'defogger' "$index"
 check T-034 "fan with Bluetooth speaker"   grep -qi 'Bluetooth speaker' "$index"
 check T-035 "water view stated"            grep -qi 'water view\|>Water<' "$index"
-check T-036 "655 sq ft stated"             grep -qi '655' "$index"
+# The size appears twice (Details and JSON-LD); both must carry the owner's figure.
+check T-036 "800 sq ft stated, page and JSON-LD agree" bash -c '
+  grep -q "<dd>800 sq ft</dd>" "'"$index"'" && grep -q "\"value\": 800," "'"$index"'" && ! grep -q "655" "'"$index"'"
+'
 check T-037 "Anchorage community named"    grep -qi 'The Anchorage' "$index"
 check T-038 "realtor contact wired" bash -c '
   grep -q "mailto:pmoranhomes@gmail.com" "'"$index"'" &&
   grep -q "tel:+16314870153" "'"$index"'" &&
   ! grep -q "CONTACT-EMAIL-TBD" "'"$index"'"
+'
+
+# Availability must read the same everywhere (closes GAP-005). The footer once
+# said "not yet available" while the hero and Details said available now.
+check T-039 "availability is consistent across sections" bash -c '
+  if grep -q "<dt>Available</dt><dd>TBD</dd>" "'"$index"'"; then
+    ! grep -qi "now available" "'"$index"'";
+  else
+    ! grep -qi "not yet available\|work in progress" "'"$index"'";
+  fi
 '
 
 # --- T-040 .. T-043: photo placeholders wired for later swap ------------
@@ -96,6 +109,18 @@ check T-045 "every photo has a WebP derivative" bash -c '
   [ -z "$missing" ] || { echo "no webp for:$missing (run python tools/optimize_photos.py)"; exit 1; }
 '
 
+# The import tool corrects over-processed photos and preserves the original.
+# Its self-test needs Pillow + numpy, which CI does not have (nothing in
+# site/ depends on them), so there it reports SKIP, never a hollow PASS.
+PY_BIN=$(command -v python || command -v python3 || true)
+rc=3
+[ -n "$PY_BIN" ] && { rc=0; "$PY_BIN" "$root/tools/import_photo.py" --selftest >/dev/null 2>&1 || rc=$?; }
+case "$rc" in
+  0) echo "  PASS  T-046  photo import tool self-test"; pass=$((pass + 1)) ;;
+  3) echo "  SKIP  T-046  photo import tool self-test (Pillow/numpy or python absent)" ;;
+  *) echo "  FAIL  T-046  photo import tool self-test"; fail=$((fail + 1)) ;;
+esac
+# (Stray originals in photos-original/ are checked by G-008 in check_gallery.py.)
 
 # --- T-050 .. T-052: quality and safety ---------------------------------
 check T-050 "no absolute local paths leak" bash -c '! grep -q "C:\\\\" "'"$index"'"'
@@ -200,11 +225,16 @@ check T-101 "each photo under 400KB" bash -c '
     [ "$size" -lt 409600 ] || { echo "$(basename "$f") = $size bytes"; exit 1; };
   done
 '
+# Counts the WebP where one exists, because that is what app.js downloads;
+# the .jpg is only fetched as a fallback. T-045 guarantees every photo has one.
 check T-102 "initial page payload under 3MB" bash -c '
   total=$(cat "'"$index"'" "'"$site"'/styles.css" "'"$site"'/app.js" 2>/dev/null | wc -c);
-  for f in "'"$site"'"/assets/photos/*.jpg "'"$site"'"/assets/videos/poster.jpg; do
-    [ -f "$f" ] && total=$((total + $(wc -c < "$f")));
+  for f in "'"$site"'"/assets/photos/*.jpg; do
+    [ -f "$f" ] || continue;
+    w="${f%.jpg}.webp"; [ -f "$w" ] && f="$w";
+    total=$((total + $(wc -c < "$f")));
   done;
+  f="'"$site"'"/assets/videos/poster.jpg; [ -f "$f" ] && total=$((total + $(wc -c < "$f")));
   [ "$total" -lt 3145728 ] || { echo "payload=$total bytes"; exit 1; }
 '
 check T-103 "landmarks and skip target" bash -c '
@@ -220,6 +250,11 @@ if [ -n "$PY" ]; then
   # Self-test first: a validator that cannot fail proves nothing.
   "$PY" "$root/tests/validate_html.py" --selftest || fail=$((fail + 1))
   "$PY" "$root/tests/validate_html.py" || fail=$((fail + 1))
+  echo
+  echo "Gallery integrity"
+  echo "================="
+  "$PY" "$root/tests/check_gallery.py" --selftest || fail=$((fail + 1))
+  "$PY" "$root/tests/check_gallery.py" || fail=$((fail + 1))
 else
   echo "  SKIP  python not available"
 fi

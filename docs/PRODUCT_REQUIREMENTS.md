@@ -79,7 +79,7 @@ Manual (`docs/PROPERTY_MANUAL.md`) documents the apartment itself.
 
 - Level: `MUST`
 - Acceptance criteria:
-  - `FR-007-AC-1`: unit particulars (1 bed, 655 sq ft, water view) and The Anchorage community amenities appear on the page.
+  - `FR-007-AC-1`: unit particulars (1 bed, 800 sq ft, water view) and The Anchorage community amenities appear on the page.
   - `FR-007-AC-2`: facts trace to listing sources recorded in `docs/PROPERTY_MANUAL.md`; owner-unconfirmed values stay visibly TBD.
 
 ### Theming
@@ -134,6 +134,21 @@ default until the reader chooses.
 - Level: `SHOULD`
 - Acceptance criteria:
   - `FR-015-AC-1`: each feature highlights its matching part of a drawn cabinet on hover/focus, implemented without JavaScript.
+
+**FR-016** Over-processed source photos can be imported without losing the real photo.
+
+- Level: `SHOULD`
+- Acceptance criteria:
+  - `FR-016-AC-1`: the import tool reduces blown highlights and loud saturation, trims baked-in letterbox bars, and leaves a well-exposed photo pixel-identical.
+  - `FR-016-AC-2`: the untouched source is preserved byte for byte outside `site/`, and every preserved original belongs to a slot on the page.
+
+**FR-017** The photo galleries stay structurally sound as tiles are added, moved and removed.
+
+- Level: `MUST`
+- Acceptance criteria:
+  - `FR-017-AC-1`: no slot appears twice, every photo file on disk belongs to a tile and is named so the page can load it (`<slot>.jpg` / `<slot>.webp`), and every WebP has its JPEG fallback.
+  - `FR-017-AC-2`: every tile carries descriptive alt text and a caption; a virtually staged image says so in its caption.
+  - `FR-017-AC-3`: each gallery fills complete rows, with no holes, at the 4-column and 2-column layouts.
 
 **FR-014** Search engines can discover and crawl the listing.
 
