@@ -57,5 +57,6 @@ Before completing work:
 - Update CHANGELOG.md for user-facing changes.
 - Consider security impact.
 - Propose new learnings for `docs/MEMORY.md`.
+- Keep the demo page current — when a change alters user-facing behavior and the repository has a `demo.html`, update it in the same change; a demo still showing the old behavior is an incomplete change (`constitution/DOCUMENTATION.md`, "Demo Page").
 - Clear or archive `docs/SESSION_PLAN.md`.
 - Summarize changes and verification.

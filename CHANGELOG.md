@@ -8,6 +8,14 @@ This project follows semantic versioning.
 
 ### Added
 
+- **Offline demo page** (`demo.html` at the repository root): a
+  self-contained copy of the listing page with its styles and script inline,
+  labeled as an offline copy, for review without a network connection. Photos
+  and the video load from `site/assets/` by relative path; the contact section
+  points to the live site rather than repeating the agent's details. Linked
+  from the README. Agent instruction files now carry the "keep the demo page
+  current" rule.
+
 ### Changed
 
 ### Fixed
