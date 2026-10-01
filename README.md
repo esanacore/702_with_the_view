@@ -6,6 +6,11 @@
 
 Current version: **1.8.0** · Live at **[702withtheview.com](https://702withtheview.com)**
 
+**Offline demo:** [`demo.html`](demo.html) is a self-contained copy of the
+listing page (styles and script inline, photos from `site/assets/`) for
+reviewing the site from a clone without a network connection. The live site
+is canonical.
+
 The listing website for **702 with the View** — an apartment for rent with an
 all-new GE Appliances kitchen (including a French-door refrigerator whose
 icemaker runs off a filtered cold-water line) and a completely remodeled
