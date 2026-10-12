@@ -16,6 +16,13 @@ This project follows semantic versioning.
   Serial numbers, the bathroom fixtures and the water filter remain TBD. The order shows the refrigerator is LG, not
   GE as the page copy says; that wording is flagged for the owner in
   `TODO.md`, not changed.
+- **Offline demo page** (`demo.html` at the repository root): a
+  self-contained copy of the listing page with its styles and script inline,
+  labeled as an offline copy, for review without a network connection. Photos
+  and the video load from `site/assets/` by relative path; the contact section
+  points to the live site rather than repeating the agent's details. Linked
+  from the README. Agent instruction files now carry the "keep the demo page
+  current" rule.
 
 ### Changed
 

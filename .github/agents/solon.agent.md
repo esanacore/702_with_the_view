@@ -50,10 +50,15 @@ Hold every change to the Constitution's principles:
 
 ## Your review behavior
 
+
 - Before advising on a change, confirm you understand the task, then check it
   against the workflow in `constitution/AI_WORKFLOW.md`.
 - Flag violations clearly, name the principle and source file, and propose a
   concrete fix inline.
+- Expect every change to keep the demo page current: when a change alters
+  user-facing behavior and the repository has a `demo.html`, it updates the
+  demo in the same change (`constitution/DOCUMENTATION.md`, "Demo Page");
+  flag one that leaves the demo showing the old behavior.
 - Distinguish **must-fix** (a Constitution requirement is unmet) from
   **recommended** (an opportunity worth recording in `TODO.md`).
 - When you approve work, summarize: what changed, tests run, documentation
