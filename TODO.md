@@ -43,7 +43,8 @@ Keep entries specific, actionable, and current.
       (2026-08-18, CSS-only diagram in the "How it works" section)
 - [x] Second visualization: medicine-cabinet feature callouts (2026-08-19)
 - [ ] Publish the Property Manual as a page on the site (private link or
-      resident-only section) once model numbers are in
+      resident-only section) once the bathroom model numbers and serials
+      are in (kitchen models recorded 2026-10-12)
 - [x] Open Graph / social preview tags + JSON-LD structured data (2026-08-03)
 - [x] Compress the timelapse: 38MB HEVC → 6MB H.264 @1440px (2026-08-19).
       Also fixes playback in Chrome/Firefox, which often reject HEVC.
@@ -51,9 +52,21 @@ Keep entries specific, actionable, and current.
 
 ## Property Manual
 
-- [ ] Collect model & serial numbers for the GE appliance suite (owner)
+- [x] Kitchen appliance model numbers recorded from the sales order
+      (2026-10-12: LG LFCS22520S fridge; GE GRF500PVSS range, GDT650SYVFS
+      dishwasher, JVM3160RFSS microwave; manufacturer manual pages linked)
+- [ ] Owner: read the serial numbers off the four kitchen units' rating
+      plates and fill the Quick Reference column
+- [ ] Owner: decide whether the page copy stays "all-new GE kitchen" / "GE
+      suite" now that the refrigerator is an LG (hero, meta descriptions,
+      the water-path diagram's "GE French-door refrigerator" step,
+      `README.md`, the wiki, and the wording of FR-002 / FR-002-AC-1 in
+      `docs/PRODUCT_REQUIREMENTS.md` and the traceability matrix). T-030
+      is meant to guard that copy but only greps a case-insensitive `GE`,
+      which matches "page"; tighten it whichever way the wording goes.
 - [ ] Collect model numbers for medicine cabinet, bathroom fan, and water filter (owner)
-- [ ] Link manufacturer manuals and write per-appliance how-tos in `docs/PROPERTY_MANUAL.md`
+- [ ] Write per-appliance how-tos and care notes in `docs/PROPERTY_MANUAL.md`
+      (icemaker first-use flush, filter cleaning, charcoal filter part)
 - [ ] Document filter replacement schedule and Bluetooth pairing/reset steps
 
 ## Technical Debt

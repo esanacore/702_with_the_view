@@ -6,40 +6,50 @@ This document records the current session's planned work before implementation b
 
 ## Session
 
-- **Date/Time**: 2026-09-18
-- **Agent**: Claude (Fable 5.1)
-- **Previous Session**: 2026-09-16, holiday boat parade photo added and merged (PR #7), live.
+- **Date/Time**: 2026-10-12
+- **Agent**: Claude
+- **Previous Session**: 2026-09-18, listing photos and facts imported, released as v1.8.0.
+- **Branch**: `claude/appliance-model-numbers-2aj9ld`
 
 ## Goal
 
-**COMPLETE — merged (PR #8) and released as v1.8.0.** Import the photos
-and facts from the listing agent's post for Unit 702, tone down the
-over-processed MLS look, and harden the test suite against the mistakes
-made along the way.
+Record the kitchen appliance model numbers in `docs/PROPERTY_MANUAL.md`
+from the owner's sales order (Plesser's Appliance Showroom,
+ordered 2026-07-22, delivered 2026-07-28).
 
-## What was done
+## Approach
 
-- 22 listing photos imported (30 photos on the page, no placeholders left;
-  the refrigerator tile was removed at the owner's request).
-- `tools/import_photo.py`: measured tone correction; preserves the untouched
-  source in `photos-original/` (27 files, outside `site/`, never deployed).
-- Owner decisions recorded: $3,150/month, available now, 800 sq ft,
-  "Equal Housing Opportunity" stays, originals are committed.
-- Tests: `tests/check_gallery.py` (G-001..G-008), T-039, T-046, I-025, a
-  `caption-only` coverage fixture; T-036 and T-102 corrected. FR-016 and
-  FR-017 declared and traced (23/23).
-- Isolated critique pass run on the diff by a fresh sub-agent; its findings
-  were fixed and given regression tests.
+- Fill the Quick Reference rows for refrigerator, range, dishwasher and
+  microwave; add a per-appliance section with model, description and
+  the accessories installed with it.
+- Record the purchase (retailer, order number, dates) as the source.
+- Leave serial numbers TBD: the order confirmation does not carry them.
+- Note the discrepancy: the refrigerator is an **LG** LFCS22520S, while the
+  page and wiki describe an all-GE suite. Flag for the owner; do not change
+  page copy in this session.
+
+## Files expected to change
+
+- `docs/PROPERTY_MANUAL.md`, `TODO.md`, `CHANGELOG.md`, `docs/SESSION_PLAN.md`
+
+## Risks
+
+- Documentation-only change; no site or test impact.
+- Owner's personal contact details on the order must not be copied into
+  the public repository.
 
 ## Resumption Notes
 
-- **Last completed step**: full declared suite green (61 structural, 11
-  validator, 14 gallery, 20 layout, 22 interaction, app.js 100%); compliance,
-  traceability, secrets and version gates green.
-- **Uncommitted changes**: none expected after the PR branch is pushed.
-- **Known issues**: see `TODO.md` — MLS photo reuse permission (Peggy Moran),
-  eleven low-resolution photos, and eager loading of all 30 photos.
+- **COMPLETE.** Manual, TODO and CHANGELOG updated; `bash tests/test_site.sh`
+  60/60 structural (browser suites skipped: no gstack/Playwright here);
+  compliance, secrets and doc-freshness checks green. Isolated critique pass
+  run by a fresh sub-agent; its findings (invented serial-plate locations,
+  "installed" vs "delivered", wrong test attribution in TODO) were folded in.
+- **No release cut**: documentation-only change, nothing in `site/` moved.
+- **Uncommitted changes**: none after the commit on
+  `claude/appliance-model-numbers-2aj9ld`.
 
 ## Next Session
 
-Read `TODO.md` first.
+Read `TODO.md` first: the owner's call on the "GE kitchen" wording, serial
+numbers, and the bathroom fixture models.

@@ -8,6 +8,14 @@ This project follows semantic versioning.
 
 ### Added
 
+- **Property Manual: kitchen appliance models recorded** from the owner's
+  sales order (delivered 2026-07-28): LG LFCS22520S refrigerator, GE
+  GRF500PVSS electric range, GE GDT650SYVFS dishwasher and GE JVM3160RFSS
+  over-the-range microwave, each linked to the manufacturer's support page
+  that hosts its manual, with the purchase record and supplied accessories.
+  Serial numbers, the bathroom fixtures and the water filter remain TBD. The order shows the refrigerator is LG, not
+  GE as the page copy says; that wording is flagged for the owner in
+  `TODO.md`, not changed.
 - **Offline demo page** (`demo.html` at the repository root): a
   self-contained copy of the listing page with its styles and script inline,
   labeled as an offline copy, for review without a network connection. Photos

@@ -3,10 +3,12 @@
 The resident guide to the apartment: every appliance, fixture, and system,
 with model numbers, manuals, maintenance schedules, and how-tos.
 
-**Status: skeleton.** Model numbers and documents are being collected —
-every `TBD` below is a slot waiting for them. When a model number arrives,
-fill in the row, link the manufacturer's manual, and complete that
-appliance's how-to section.
+**Status: in progress.** The kitchen appliance models are recorded below
+(recorded 2026-10-12 from the owner's 2026-07-22 sales order). Serial numbers, the bathroom
+fixtures and the water filter are still being collected — every `TBD`
+below is a slot waiting for them. When a model number arrives, fill in the
+row, link the manufacturer's manual, and complete that appliance's how-to
+section.
 
 ---
 
@@ -33,42 +35,97 @@ flagged items** before the listing is shared widely.
 
 ## Quick Reference
 
-| Item | Brand | Model # | Serial # | Installed | Manual |
+| Item | Brand | Model # | Serial # | Delivered | Manual |
 | --- | --- | --- | --- | --- | --- |
-| Refrigerator (French-door, icemaker) | GE | TBD | TBD | 2026 | TBD |
-| Range | GE | TBD | TBD | 2026 | TBD |
-| Dishwasher | GE | TBD | TBD | 2026 | TBD |
-| Microwave | GE | TBD | TBD | 2026 | TBD |
+| Refrigerator (30" French-door, 22 cu. ft., icemaker) | LG | LFCS22520S | TBD | 2026-07-28 | [LG support page](https://www.lg.com/us/support/product/lg-LFCS22520S) |
+| Range (30" freestanding electric) | GE | GRF500PVSS | TBD | 2026-07-28 | [GE product page](https://www.geappliances.com/appliance/GE-ENERGY-STAR-30-Free-Standing-Electric-Range-with-Crisp-Mode-GRF500PVSS) |
+| Dishwasher (24" top-control, stainless interior) | GE | GDT650SYVFS | TBD | 2026-07-28 | [GE product page](https://www.geappliances.com/appliance/GE-ENERGY-STAR-Fingerprint-Resistant-Top-Control-with-Stainless-Steel-Interior-Dishwasher-with-Sanitize-Cycle-GDT650SYVFS) |
+| Microwave (30" over-the-range, 1.6 cu. ft.) | GE | JVM3160RFSS | TBD | 2026-07-28 | [GE product page](https://www.geappliances.com/appliance/GE-1-6-Cu-Ft-Over-the-Range-Microwave-Oven-JVM3160RFSS) |
 | Medicine cabinet (defogger/lighting/USB) | TBD | TBD | TBD | 2026 | TBD |
 | Bathroom fan (light + Bluetooth speaker) | TBD | TBD | TBD | 2026 | TBD |
 | Water filter (refrigerator supply line) | TBD | TBD | — | 2026 | TBD |
 
-> Add or remove rows to match the actual appliance suite once the model
-> list is finalized.
+> Serial numbers are not on the order confirmation. Read them off each
+> unit's rating plate (each manufacturer's support page has a model/serial
+> locator) and fill the column in. The medicine cabinet, fan and water
+> filter rows still show the remodel year because their delivery dates are
+> not recorded.
+
+### Purchase record — kitchen suite
+
+| Field | Value |
+| --- | --- |
+| Retailer | Plesser's Appliance Showroom, 6 East Main Street, Babylon, NY 11702 |
+| Order | Sales order placed 2026-07-22 (order number on the owner's copy) |
+| Delivered | 2026-07-28, Gold Insured inside delivery; old appliances removed and recycled |
+| Installation | Not included in the order |
+| Warranty | Manufacturer warranty only; no extended warranties purchased |
+| Rebates | GE mail-in rebates were available on the range, dishwasher and microwave (owner to confirm submission) |
+| Accessories | 6 ft stainless refrigerator waterline kit; 4 ft 40 A 4-wire range cord; 9-piece dishwasher installation kit |
+
+The order PDF is the owner's record; it is not committed here because it
+carries personal contact and payment details.
 
 ## Kitchen
 
-### GE French-door refrigerator
+### LG French-door refrigerator
 
 - **What's special:** the icemaker is supplied by a dedicated **filtered
   cold-water line**, so ice and water are filtered at the source.
-- Model / serial: TBD
-- Manual: TBD
+- **Model:** LG LFCS22520S — 30" wide, 22 cu. ft., freestanding
+  French-door, stainless steel. Depth with handles 35½"; height to the top
+  of the door hinge 68½" (dimensions as specified on the order).
+- Serial: TBD
+- Manual: [LG support page for LFCS22520S](https://www.lg.com/us/support/product/lg-LFCS22520S)
+  (owner's manual PDF, online manual and spec sheet)
+- Supplied with a 6 ft stainless steel waterline kit.
 - **Icemaker:** TBD — on/off switch location, first-use flush instructions.
 - **Temperature settings:** TBD — recommended settings.
 
+> **Note for the listing page:** the site, its metadata, `README.md` and
+> the wiki describe an "all-new GE kitchen" / "GE suite". The refrigerator
+> is LG; the range, dishwasher and microwave are GE. The page copy is the
+> owner's call (tracked in `TODO.md`).
+
 ### Water filtration
 
-- Filter type & location: TBD (inline filter on the refrigerator supply line)
+- Filter type & location: TBD (inline filter on the refrigerator supply
+  line; the 6 ft stainless waterline kit on the order is the hose, not the
+  filter)
 - Replacement cartridge part #: TBD
 - **Replacement schedule:** TBD (typically every 6 months — confirm for the
   installed filter)
 - How to replace: TBD
 
-### Other GE appliances
+### GE electric range
 
-Sections to complete once models are confirmed: range, dishwasher,
-microwave — each with model, manual link, and care notes.
+- **Model:** GE GRF500PVSS — 30" freestanding **electric** range,
+  stainless steel. Supplied with a 4 ft, 40 A, 4-wire range cord.
+- Serial: TBD
+- Manual: [GE product page for GRF500PVSS](https://www.geappliances.com/appliance/GE-ENERGY-STAR-30-Free-Standing-Electric-Range-with-Crisp-Mode-GRF500PVSS)
+  (Use & Care manual under "Owner Support")
+- **Care notes:** TBD — cooktop cleaning, self-clean/steam-clean guidance.
+
+### GE dishwasher
+
+- **Model:** GE GDT650SYVFS — 24" fully integrated top-control dishwasher,
+  stainless steel interior, fingerprint-resistant stainless finish.
+  Supplied with a 9-piece installation kit.
+- Serial: TBD
+- Manual: [GE product page for GDT650SYVFS](https://www.geappliances.com/appliance/GE-ENERGY-STAR-Fingerprint-Resistant-Top-Control-with-Stainless-Steel-Interior-Dishwasher-with-Sanitize-Cycle-GDT650SYVFS)
+  (Use & Care manual and Energy Guide under "Owner Support")
+- **Care notes:** TBD — filter cleaning, rinse-aid, recommended detergent.
+
+### GE over-the-range microwave
+
+- **Model:** GE JVM3160RFSS — 30" over-the-range microwave, 1.6 cu. ft.,
+  stainless steel.
+- Serial: TBD
+- Manual: [GE product page for JVM3160RFSS](https://www.geappliances.com/appliance/GE-1-6-Cu-Ft-Over-the-Range-Microwave-Oven-JVM3160RFSS)
+  (Use & Care manual under "Owner Support")
+- Recirculating charcoal filter kit: **JX81C** or **WB02X33061** (per GE's
+  product page; confirm the installed venting mode first).
+- **Care notes:** TBD — grease-filter cleaning schedule, light bulb type.
 
 ## Bathroom
 
