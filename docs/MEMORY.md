@@ -94,6 +94,11 @@ This file contains durable memories, codebase learnings, user preferences, and k
   removing one tile usually means rebalancing (wide tiles count 2 cells).
 - `tools/optimize_photos.py` judges staleness by mtime only: after changing
   its QUALITY, delete the `.webp` files or nothing regenerates.
+- Appliance order confirmations carry model numbers but not serial numbers;
+  serials have to be read off each unit's rating plate. Purchase PDFs stay
+  out of the repo (it is public and they hold personal contact and payment
+  data): only model numbers, dates, retailer and accessories go into
+  `docs/PROPERTY_MANUAL.md`.
 
 ## Active Project Decisions
 
@@ -122,3 +127,8 @@ This file contains durable memories, codebase learnings, user preferences, and k
   public repo in `photos-original/` by the owner's decision, with the
   OneKey MLS watermarks left intact. Reuse permission from the listing agent
   is still an open TODO.
+- 2026-10-12: The kitchen suite is mixed: an LG refrigerator (LFCS22520S)
+  plus three GE units (GRF500PVSS range, GDT650SYVFS dishwasher,
+  JVM3160RFSS microwave), per the owner's 2026-07-22 sales order. The page,
+  README, wiki and FR-002 still say "all-new GE kitchen" / "GE suite"; that
+  is a known inaccuracy pending the owner's call (see `TODO.md`).
